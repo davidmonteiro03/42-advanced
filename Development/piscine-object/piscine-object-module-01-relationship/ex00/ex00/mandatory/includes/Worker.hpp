@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:37:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/11 17:45:07 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:36:47 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 #define WORKER_HPP
 
 #include <cstddef>
+#include <vector>
 #include "Position.hpp"
 #include "Statistic.hpp"
-#include "Shovel.hpp"
+#include "Tool.hpp"
+#include "Workshop.hpp"
 
 class Worker
 {
@@ -28,14 +30,15 @@ public:
 	~Worker();
 	const Position &getCoordonnee(void) const;
 	const Statistic &getStat(void) const;
-	const Shovel *getShovel(void) const;
-	void useShovel(Shovel *);
-	void unuseShovel(void);
+	const Tool *getTool(void) const;
+	void useTool(Tool *);
+	void unuseTool(void);
 
 private:
 	Position _coordonnee;
 	Statistic _stat;
-	Shovel *_shovel;
+	Tool *_tool;
+	std::vector<Workshop *> _workshops;
 };
 
 #endif // !WORKER_HPP

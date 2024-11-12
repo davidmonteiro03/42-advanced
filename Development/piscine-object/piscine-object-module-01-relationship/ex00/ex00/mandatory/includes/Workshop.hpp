@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Shovel.hpp                                         :+:      :+:    :+:   */
+/*   Workshop.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 16:55:07 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/12 10:05:29 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/11/12 10:22:29 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/11/12 10:36:53 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHOVEL_HPP
-#define SHOVEL_HPP
+#ifndef WORKSHOP_HPP
+#define WORKSHOP_HPP
 
-#include "Tool.hpp"
+#include <vector>
+#include "Worker.hpp"
 
-class Shovel : public Tool
+class Workshop
 {
-public:
-	Shovel(void);
-	~Shovel();
-	void use(void);
+private:
+	std::vector<Worker *> _workers;
 };
 
-#endif // !SHOVEL_HPP
+#endif // !WORKSHOP_HPP

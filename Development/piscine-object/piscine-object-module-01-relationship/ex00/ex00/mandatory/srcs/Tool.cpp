@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Shovel.hpp                                         :+:      :+:    :+:   */
+/*   Tool.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 16:55:07 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/12 10:05:29 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/11/12 10:06:44 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/11/12 10:09:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHOVEL_HPP
-#define SHOVEL_HPP
+#include "../includes/Tool.hpp"
 
-#include "Tool.hpp"
+Tool::Tool(void) : _numberOfUses(0) {}
 
-class Shovel : public Tool
+Tool::Tool(const Tool &copy) : _numberOfUses(copy._numberOfUses) {}
+
+Tool &Tool::operator=(const Tool &other)
 {
-public:
-	Shovel(void);
-	~Shovel();
-	void use(void);
-};
+	if (this != &other)
+	{
+		this->_numberOfUses = other._numberOfUses;
+	}
+	return *this;
+}
 
-#endif // !SHOVEL_HPP
+Tool::~Tool() {}
+
+unsigned int Tool::getNumberOfUses(void) const { return this->_numberOfUses; }

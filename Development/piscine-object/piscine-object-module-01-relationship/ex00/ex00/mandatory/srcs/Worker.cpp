@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:42:31 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/11 17:51:33 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:28:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Worker::Worker(void) : _coordonnee(),
 					   _stat(),
-					   _shovel(NULL) {}
+					   _tool(NULL) {}
 
 Worker::Worker(const int x,
 			   const int y,
@@ -22,11 +22,11 @@ Worker::Worker(const int x,
 			   const int level,
 			   const int exp) : _coordonnee(x, y, z),
 								_stat(level, exp),
-								_shovel(NULL) {}
+								_tool(NULL) {}
 
 Worker::Worker(const Worker &copy) : _coordonnee(copy._coordonnee),
 									 _stat(copy._stat),
-									 _shovel(NULL) {}
+									 _tool(NULL) {}
 
 Worker &Worker::operator=(const Worker &other)
 {
@@ -34,7 +34,7 @@ Worker &Worker::operator=(const Worker &other)
 	{
 		this->_coordonnee = other._coordonnee;
 		this->_stat = other._stat;
-		this->_shovel = other._shovel;
+		this->_tool = other._tool;
 	}
 	return *this;
 }
@@ -45,20 +45,20 @@ const Position &Worker::getCoordonnee(void) const { return this->_coordonnee; }
 
 const Statistic &Worker::getStat(void) const { return this->_stat; }
 
-const Shovel *Worker::getShovel(void) const { return this->_shovel; }
+const Tool *Worker::getTool(void) const { return this->_tool; }
 
-void Worker::useShovel(Shovel *shovel)
+void Worker::useTool(Tool *tool)
 {
-	if (shovel == NULL)
+	if (tool == NULL)
 		return;
-	if (this->_shovel != shovel)
-		this->_shovel = shovel;
-	this->_shovel->use();
+	if (this->_tool != tool)
+		this->_tool = tool;
+	this->_tool->use();
 }
 
-void Worker::unuseShovel(void)
+void Worker::unuseTool(void)
 {
-	if (this->_shovel == NULL)
+	if (this->_tool == NULL)
 		return;
-	this->_shovel = NULL;
+	this->_tool = NULL;
 }

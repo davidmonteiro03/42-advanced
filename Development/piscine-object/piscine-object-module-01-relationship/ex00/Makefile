@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 15:20:46 by dcaetano          #+#    #+#              #
-#    Updated: 2024/11/11 17:04:47 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/11/12 11:16:35 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ HPP_EXT   = .hpp
 OBJ_EXT   = .o
 # === FILES ================================================================== #
 # --- Mandatory --- #
-CLSS_M    = Position Statistic Worker Shovel
+CLSS_M    = Position Statistic Worker Shovel Tool Hammer Workshop
 SRCS_M    = $(addprefix $(EXEC_D)/$(MAND_D)/$(SRCS_D)/, \
                         $(addsuffix $(CPP_EXT), \
                                     $(CLSS_M)))

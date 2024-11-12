@@ -6,36 +6,38 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:50:41 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/11 17:55:41 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:37:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "mandatory/includes/Worker.hpp"
+#include "mandatory/includes/Shovel.hpp"
+#include "mandatory/includes/Hammer.hpp"
 
 int main(void)
 {
-	Shovel shovel;
-	{
-		Worker w1;
-		std::cout << w1.getShovel() << std::endl;
-		w1.useShovel(&shovel);
-		std::cout << w1.getShovel() << std::endl;
-	}
-	{
-		Worker w1;
-		std::cout << w1.getShovel() << std::endl;
-		w1.useShovel(&shovel);
-		std::cout << w1.getShovel() << std::endl;
-	}
-	{
-		Worker w1, w2;
-		std::cout << w1.getShovel() << " " << w2.getShovel() << std::endl;
-		w1.useShovel(&shovel);
-		std::cout << w1.getShovel() << " " << w2.getShovel() << std::endl;
-		w2.useShovel(&shovel);
-		std::cout << w1.getShovel() << " " << w2.getShovel() << std::endl;
-	}
-	std::cout << shovel.getNumberOfUses() << std::endl;
+	Tool *shovel = new Shovel();
+	Tool *hammer = new Hammer();
+	Worker w1, w2;
+	w1.useTool(shovel);
+	w1.useTool(shovel);
+	w1.useTool(shovel);
+	w2.useTool(shovel);
+	w1.useTool(shovel);
+	w1.useTool(hammer);
+	w2.useTool(hammer);
+	w1.useTool(hammer);
+	w1.useTool(hammer);
+	w2.useTool(hammer);
+	w1.useTool(hammer);
+	w1.useTool(hammer);
+	w2.useTool(hammer);
+	w1.useTool(hammer);
+	w1.useTool(hammer);
+	std::cout << "shovel uses: " << shovel->getNumberOfUses() << std::endl;
+	std::cout << "hammer uses: " << hammer->getNumberOfUses() << std::endl;
+	delete shovel;
+	delete hammer;
 	return 0;
 }

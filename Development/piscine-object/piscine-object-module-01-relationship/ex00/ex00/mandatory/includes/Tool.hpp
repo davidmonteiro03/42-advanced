@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Shovel.hpp                                         :+:      :+:    :+:   */
+/*   Tool.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 16:55:07 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/12 10:05:29 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/11/12 10:00:03 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/11/12 10:05:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHOVEL_HPP
-#define SHOVEL_HPP
+#ifndef TOOL_HPP
+#define TOOL_HPP
 
-#include "Tool.hpp"
-
-class Shovel : public Tool
+class Tool
 {
 public:
-	Shovel(void);
-	~Shovel();
-	void use(void);
+	Tool(void);
+	Tool(const Tool &);
+	Tool &operator=(const Tool &);
+	virtual ~Tool();
+	virtual void use(void) = 0;
+	unsigned int getNumberOfUses(void) const;
+
+protected:
+	unsigned int _numberOfUses;
 };
 
-#endif // !SHOVEL_HPP
+#endif // !TOOL_HPP

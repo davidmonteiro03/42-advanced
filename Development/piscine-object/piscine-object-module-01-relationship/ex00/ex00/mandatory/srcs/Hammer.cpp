@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Shovel.hpp                                         :+:      :+:    :+:   */
+/*   Hammer.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 16:55:07 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/12 10:05:29 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/11/11 17:01:28 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/11/12 10:11:22 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHOVEL_HPP
-#define SHOVEL_HPP
+#include "../includes/Hammer.hpp"
 
-#include "Tool.hpp"
+Hammer::Hammer(void) : Tool() {}
 
-class Shovel : public Tool
-{
-public:
-	Shovel(void);
-	~Shovel();
-	void use(void);
-};
+Hammer::~Hammer() {}
 
-#endif // !SHOVEL_HPP
+void Hammer::use(void) { this->_numberOfUses++; }
