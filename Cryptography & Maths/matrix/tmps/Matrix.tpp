@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 09:25:47 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/15 11:43:50 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:03:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ template <typename T>
 Matrix<T>::Matrix(const size_t &n,
 				  const size_t &m) : _n(n),
 									 _m(m),
-									 _data(nullptr)
+									 _data(new T *[n])
 {
-	this->_data = new T *[this->_n];
 	for (size_t i = 0; i < this->_n; i++)
 	{
 		this->_data[i] = new T[this->_m];
@@ -37,16 +36,34 @@ Matrix<T>::Matrix(const size_t &n,
 }
 
 template <typename T>
+Matrix<T>::Matrix(const std::initializer_list<std::initializer_list<T>> &data) : _n(data.size()),
+																				 _m(data.begin()->size()),
+																				 _data(new T *[data.size()])
+{
+	for (size_t i = 0; i < this->_n; i++)
+	{
+		if (data.begin()[i].size() != this->_m)
+		{
+			delete[] this->_data;
+			throw std::invalid_argument("Invalid initializer list");
+		}
+	}
+	for (size_t i = 0; i < this->_n; i++)
+		this->_data[i] = new T[this->_m];
+	size_t i = 0;
+	for (const auto &row : data)
+		std::copy(row.begin(), row.end(), this->_data[i++]);
+}
+
+template <typename T>
 Matrix<T>::Matrix(const Matrix &copy) : _n(copy._n),
 										_m(copy._m),
-										_data(nullptr)
+										_data(new T *[copy._n])
 {
-	this->_data = new T *[this->_n];
 	for (size_t i = 0; i < this->_n; i++)
 	{
 		this->_data[i] = new T[this->_m];
-		for (size_t j = 0; j < this->_m; j++)
-			this->_data[i][j] = copy._data[i][j];
+		std::copy(copy._data[i], copy._data[i] + this->_m, this->_data[i]);
 	}
 }
 
@@ -107,7 +124,31 @@ const T *Matrix<T>::operator[](const size_t &idx) const
 }
 
 template <typename T>
-bool matrix_is_square(const Matrix<T> &matrix) { return matrix.shape().first == matrix.shape().second; }
+Matrix<T> &Matrix<T>::operator+=(const Matrix<T> &other)
+{
+	for (size_t i = 0; i < this->_n; i++)
+		for (size_t j = 0; j < this->_m; j++)
+			this->_data[i][j] += other[i][j];
+	return *this;
+}
+
+template <typename T>
+Matrix<T> &Matrix<T>::operator-=(const Matrix<T> &other)
+{
+	for (size_t i = 0; i < this->_n; i++)
+		for (size_t j = 0; j < this->_m; j++)
+			this->_data[i][j] -= other[i][j];
+	return *this;
+}
+
+template <typename T>
+Matrix<T> &Matrix<T>::operator*=(const T &scalar)
+{
+	for (size_t i = 0; i < this->_n; i++)
+		for (size_t j = 0; j < this->_m; j++)
+			this->_data[i][j] *= scalar;
+	return *this;
+}
 
 template <typename T>
 std::ostream &operator<<(std::ostream &os, const Matrix<T> &matrix)
