@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 17:20:27 by dcaetano          #+#    #+#              #
-#    Updated: 2024/11/14 17:28:12 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/11/15 11:58:29 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,22 +16,27 @@ MK        = mkdir
 RM        = rm
 # === DIRECTORIES ============================================================ #
 INCS_D    = includes
+TMPS_D    = tmps
 OBJS_D    = objs
 # === EXTENSIONS ============================================================= #
 CPP_EXT   = .cpp
 HPP_EXT   = .hpp
+TPP_EXT   = .tpp
 OBJ_EXT   = .o
 # === FILES ================================================================== #
-CLSS      = Vector
+CLSS      = Vector Matrix Utils
 INCS      = $(addprefix $(INCS_D)/, \
                         $(addsuffix $(HPP_EXT), \
+                                    $(CLSS)))
+TMPS      = $(addprefix $(TMPS_D)/, \
+                        $(addsuffix $(TPP_EXT), \
                                     $(CLSS)))
 MAIN_CPP  = main$(CPP_EXT)
 MAIN_OBJ  = $(patsubst %$(CPP_EXT), \
                        $(OBJS_D)/%$(OBJ_EXT), \
                        $(MAIN_CPP))
 # === FLAGS ================================================================== #
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++2b -pedantic
+CPP_FLAGS = -v -Wall -Wextra -Werror -std=c++2b -pedantic
 MK_FLAGS  = -p
 RM_FLAGS  = -rfv
 # === PROJECT ================================================================ #
@@ -39,7 +44,7 @@ NAME = matrix
 # === RULES ================================================================== #
 all: $(NAME)
 
-$(OBJS_D)/%$(OBJ_EXT): %$(CPP_EXT) $(INCS)
+$(OBJS_D)/%$(OBJ_EXT): %$(CPP_EXT) $(INCS) $(TMPS)
 	@$(MK) $(MK_FLAGS) $(dir $@)
 	@$(CPP) $(CPP_FLAGS) -c $< -o $@
 
