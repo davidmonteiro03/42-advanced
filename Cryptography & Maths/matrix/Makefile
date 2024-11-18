@@ -5,58 +5,85 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/14 17:20:27 by dcaetano          #+#    #+#              #
-#    Updated: 2024/11/15 15:39:50 by dcaetano         ###   ########.fr        #
+#    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
+#    Updated: 2024/11/18 11:09:45 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # === COMMANDS =============================================================== #
-CPP       = c++
-MK        = mkdir
-RM        = rm
+CPP          = c++
+MK           = mkdir
+RM           = rm
+AR_RCS       = ar rcs
 # === DIRECTORIES ============================================================ #
-INCS_D    = includes
-TMPS_D    = tmps
-OBJS_D    = objs
+INCS_D       = includes
+SRCS_D       = srcs
+OBJS_D       = objs
+TMPS_D       = tmps
+MAND_D       = mandatory
+BNUS_D       = bonus
 # === EXTENSIONS ============================================================= #
-CPP_EXT   = .cpp
-HPP_EXT   = .hpp
-TPP_EXT   = .tpp
-OBJ_EXT   = .o
+CPP_EXT      = .cpp
+HPP_EXT      = .hpp
+TPP_EXT      = .tpp
+OBJ_EXT      = .o
 # === FILES ================================================================== #
-CLSS      = Vector Matrix Utils
-INCS      = $(addprefix $(INCS_D)/, \
-                        $(addsuffix $(HPP_EXT), \
-                                    $(CLSS)))
-TMPS      = $(addprefix $(TMPS_D)/, \
-                        $(addsuffix $(TPP_EXT), \
-                                    $(CLSS)))
-MAIN_CPP  = main$(CPP_EXT)
-MAIN_OBJ  = $(patsubst %$(CPP_EXT), \
-                       $(OBJS_D)/%$(OBJ_EXT), \
-                       $(MAIN_CPP))
+CLSS         = Vector Matrix Utils
+ifeq ($(MAKECMDGOALS),bonus)
+    INCS     = $(addprefix $(BNUS_D)/$(INCS_D)/, \
+                           $(addsuffix $(HPP_EXT), \
+                                       $(CLSS)))
+    TMPS     = $(addprefix $(BNUS_D)/$(TMPS_D)/, \
+                           $(addsuffix $(TPP_EXT), \
+                                       $(CLSS)))
+    MAIN_CPP = bonus$(CPP_EXT)
+else
+    INCS     = $(addprefix $(MAND_D)/$(INCS_D)/, \
+                           $(addsuffix $(HPP_EXT), \
+                                       $(CLSS)))
+    SRCS     = $(addprefix $(MAND_D)/$(SRCS_D)/, \
+                           $(addsuffix $(CPP_EXT), \
+                                       $(CLSS)))
+    OBJS     = $(patsubst $(MAND_D)/$(SRCS_D)/%$(CPP_EXT), \
+                          $(OBJS_D)/$(SRCS_D)/%$(OBJ_EXT), \
+                          $(SRCS))
+    MAIN_CPP = main$(CPP_EXT)
+    LIB      = $(NAME).a
+endif
+MAIN_OBJ     = $(patsubst %$(CPP_EXT), \
+                          $(OBJS_D)/%$(OBJ_EXT), \
+                          $(MAIN_CPP))
 # === FLAGS ================================================================== #
-CPP_FLAGS = -v -Wall -Wextra -Werror -pedantic
-MK_FLAGS  = -p
-RM_FLAGS  = -rfv
+CPP_FLAGS    = -Wall -Wextra -Werror -std=c++2b -pedantic -g -v
+MK_FLAGS     = -p
+RM_FLAGS     = -rfv
 # === PROJECT ================================================================ #
-NAME = matrix
+NAME         = matrix
 # === RULES ================================================================== #
 all: $(NAME)
+
+# bonus: $(NAME)
 
 $(OBJS_D)/%$(OBJ_EXT): %$(CPP_EXT) $(INCS) $(TMPS)
 	@$(MK) $(MK_FLAGS) $(dir $@)
 	@$(CPP) $(CPP_FLAGS) -c $< -o $@
 
-$(NAME): $(MAIN_OBJ)
-	@$(CPP) $(CPP_FLAGS) -I$(INCS_D) $(MAIN_OBJ) -o $(NAME)
+$(OBJS_D)/$(SRCS_D)/%$(OBJ_EXT): $(MAND_D)/$(SRCS_D)/%$(CPP_EXT) $(INCS) $(TMPS)
+	@$(MK) $(MK_FLAGS) $(dir $@)
+	@$(CPP) $(CPP_FLAGS) -c $< -o $@
+
+$(LIB): $(OBJS)
+	@$(AR_RCS) $(LIB) $(OBJS)
+
+$(NAME): $(LIB) $(MAIN_OBJ)
+	@$(CPP) $(CPP_FLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME)
 
 clean:
 	@$(RM) $(RM_FLAGS) $(OBJS_D)
 
 fclean: clean
-	@$(RM) $(RM_FLAGS) $(NAME)
+	@$(RM) $(RM_FLAGS) $(LIB) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
