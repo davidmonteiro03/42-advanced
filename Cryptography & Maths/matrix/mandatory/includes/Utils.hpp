@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:41:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/18 15:59:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/19 08:43:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,11 @@ Vector linear_combination(const std::vector<Vector> &, const std::vector<float> 
 // ex02
 Vector lerp(const Vector &, const Vector &, const float &); // linear interpolation (vector)
 Matrix lerp(const Matrix &, const Matrix &, const float &); // linear interpolation (matrix)
+
+// ex05
+float angle_cos(const Vector &, const Vector &); // cosine of the angle between two vectors
+
+// ex06
+Vector cross_product(const Vector &, const Vector &); // cross product
 
 #endif // !UTILS_HPP

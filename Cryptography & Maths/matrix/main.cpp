@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/18 16:39:15 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/19 08:53:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,12 @@ static void ex01(void)
 {
 	std::cout << "===== EX01 =====" << std::endl;
 	{
-		Vector e1 = {1., 0., 0.};
-		Vector e2 = {0., 1., 0.};
-		Vector e3 = {0., 0., 1.};
+		Vector e1 = {1., 0., 0.}, e2 = {0., 1., 0.}, e3 = {0., 0., 1.};
 		Vector lc = linear_combination({e1, e2, e3}, {10., -2., 0.5});
 		std::cout << lc << std::endl;
 	}
 	{
-		Vector v1 = {1., 2., 3.};
-		Vector v2 = {0., 10., -100.};
+		Vector v1 = {1., 2., 3.}, v2 = {0., 10., -100.};
 		Vector lc = linear_combination({v1, v2}, {10., -2.});
 		std::cout << lc << std::endl;
 	}
@@ -109,18 +106,15 @@ static void ex03(void)
 {
 	std::cout << "===== EX03 =====" << std::endl;
 	{
-		Vector u = {0., 0.};
-		Vector v = {1., 1.};
+		Vector u = {0., 0.}, v = {1., 1.};
 		std::cout << u.dot(v) << std::endl;
 	}
 	{
-		Vector u = {1., 1.};
-		Vector v = {1., 1.};
+		Vector u = {1., 1.}, v = {1., 1.};
 		std::cout << u.dot(v) << std::endl;
 	}
 	{
-		Vector u = {-1., 6.};
-		Vector v = {3., 2.};
+		Vector u = {-1., 6.}, v = {3., 2.};
 		std::cout << u.dot(v) << std::endl;
 	}
 }
@@ -142,6 +136,48 @@ static void ex04(void)
 	}
 }
 
+static void ex05(void)
+{
+	std::cout << "===== EX05 =====" << std::endl;
+	{
+		Vector u = {1., 0.}, v = {1., 0.};
+		std::cout << angle_cos(u, v) << std::endl;
+	}
+	{
+		Vector u = {1., 0.}, v = {0., 1.};
+		std::cout << angle_cos(u, v) << std::endl;
+	}
+	{
+		Vector u = {-1., 1.}, v = {1., -1.};
+		std::cout << angle_cos(u, v) << std::endl;
+	}
+	{
+		Vector u = {2., 1.}, v = {4., 2.};
+		std::cout << angle_cos(u, v) << std::endl;
+	}
+	{
+		Vector u = {1., 2., 3.}, v = {4., 5., 6.};
+		std::cout << angle_cos(u, v) << std::endl;
+	}
+}
+
+static void ex06(void)
+{
+	std::cout << "===== EX06 =====" << std::endl;
+	{
+		Vector u = {0., 0., 1.}, v = {1., 0., 0.};
+		std::cout << cross_product(u, v) << std::endl;
+	}
+	{
+		Vector u = {1., 2., 3.}, v = {4., 5., 6.};
+		std::cout << cross_product(u, v) << std::endl;
+	}
+	{
+		Vector u = {4., 2., -3.}, v = {-2., -5., 16.};
+		std::cout << cross_product(u, v) << std::endl;
+	}
+}
+
 int main(int argc, char **argv)
 {
 	if (argc != 2)
@@ -149,8 +185,8 @@ int main(int argc, char **argv)
 		std::cerr << "Usage: ./matrix <exercise>" << std::endl;
 		return 1;
 	}
-	std::vector<std::string> s_excs = {"ex00", "ex01", "ex02", "ex03", "ex04"};
-	std::vector<void (*)(void)> f_excs = {ex00, ex01, ex02, ex03, ex04};
+	std::vector<std::string> s_excs = {"ex00", "ex01", "ex02", "ex03", "ex04", "ex05", "ex06"};
+	std::vector<void (*)(void)> f_excs = {ex00, ex01, ex02, ex03, ex04, ex05, ex06};
 	for (size_t i = 0; i < s_excs.size(); i++)
 	{
 		if (s_excs[i] == argv[1])

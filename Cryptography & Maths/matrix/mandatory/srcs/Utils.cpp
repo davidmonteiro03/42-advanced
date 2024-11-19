@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:44:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/18 16:47:23 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/19 09:11:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,19 @@ std::ostream &operator<<(std::ostream &os, const Matrix &matrix)
 /* ************************************************************************** */
 
 // add two vectors
-Vector operator+(const Vector &a, const Vector &b)
+Vector operator+(const Vector &u, const Vector &v)
 {
 	Vector result;
-	for (size_t i = 0; i < a.size(); i++)
-		result.push_back(a[i] + b[i]);
+	for (size_t i = 0; i < u.size(); i++)
+		result.push_back(u[i] + v[i]);
 	return result;
 }
 // subtract two vectors
-Vector operator-(const Vector &a, const Vector &b)
+Vector operator-(const Vector &u, const Vector &v)
 {
 	Vector result;
-	for (size_t i = 0; i < a.size(); i++)
-		result.push_back(a[i] - b[i]);
+	for (size_t i = 0; i < u.size(); i++)
+		result.push_back(u[i] - v[i]);
 	return result;
 }
 // scale a vector by a scalar (scalar * vector)
@@ -191,4 +191,27 @@ Vector lerp(const Vector &u, const Vector &v, const float &t)
 Matrix lerp(const Matrix &u, const Matrix &v, const float &t)
 {
 	return (1 - t) * u + t * v;
+}
+
+/* ************************************************************************** */
+/*                                    EX05                                    */
+/* ************************************************************************** */
+
+// cosine of the angle between two vectors
+float angle_cos(const Vector &u, const Vector &v)
+{
+	return u.dot(v) / (u.norm() * v.norm());
+}
+
+/* ************************************************************************** */
+/*                                    EX06                                    */
+/* ************************************************************************** */
+
+Vector cross_product(const Vector &u, const Vector &v)
+{
+	return Vector({
+		u[1] * v[2] - u[2] * v[1],
+		u[2] * v[0] - u[0] * v[2],
+		u[0] * v[1] - u[1] * v[0]
+	});
 }
