@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:44:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/19 09:11:18 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:03:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,7 @@ float angle_cos(const Vector &u, const Vector &v)
 /*                                    EX06                                    */
 /* ************************************************************************** */
 
+// cross product
 Vector cross_product(const Vector &u, const Vector &v)
 {
 	return Vector({

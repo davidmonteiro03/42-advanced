@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/19 08:53:42 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:50:24 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,50 @@ static void ex06(void)
 	}
 }
 
+static void ex07(void)
+{
+	std::cout << "===== EX07 =====" << std::endl;
+	{
+		Matrix u = {{1., 0.},
+					{0., 1.}};
+		Vector v = {4., 2.};
+		std::cout << u.mul_vec(v) << std::endl;
+	}
+	{
+		Matrix u = {{2., 0.},
+					{0., 2.}};
+		Vector v = {4., 2.};
+		std::cout << u.mul_vec(v) << std::endl;
+	}
+	{
+		Matrix u = {{2., -2.},
+					{-2., 2.}};
+		Vector v = {4., 2.};
+		std::cout << u.mul_vec(v) << std::endl;
+	}
+	{
+		Matrix u = {{1., 0.},
+					{0., 1.}},
+			   v = {{1., 0.},
+					{0., 1.}};
+		std::cout << u.mul_mat(v) << std::endl;
+	}
+	{
+		Matrix u = {{1., 0.},
+					{0., 1.}},
+			   v = {{2., 1.},
+					{4., 2.}};
+		std::cout << u.mul_mat(v) << std::endl;
+	}
+	{
+		Matrix u = {{3., -5.},
+					{6., 8.}},
+			   v = {{2., 1.},
+					{4., 2.}};
+		std::cout << u.mul_mat(v) << std::endl;
+	}
+}
+
 int main(int argc, char **argv)
 {
 	if (argc != 2)
@@ -185,8 +229,8 @@ int main(int argc, char **argv)
 		std::cerr << "Usage: ./matrix <exercise>" << std::endl;
 		return 1;
 	}
-	std::vector<std::string> s_excs = {"ex00", "ex01", "ex02", "ex03", "ex04", "ex05", "ex06"};
-	std::vector<void (*)(void)> f_excs = {ex00, ex01, ex02, ex03, ex04, ex05, ex06};
+	std::vector<std::string> s_excs = {"ex00", "ex01", "ex02", "ex03", "ex04", "ex05", "ex06", "ex07"};
+	std::vector<void (*)(void)> f_excs = {ex00, ex01, ex02, ex03, ex04, ex05, ex06, ex07};
 	for (size_t i = 0; i < s_excs.size(); i++)
 	{
 		if (s_excs[i] == argv[1])
