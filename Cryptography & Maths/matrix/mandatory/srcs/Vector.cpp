@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:39:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/18 16:47:33 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:47:36 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@
 Vector &Vector::operator+=(const Vector &other)
 {
 	for (size_t i = 0; i < this->size(); i++)
-		(*this)[i] += other[i];
+		this->at(i) += other[i];
 	return *this;
 }
 // subtract vector
 Vector &Vector::operator-=(const Vector &other)
 {
 	for (size_t i = 0; i < this->size(); i++)
-		(*this)[i] -= other[i];
+		this->at(i) -= other[i];
 	return *this;
 }
 // scale vector by a scalar
 Vector &Vector::operator*=(const float &scalar)
 {
 	for (size_t i = 0; i < this->size(); i++)
-		(*this)[i] *= scalar;
+		this->at(i) *= scalar;
 	return *this;
 }
 

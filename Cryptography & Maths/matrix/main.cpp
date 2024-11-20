@@ -6,13 +6,16 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/19 16:50:24 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:10:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mandatory/includes/Vector.hpp"
 #include "mandatory/includes/Matrix.hpp"
 #include "mandatory/includes/Utils.hpp"
+#include <map>
+
+typedef std::map<std::string, void (*)(void)> t_excs;
 
 static void ex00(void)
 {
@@ -220,6 +223,66 @@ static void ex07(void)
 					{4., 2.}};
 		std::cout << u.mul_mat(v) << std::endl;
 	}
+	{
+		Matrix u = {{1., 2., 3.},
+					{4., 5., 6.}},
+			   v = {{1., 2.},
+					{3., 4.},
+					{5., 6.}};
+		std::cout << u.mul_mat(v) << std::endl;
+	}
+	{
+		Matrix u = {{1., 2.},
+					{3., 4.},
+					{5., 6.}},
+			   v = {{1., 2., 3.},
+					{4., 5., 6.}};
+		std::cout << u.mul_mat(v) << std::endl;
+	}
+}
+
+static void ex08(void)
+{
+	std::cout << "===== EX08 =====" << std::endl;
+	{
+		Matrix u = {{1., 0.},
+					{0., 1.}};
+		std::cout << u.trace() << std::endl;
+	}
+	{
+		Matrix u = {{2., -5., 0.},
+					{4., 3., 7.},
+					{-2., 3., 4.}};
+		std::cout << u.trace() << std::endl;
+	}
+	{
+		Matrix u = {{-2., -8., 4.},
+					{1., -23., 4.},
+					{0., 6., 4.}};
+		std::cout << u.trace() << std::endl;
+	}
+}
+
+static void ex09(void)
+{
+	std::cout << "===== EX09 =====" << std::endl;
+	{
+		Matrix u = {{1., 2., 3.},
+					{4., 5., 6.}};
+		std::cout << u.transpose() << std::endl;
+	}
+	{
+		Matrix u = {{1., 2.},
+					{3., 4.},
+					{5., 6.}};
+		std::cout << u.transpose() << std::endl;
+	}
+	{
+		Matrix u = {{1., 2., 3.},
+					{4., 5., 6.},
+					{7., 8., 9.}};
+		std::cout << u.transpose() << std::endl;
+	}
 }
 
 int main(int argc, char **argv)
@@ -229,34 +292,31 @@ int main(int argc, char **argv)
 		std::cerr << "Usage: ./matrix <exercise>" << std::endl;
 		return 1;
 	}
-	std::vector<std::string> s_excs = {"ex00", "ex01", "ex02", "ex03", "ex04", "ex05", "ex06", "ex07"};
-	std::vector<void (*)(void)> f_excs = {ex00, ex01, ex02, ex03, ex04, ex05, ex06, ex07};
-	for (size_t i = 0; i < s_excs.size(); i++)
+	t_excs excs = {{"ex00", ex00},
+				   {"ex01", ex01},
+				   {"ex02", ex02},
+				   {"ex03", ex03},
+				   {"ex04", ex04},
+				   {"ex05", ex05},
+				   {"ex06", ex06},
+				   {"ex07", ex07},
+				   {"ex08", ex08},
+				   {"ex09", ex09}};
+	t_excs::iterator exec = excs.find(argv[1]);
+	if (exec == excs.end())
 	{
-		if (s_excs[i] == argv[1])
-		{
-			if (i >= f_excs.size())
-			{
-				std::cerr << "There no match function for " << argv[1] << '.' << std::endl;
-				return 1;
-			}
-			if (f_excs[i] == nullptr)
-			{
-				std::cerr << "Match function for " << argv[1] << " is null." << std::endl;
-				return 1;
-			}
-			try
-			{
-				f_excs[i]();
-			}
-			catch (const std::exception &e)
-			{
-				std::cerr << "Something went wrong while executing " << argv[1] << "..." << std::endl;
-				return 1;
-			}
-			return 0;
-		}
+		std::cerr << "Exercise " << argv[1] << " not found." << std::endl;
+		return 1;
 	}
-	std::cerr << "Exercise " << argv[1] << " not found." << std::endl;
+	try
+	{
+		exec->second();
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << "Something went wrong while executing " << argv[1] << "..." << std::endl;
+		std::cerr << "Reason: " << e.what() << std::endl;
+		return 1;
+	}
 	return 0;
 }

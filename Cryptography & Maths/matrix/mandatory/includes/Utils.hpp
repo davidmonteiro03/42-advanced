@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:41:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/19 08:43:32 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:28:15 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 #include <iostream>
 #include <cstddef>
 
+typedef std::pair<size_t, size_t> m_shape;
+
 class Utils
 {
 public:
 	static size_t vector_size(const Vector &);
-	static const std::pair<size_t, size_t> matrix_shape(const Matrix &);
+	static const m_shape matrix_shape(const Matrix &);
 	static bool matrix_is_square(const Matrix &);
 	static Matrix reshape_vector_into_matrix(const Vector &, const size_t &, const size_t &);
 	static Vector reshape_matrix_into_vector(const Matrix &);
