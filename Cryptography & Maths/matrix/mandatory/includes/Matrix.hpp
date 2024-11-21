@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:38:38 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/20 16:00:07 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/21 07:33:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ public:
 	float trace(void) const; // trace
 	// ex09
 	Matrix transpose(void); // transpose
+	// ex10
+	Matrix row_echelon(void); // row-echelon form
 };
 
 #endif // !MATRIX_HPP
