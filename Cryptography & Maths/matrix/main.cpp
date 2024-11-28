@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/28 12:20:09 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:16:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,27 +311,104 @@ static void ex10(void)
 		std::cout << u.row_echelon() << std::endl;
 	}
 	{
-		Matrix u = {{-2., -8., 4.},
-					{1., -23., 4.},
-					{0., 6., 4.}};
+		Matrix u = {{2., 3., 4.},
+					{-7., 4., 2.}};
 		std::cout << u.row_echelon() << std::endl;
 	}
 	{
-		Matrix u = {{0., 0., 4.},
-					{1., 0., 4.},
-					{0., 6., 4.}};
+		Matrix u = {{1., -2., 1., -1.},
+					{2., 1., 3., 8.},
+					{4., -7., 1., -2.}};
 		std::cout << u.row_echelon() << std::endl;
 	}
 	{
-		Matrix u = {{1., 2., 3.},
-					{4., 5., 6.},
-					{7., 8., 9.}};
+		Matrix u = {{-1.3, 0.6},
+					{20.4, 5.5},
+					{9.7, -6.2}};
 		std::cout << u.row_echelon() << std::endl;
 	}
 	{
-		Matrix u = {{1., 2., 3., 4., 5., 10.},
-					{2., 3., 4., 5., 6., -2.}};
+		Matrix u = {{4., -7., 5., 0.},
+					{-2., 0., 11., 8.},
+					{19., 1., -3., 12.}};
 		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{9., 13., 5.},
+					{1., 11., 7.},
+					{2., 6., 3.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{1., 3., 6.},
+					{8., 5., 0.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{9., 13., 5., 2.},
+					{1., 11., 7., 6.},
+					{3., 7., 4., 1.},
+					{6., 0., 7., 10.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{-2., -1., 2.},
+					{2., 1., 4.},
+					{-3., 3., -1.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{1., -1.},
+					{-1., 1.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{2., 0., 0.},
+					{0., 2., 0.},
+					{0., 0., 2.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{8., 5., -2.},
+					{4., 7., 20.},
+					{7., 6., 1.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{8., 5., -2., 4.},
+					{4., 2.5, 20., 4.},
+					{8., 5., 1., 4.},
+					{28., -4., 17., 1.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+}
+
+static void ex11(void)
+{
+	std::cout << "===== EX11 =====" << std::endl;
+	{
+		Matrix u = {{1., -1.},
+					{-1., 1.}};
+		std::cout << u.determinant() << std::endl;
+	}
+	{
+		Matrix u = {{2., 0., 0.},
+					{0., 2., 0.},
+					{0., 0., 2.}};
+		std::cout << u.determinant() << std::endl;
+	}
+	{
+		Matrix u = {{8., 5., -2.},
+					{4., 7., 20.},
+					{7., 6., 1.}};
+		std::cout << u.determinant() << std::endl;
+	}
+	{
+		Matrix u = {{8., 5., -2., 4.},
+					{4., 2.5, 20., 4.},
+					{8., 5., 1., 4.},
+					{28., -4., 17., 1.}};
+		std::cout << u.determinant() << std::endl;
 	}
 }
 
@@ -352,7 +429,8 @@ int main(int argc, char **argv)
 				   {"ex07", ex07},
 				   {"ex08", ex08},
 				   {"ex09", ex09},
-				   {"ex10", ex10}};
+				   {"ex10", ex10},
+				   {"ex11", ex11}};
 	t_excs::iterator exec = excs.find(argv[1]);
 	if (exec == excs.end())
 	{

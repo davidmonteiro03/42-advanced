@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:41:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/28 12:19:57 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:10:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "Matrix.hpp"
 #include <iostream>
 #include <cstddef>
+#include <iomanip>
 
 typedef std::pair<size_t, size_t> m_shape;
 

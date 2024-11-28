@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:39:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/28 12:23:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:38:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,9 @@ void Matrix::sortTheRowsByTheFirstNonZeroElement(Matrix &matrix)
 	{
 		for (size_t j = i + 1; j < shape.first; j++)
 		{
-			if (pivots_poss[i] > pivots_poss[j])
+			if (pivots_poss[j] == -1)
+				continue;
+			if (pivots_poss[i] == -1 || pivots_poss[i] > pivots_poss[j])
 			{
 				std::swap(pivots_poss[i], pivots_poss[j]);
 				std::swap(matrix[i], matrix[j]);
@@ -138,6 +140,7 @@ void Matrix::sortTheRowsByTheFirstNonZeroElement(Matrix &matrix)
 // reset to zero the values below each pivot (private helper function)
 void Matrix::resetToZeroTheValuesBelowEachPivot(Matrix &matrix)
 {
+	this->sortTheRowsByTheFirstNonZeroElement(matrix);
 	m_shape shape = Utils::matrix_shape(matrix);
 	for (size_t j = 0; j < shape.second; j++)
 	{
@@ -149,10 +152,12 @@ void Matrix::resetToZeroTheValuesBelowEachPivot(Matrix &matrix)
 				matrix[i] = matrix[i] * matrix[j][prevPivotPos] - matrix[j] * matrix[i][currPivotPos];
 		}
 	}
+	this->sortTheRowsByTheFirstNonZeroElement(matrix);
 }
 // reset to zero the values above each pivot (private helper function)
 void Matrix::resetToZeroTheValuesAboveEachPivot(Matrix &matrix)
 {
+	this->sortTheRowsByTheFirstNonZeroElement(matrix);
 	m_shape shape = Utils::matrix_shape(matrix);
 	for (size_t i = 0; i < shape.first; i++)
 	{
@@ -164,6 +169,7 @@ void Matrix::resetToZeroTheValuesAboveEachPivot(Matrix &matrix)
 			matrix[i] = matrix[i] * matrix[j][pivotPos] - matrix[j] * matrix[i][pivotPos];
 		}
 	}
+	this->sortTheRowsByTheFirstNonZeroElement(matrix);
 }
 // normalize the pivot values (private helper function)
 void Matrix::normalizeThePivotValues(Matrix &matrix)
@@ -181,9 +187,18 @@ void Matrix::normalizeThePivotValues(Matrix &matrix)
 Matrix Matrix::row_echelon(void)
 {
 	Matrix result(*this);
-	this->sortTheRowsByTheFirstNonZeroElement(result);
 	this->resetToZeroTheValuesBelowEachPivot(result);
 	this->resetToZeroTheValuesAboveEachPivot(result);
 	this->normalizeThePivotValues(result);
 	return result;
+}
+
+/* ************************************************************************** */
+/*                                    EX11                                    */
+/* ************************************************************************** */
+
+// determinant
+float Matrix::determinant(void)
+{
+	return 0;
 }
