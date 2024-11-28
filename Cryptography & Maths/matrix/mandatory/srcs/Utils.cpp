@@ -3,28 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   Utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:44:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/20 15:28:37 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:30:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Utils.hpp"
 
+// vector size
 size_t Utils::vector_size(const Vector &vector) { return vector.size(); }
-
+// matrix shape
 const m_shape Utils::matrix_shape(const Matrix &matrix)
 {
 	return std::make_pair(matrix.size(), matrix.size() == 0 ? 0 : matrix[0].size());
 }
-
+// check if a matrix is square
 bool Utils::matrix_is_square(const Matrix &matrix)
 {
 	const m_shape matrixShape = matrix_shape(matrix);
 	return matrixShape.first == matrixShape.second;
 }
-
+// reshape a vector into a matrix
 Matrix Utils::reshape_vector_into_matrix(const Vector &vector, const size_t &rows, const size_t &cols)
 {
 	Matrix matrix;
@@ -37,7 +38,7 @@ Matrix Utils::reshape_vector_into_matrix(const Vector &vector, const size_t &row
 	}
 	return matrix;
 }
-
+// reshape a matrix into a vector
 Vector Utils::reshape_matrix_into_vector(const Matrix &matrix)
 {
 	Vector vector;
@@ -46,7 +47,7 @@ Vector Utils::reshape_matrix_into_vector(const Matrix &matrix)
 			vector.push_back(matrix[i][j]);
 	return vector;
 }
-
+// print vector
 std::ostream &operator<<(std::ostream &os, const Vector &vector)
 {
 	os << '[';
@@ -59,7 +60,7 @@ std::ostream &operator<<(std::ostream &os, const Vector &vector)
 	os << ']';
 	return os;
 }
-
+// print matrix
 std::ostream &operator<<(std::ostream &os, const Matrix &matrix)
 {
 	os << '[';

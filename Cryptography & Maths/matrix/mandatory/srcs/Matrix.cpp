@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Matrix.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:39:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/21 15:05:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:15:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,18 +108,32 @@ Matrix Matrix::transpose(void)
 /*                                    EX10                                    */
 /* ************************************************************************** */
 
+static ssize_t findPivotPos(const Vector &line)
+{
+	for (size_t i = 0; i < line.size(); i++)
+		if (line[i] != 0)
+			return i;
+	return -1;
+}
+
 // row-echelon form
 Matrix Matrix::row_echelon(void)
 {
-	return *this;
+	m_shape localShape = Utils::matrix_shape(*this);
+	Matrix result(*this);
+	std::vector<size_t> pivots_poss;
+	for (size_t i = 0; i < localShape.first; i++)
+		pivots_poss.push_back(findPivotPos(result[i]));
+	for (size_t i = 0; i < localShape.first; i++)
+	{
+		for (size_t j = i + 1; j < localShape.first; j++)
+		{
+			if (pivots_poss[i] > pivots_poss[j])
+			{
+				std::swap(pivots_poss[i], pivots_poss[j]);
+				std::swap(result[i], result[j]);
+			}
+		}
+	}
+	return result;
 }
-
-/*
-
-+-----+-----+-----+-----+-----+
-|   8 |   5 |  -2 |   4 |  28 |
-|   4 | 2.5 |  20 |   4 |  -4 |
-|   8 |   5 |   1 |   4 |  17 |
-+-----+-----+-----+-----+-----+
-
- */

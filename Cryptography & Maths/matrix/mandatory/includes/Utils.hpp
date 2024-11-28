@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:41:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/20 15:28:15 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:29:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@ typedef std::pair<size_t, size_t> m_shape;
 class Utils
 {
 public:
-	static size_t vector_size(const Vector &);
-	static const m_shape matrix_shape(const Matrix &);
-	static bool matrix_is_square(const Matrix &);
-	static Matrix reshape_vector_into_matrix(const Vector &, const size_t &, const size_t &);
-	static Vector reshape_matrix_into_vector(const Matrix &);
+	static size_t vector_size(const Vector &);												  // vector size
+	static const m_shape matrix_shape(const Matrix &);										  // matrix shape
+	static bool matrix_is_square(const Matrix &);											  // check if a matrix is square
+	static Matrix reshape_vector_into_matrix(const Vector &, const size_t &, const size_t &); // reshape a vector into a matrix
+	static Vector reshape_matrix_into_vector(const Matrix &);								  // reshape a matrix into a vector
 
 private:
 	Utils(void);
 	~Utils();
 };
 
-std::ostream &operator<<(std::ostream &, const Vector &);
-std::ostream &operator<<(std::ostream &, const Matrix &);
+std::ostream &operator<<(std::ostream &, const Vector &); // print vector
+std::ostream &operator<<(std::ostream &, const Matrix &); // print matrix
 
 // ex00
 Vector operator+(const Vector &, const Vector &); // add two vectors

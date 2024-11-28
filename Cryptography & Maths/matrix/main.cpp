@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/20 16:10:38 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/28 09:40:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,6 +285,45 @@ static void ex09(void)
 	}
 }
 
+static void ex10(void)
+{
+	std::cout << "===== EX10 =====" << std::endl;
+	{
+		Matrix u = {{1., 0., 0.},
+					{0., 1., 0.},
+					{0., 0., 1.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{1., 2.},
+					{3., 4.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{1., 2.},
+					{2., 4.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{8., 5., -2., 4., 28.},
+					{4., 2.5, 20., 4., -4.},
+					{8., 5., 1., 4., 17.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{-2., -8., 4.},
+					{1., -23., 4.},
+					{0., 6., 4.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{0, 0., 4.},
+					{1., 0., 4.},
+					{0., 6., 4.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+}
+
 int main(int argc, char **argv)
 {
 	if (argc != 2)
@@ -301,7 +340,8 @@ int main(int argc, char **argv)
 				   {"ex06", ex06},
 				   {"ex07", ex07},
 				   {"ex08", ex08},
-				   {"ex09", ex09}};
+				   {"ex09", ex09},
+				   {"ex10", ex10}};
 	t_excs::iterator exec = excs.find(argv[1]);
 	if (exec == excs.end())
 	{
