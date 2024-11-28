@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:39:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/28 12:20:01 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:23:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void Matrix::sortTheRowsByTheFirstNonZeroElement(Matrix &matrix)
 	m_shape shape = Utils::matrix_shape(matrix);
 	std::vector<ssize_t> pivots_poss;
 	for (size_t i = 0; i < shape.first; i++)
-		pivots_poss.push_back(firstNonZeroPos(matrix[i]));
+		pivots_poss.push_back(this->firstNonZeroPos(matrix[i]));
 	for (size_t i = 0; i < shape.first; i++)
 	{
 		for (size_t j = i + 1; j < shape.first; j++)
@@ -143,8 +143,8 @@ void Matrix::resetToZeroTheValuesBelowEachPivot(Matrix &matrix)
 	{
 		for (size_t i = j + 1; i < shape.first; i++)
 		{
-			ssize_t currPivotPos = firstNonZeroPos(matrix[i]),
-					prevPivotPos = firstNonZeroPos(matrix[j]);
+			ssize_t currPivotPos = this->firstNonZeroPos(matrix[i]),
+					prevPivotPos = this->firstNonZeroPos(matrix[j]);
 			if (currPivotPos == prevPivotPos)
 				matrix[i] = matrix[i] * matrix[j][prevPivotPos] - matrix[j] * matrix[i][currPivotPos];
 		}
@@ -158,7 +158,7 @@ void Matrix::resetToZeroTheValuesAboveEachPivot(Matrix &matrix)
 	{
 		for (size_t j = i + 1; j < shape.first; j++)
 		{
-			ssize_t pivotPos = firstNonZeroPos(matrix[j]);
+			ssize_t pivotPos = this->firstNonZeroPos(matrix[j]);
 			if (pivotPos == -1)
 				continue;
 			matrix[i] = matrix[i] * matrix[j][pivotPos] - matrix[j] * matrix[i][pivotPos];
@@ -171,7 +171,7 @@ void Matrix::normalizeThePivotValues(Matrix &matrix)
 	m_shape shape = Utils::matrix_shape(matrix);
 	for (size_t i = 0; i < shape.first; i++)
 	{
-		ssize_t pivotPos = firstNonZeroPos(matrix[i]);
+		ssize_t pivotPos = this->firstNonZeroPos(matrix[i]);
 		if (pivotPos == -1)
 			continue;
 		matrix[i] *= 1 / matrix[i][pivotPos];
