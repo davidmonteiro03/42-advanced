@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:44:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/27 14:30:20 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:20:04 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ Vector operator*(const Vector &vector, const float &scalar)
 {
 	Vector result;
 	for (size_t i = 0; i < vector.size(); i++)
-		result.push_back(vector[i] * scalar);
+		result.push_back(vector[i] == 0 ? 0 : vector[i] * scalar);
 	return result;
 }
 // scale a vector by a scalar (vector * scalar)
@@ -108,7 +108,7 @@ Vector operator*(const float &scalar, const Vector &vector)
 {
 	Vector result;
 	for (size_t i = 0; i < vector.size(); i++)
-		result.push_back(vector[i] * scalar);
+		result.push_back(vector[i] == 0 ? 0 : vector[i] * scalar);
 	return result;
 }
 // add two matrices

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/28 09:40:23 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:20:09 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -317,9 +317,20 @@ static void ex10(void)
 		std::cout << u.row_echelon() << std::endl;
 	}
 	{
-		Matrix u = {{0, 0., 4.},
+		Matrix u = {{0., 0., 4.},
 					{1., 0., 4.},
 					{0., 6., 4.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{1., 2., 3.},
+					{4., 5., 6.},
+					{7., 8., 9.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{1., 2., 3., 4., 5., 10.},
+					{2., 3., 4., 5., 6., -2.}};
 		std::cout << u.row_echelon() << std::endl;
 	}
 }

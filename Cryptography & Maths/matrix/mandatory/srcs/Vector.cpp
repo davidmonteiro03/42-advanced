@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:39:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/20 14:47:36 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:20:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ Vector &Vector::operator-=(const Vector &other)
 Vector &Vector::operator*=(const float &scalar)
 {
 	for (size_t i = 0; i < this->size(); i++)
-		this->at(i) *= scalar;
+		if (this->at(i) != 0)
+			this->at(i) *= scalar;
 	return *this;
 }
 
