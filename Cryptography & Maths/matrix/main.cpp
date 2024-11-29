@@ -6,14 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/28 15:16:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:06:12 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mandatory/includes/Vector.hpp"
-#include "mandatory/includes/Matrix.hpp"
-#include "mandatory/includes/Utils.hpp"
-#include <map>
+#include "mandatory/includes/ft_matrix.hpp"
 
 typedef std::map<std::string, void (*)(void)> t_excs;
 
@@ -381,6 +378,18 @@ static void ex10(void)
 					{28., -4., 17., 1.}};
 		std::cout << u.row_echelon() << std::endl;
 	}
+	{
+		Matrix u = {{2., 5., 3., -3.},
+					{4., 0, 8., 0.},
+					{1., 3., 0., 2.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
+	{
+		Matrix u = {{1., 2., 3.},
+					{0., 1., 4.},
+					{5., 6., 0.}};
+		std::cout << u.row_echelon() << std::endl;
+	}
 }
 
 static void ex11(void)
@@ -412,6 +421,42 @@ static void ex11(void)
 	}
 }
 
+static void ex12(void)
+{
+	std::cout << "===== EX12 =====" << std::endl;
+	{
+		Matrix u = {{1., 0., 0.},
+					{0., 1., 0.},
+					{0., 0., 1.}};
+		std::cout << u.inverse() << std::endl;
+	}
+	{
+		Matrix u = {{2., 0., 0.},
+					{0., 2., 0.},
+					{0., 0., 2.}};
+		std::cout << u.inverse() << std::endl;
+	}
+	{
+		Matrix u = {{8., 5., -2.},
+					{4., 7., 20.},
+					{7., 6., 1.}};
+		std::cout << u.inverse() << std::endl;
+	}
+	{
+		Matrix u = {{1., 2., 3.},
+					{0., 1., 4.},
+					{5., 6., 0.}};
+		std::cout << u.inverse() << std::endl;
+	}
+	{
+		Matrix u = {{8., 5., -2., 4.},
+					{4., 2.5, 20., 4.},
+					{8., 5., 1., 4.},
+					{28., -4., 17., 1.}};
+		std::cout << u.inverse() << std::endl;
+	}
+}
+
 int main(int argc, char **argv)
 {
 	if (argc != 2)
@@ -430,7 +475,8 @@ int main(int argc, char **argv)
 				   {"ex08", ex08},
 				   {"ex09", ex09},
 				   {"ex10", ex10},
-				   {"ex11", ex11}};
+				   {"ex11", ex11},
+				   {"ex12", ex12}};
 	t_excs::iterator exec = excs.find(argv[1]);
 	if (exec == excs.end())
 	{

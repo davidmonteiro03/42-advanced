@@ -6,11 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:44:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/28 14:12:17 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:27:47 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Utils.hpp"
+#include "../includes/ft_matrix.hpp"
 
 // vector size
 size_t Utils::vector_size(const Vector &vector) { return vector.size(); }
@@ -55,7 +55,7 @@ std::ostream &operator<<(std::ostream &os, const Vector &vector)
 	{
 		if (i > 0)
 			os << ", ";
-		os << vector[i];
+		std::print(os, vector[i]);
 	}
 	os << ']';
 	return os;

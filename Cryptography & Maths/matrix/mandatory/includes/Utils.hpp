@@ -6,18 +6,12 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:41:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/28 14:10:21 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/29 10:51:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_HPP
 #define UTILS_HPP
-
-#include "Vector.hpp"
-#include "Matrix.hpp"
-#include <iostream>
-#include <cstddef>
-#include <iomanip>
 
 typedef std::pair<size_t, size_t> m_shape;
 

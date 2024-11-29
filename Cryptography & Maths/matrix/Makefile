@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2024/11/28 12:20:11 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/11/29 11:02:07 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,11 @@ TPP_EXT      = .tpp
 OBJ_EXT      = .o
 # === FILES ================================================================== #
 CLSS         = Vector Matrix Utils
+HDRS         = $(CLSS) ft_$(NAME)
 ifeq ($(MAKECMDGOALS),bonus)
     INCS     = $(addprefix $(BNUS_D)/$(INCS_D)/, \
                            $(addsuffix $(HPP_EXT), \
-                                       $(CLSS)))
+                                       $(HDRS)))
     TMPS     = $(addprefix $(BNUS_D)/$(TMPS_D)/, \
                            $(addsuffix $(TPP_EXT), \
                                        $(CLSS)))
@@ -40,7 +41,7 @@ ifeq ($(MAKECMDGOALS),bonus)
 else
     INCS     = $(addprefix $(MAND_D)/$(INCS_D)/, \
                            $(addsuffix $(HPP_EXT), \
-                                       $(CLSS)))
+                                       $(HDRS)))
     SRCS     = $(addprefix $(MAND_D)/$(SRCS_D)/, \
                            $(addsuffix $(CPP_EXT), \
                                        $(CLSS)))

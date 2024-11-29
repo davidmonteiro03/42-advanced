@@ -6,16 +6,12 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:54 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/28 12:19:58 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/29 10:50:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
-
-#include <vector>
-#include <cstddef>
-#include <cmath>
 
 class Vector : public std::vector<float>
 {
