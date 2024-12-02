@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:44:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/29 12:27:47 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/02 09:13:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ std::ostream &operator<<(std::ostream &os, const Vector &vector)
 	{
 		if (i > 0)
 			os << ", ";
-		std::print(os, vector[i]);
+		os << vector[i];
 	}
 	os << ']';
 	return os;
