@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:38:38 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/29 11:12:32 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/03 13:25:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ public:
 	float determinant(void); // determinant
 	// ex12
 	Matrix inverse(void); // inverse
+	// ex13
+	size_t rank(void); // rank
 private:
 	// ex10 (private helper functions for row-echelon form)
 	ssize_t firstNonZeroPos(const Vector &);			// get the first non-zero element position (private helper function)

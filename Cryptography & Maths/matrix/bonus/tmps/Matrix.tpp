@@ -1,14 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Matrix.cpp                                         :+:      :+:    :+:   */
+/*   Matrix.tpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:39:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/03 13:28:58 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:07:05 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef MATRIX_TPP
+#define MATRIX_TPP
 
 #include "../includes/ft_matrix.hpp"
 
@@ -17,21 +20,24 @@
 /* ************************************************************************** */
 
 // add matrix
-Matrix &Matrix::operator+=(const Matrix &other)
+template <typename T>
+Matrix<T> &Matrix<T>::operator+=(const Matrix<T> &other)
 {
 	for (size_t i = 0; i < this->size(); i++)
 		this->at(i) += other[i];
 	return *this;
 }
 // subtract matrix
-Matrix &Matrix::operator-=(const Matrix &other)
+template <typename T>
+Matrix<T> &Matrix<T>::operator-=(const Matrix<T> &other)
 {
 	for (size_t i = 0; i < this->size(); i++)
 		this->at(i) -= other[i];
 	return *this;
 }
 // scale matrix by a scalar
-Matrix &Matrix::operator*=(const float &scalar)
+template <typename T>
+Matrix<T> &Matrix<T>::operator*=(const T &scalar)
 {
 	for (size_t i = 0; i < this->size(); i++)
 		this->at(i) *= scalar;
@@ -43,25 +49,27 @@ Matrix &Matrix::operator*=(const float &scalar)
 /* ************************************************************************** */
 
 // multiply matrix by a vector
-Vector Matrix::mul_vec(const Vector &vector)
+template <typename T>
+Vector<T> Matrix<T>::mul_vec(const Vector<T> &vector)
 {
-	Vector result;
+	Vector<T> result;
 	for (size_t i = 0; i < this->size(); i++)
 		result.push_back(this->at(i).dot(vector));
 	return result;
 }
 // multiply matrix by a matrix
-Matrix Matrix::mul_mat(const Matrix &matrix)
+template <typename T>
+Matrix<T> Matrix<T>::mul_mat(const Matrix<T> &matrix)
 {
-	Matrix a = *this, b = matrix, c;
+	Matrix<T> a = *this, b = matrix, c;
 	m_shape aShape = Utils::matrix_shape(a), bShape = Utils::matrix_shape(b);
 	size_t m = aShape.first, n = aShape.second, p = bShape.second;
 	for (size_t i = 0; i < m; i++)
 	{
-		Vector u;
+		Vector<T> u;
 		for (size_t j = 0; j < p; j++)
 		{
-			float tmp = 0;
+			T tmp = T();
 			for (size_t k = 0; k < n; k++)
 				tmp += a[i][k] * b[k][j];
 			u.push_back(tmp);
@@ -76,9 +84,10 @@ Matrix Matrix::mul_mat(const Matrix &matrix)
 /* ************************************************************************** */
 
 // trace
-float Matrix::trace(void) const
+template <typename T>
+T Matrix<T>::trace(void) const
 {
-	float result = 0;
+	T result = 0;
 	for (size_t i = 0; i < this->size(); i++)
 		result += this->at(i)[i];
 	return result;
@@ -89,13 +98,14 @@ float Matrix::trace(void) const
 /* ************************************************************************** */
 
 // transpose
-Matrix Matrix::transpose(void)
+template <typename T>
+Matrix<T> Matrix<T>::transpose(void)
 {
 	m_shape localShape = Utils::matrix_shape(*this);
-	Matrix result;
+	Matrix<T> result;
 	for (size_t i = 0; i < localShape.second; i++)
 	{
-		Vector tmp;
+		Vector<T> tmp;
 		for (size_t j = 0; j < localShape.first; j++)
 			tmp.push_back(this->at(j)[i]);
 		result.push_back(tmp);
@@ -108,7 +118,8 @@ Matrix Matrix::transpose(void)
 /* ************************************************************************** */
 
 // get the first non-zero element position (private helper function)
-ssize_t Matrix::firstNonZeroPos(const Vector &line)
+template <typename T>
+ssize_t Matrix<T>::firstNonZeroPos(const Vector<T> &line)
 {
 	for (size_t i = 0; i < line.size(); i++)
 		if (line[i] != 0)
@@ -116,7 +127,8 @@ ssize_t Matrix::firstNonZeroPos(const Vector &line)
 	return -1;
 }
 // sort the rows by the first non-zero element (private helper function)
-void Matrix::sortTheRowsByTheFirstNonZeroElement(Matrix &matrix)
+template <typename T>
+void Matrix<T>::sortTheRowsByTheFirstNonZeroElement(Matrix<T> &matrix)
 {
 	m_shape shape = Utils::matrix_shape(matrix);
 	std::vector<ssize_t> pivots_poss;
@@ -137,7 +149,8 @@ void Matrix::sortTheRowsByTheFirstNonZeroElement(Matrix &matrix)
 	}
 }
 // reset to zero the values below each pivot (private helper function)
-void Matrix::resetToZeroTheValuesBelowEachPivot(Matrix &matrix)
+template <typename T>
+void Matrix<T>::resetToZeroTheValuesBelowEachPivot(Matrix<T> &matrix)
 {
 	this->sortTheRowsByTheFirstNonZeroElement(matrix);
 	m_shape shape = Utils::matrix_shape(matrix);
@@ -154,7 +167,8 @@ void Matrix::resetToZeroTheValuesBelowEachPivot(Matrix &matrix)
 	this->sortTheRowsByTheFirstNonZeroElement(matrix);
 }
 // reset to zero the values above each pivot (private helper function)
-void Matrix::resetToZeroTheValuesAboveEachPivot(Matrix &matrix)
+template <typename T>
+void Matrix<T>::resetToZeroTheValuesAboveEachPivot(Matrix<T> &matrix)
 {
 	this->sortTheRowsByTheFirstNonZeroElement(matrix);
 	m_shape shape = Utils::matrix_shape(matrix);
@@ -171,7 +185,8 @@ void Matrix::resetToZeroTheValuesAboveEachPivot(Matrix &matrix)
 	this->sortTheRowsByTheFirstNonZeroElement(matrix);
 }
 // normalize the pivot values (private helper function)
-void Matrix::normalizeThePivotValues(Matrix &matrix)
+template <typename T>
+void Matrix<T>::normalizeThePivotValues(Matrix<T> &matrix)
 {
 	m_shape shape = Utils::matrix_shape(matrix);
 	for (size_t i = 0; i < shape.first; i++)
@@ -183,9 +198,10 @@ void Matrix::normalizeThePivotValues(Matrix &matrix)
 	}
 }
 // row-echelon form
-Matrix Matrix::row_echelon(void)
+template <typename T>
+Matrix<T> Matrix<T>::row_echelon(void)
 {
-	Matrix result(*this);
+	Matrix<T> result(*this);
 	this->resetToZeroTheValuesBelowEachPivot(result);
 	this->resetToZeroTheValuesAboveEachPivot(result);
 	this->normalizeThePivotValues(result);
@@ -197,15 +213,16 @@ Matrix Matrix::row_echelon(void)
 /* ************************************************************************** */
 
 // minor matrix (private helper function)
-Matrix Matrix::minor_matrix(const size_t &i, const size_t &j)
+template <typename T>
+Matrix<T> Matrix<T>::minor_matrix(const size_t &i, const size_t &j)
 {
 	m_shape shape = Utils::matrix_shape(*this);
-	Matrix extracted;
+	Matrix<T> extracted;
 	for (size_t k = 0; k < shape.first; k++)
 	{
 		if (k == i)
 			continue;
-		Vector tmp;
+		Vector<T> tmp;
 		for (size_t l = 0; l < shape.first; l++)
 		{
 			if (l == j)
@@ -217,16 +234,17 @@ Matrix Matrix::minor_matrix(const size_t &i, const size_t &j)
 	return extracted;
 }
 // determinant
-float Matrix::determinant(void)
+template <typename T>
+T Matrix<T>::determinant(void)
 {
 	m_shape shape = Utils::matrix_shape(*this);
 	if (shape.first == 2 && shape.second == 2)
 		return this->at(0)[0] * this->at(1)[1] - this->at(0)[1] * this->at(1)[0];
-	float result = 0;
+	T result = 0;
 	for (size_t j = 0; j < shape.second; j++)
 	{
-		Matrix extract = this->minor_matrix(0, j);
-		float det = extract.determinant();
+		Matrix<T> extract = this->minor_matrix(0, j);
+		T det = extract.determinant();
 		if (det != 0)
 			det *= -1 + 2 * (j % 2 == 0);
 		result += this->at(0)[j] * det;
@@ -239,17 +257,18 @@ float Matrix::determinant(void)
 /* ************************************************************************** */
 
 // inverse
-Matrix Matrix::inverse(void)
+template <typename T>
+Matrix<T> Matrix<T>::inverse(void)
 {
 	m_shape shape = Utils::matrix_shape(*this);
-	Matrix result;
+	Matrix<T> result;
 	for (size_t i = 0; i < shape.first; i++)
 	{
-		Vector tmp;
+		Vector<T> tmp;
 		for (size_t j = 0; j < shape.second; j++)
 		{
-			Matrix extract = this->minor_matrix(i, j);
-			float det = extract.determinant();
+			Matrix<T> extract = this->minor_matrix(i, j);
+			T det = extract.determinant();
 			if (det != 0)
 				det *= -1 + 2 * (i == j || i == shape.second - j - 1);
 			tmp.push_back(det);
@@ -266,12 +285,15 @@ Matrix Matrix::inverse(void)
 /* ************************************************************************** */
 
 // rank
-size_t Matrix::rank(void)
+template <typename T>
+size_t Matrix<T>::rank(void)
 {
-	Matrix reduced = this->row_echelon();
+	Matrix<T> reduced = this->row_echelon();
 	m_shape shape = Utils::matrix_shape(reduced);
 	for (size_t i = 0; i < shape.first; i++)
 		if (this->firstNonZeroPos(reduced[i]) == -1)
 			return i;
 	return shape.first;
 }
+
+#endif

@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2024/11/29 11:02:07 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/12/03 14:02:09 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ NAME         = matrix
 # === RULES ================================================================== #
 all: $(NAME)
 
-# bonus: $(NAME)
+bonus: $(NAME)
 
 $(OBJS_D)/%$(OBJ_EXT): %$(CPP_EXT) $(INCS) $(TMPS)
 	@$(MK) $(MK_FLAGS) $(dir $@)
