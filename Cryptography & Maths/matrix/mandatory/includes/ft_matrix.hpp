@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:48:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/29 13:34:58 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:13:24 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,10 @@
 #include "Vector.hpp" // For vector operations
 #include "Matrix.hpp" // For matrix operations
 #include "Utils.hpp"  // For utility functions
+
+// Project-specific templates
+#include "../tmps/Vector.tpp" // For vector operations
+#include "../tmps/Matrix.tpp" // For matrix operations
+#include "../tmps/Utils.tpp"  // For utility functions
 
 #endif // FT_MATRIX_HPP

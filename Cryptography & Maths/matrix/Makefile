@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2024/12/03 14:02:09 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/12/03 16:14:15 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,14 +42,10 @@ else
     INCS     = $(addprefix $(MAND_D)/$(INCS_D)/, \
                            $(addsuffix $(HPP_EXT), \
                                        $(HDRS)))
-    SRCS     = $(addprefix $(MAND_D)/$(SRCS_D)/, \
-                           $(addsuffix $(CPP_EXT), \
+    TMPS     = $(addprefix $(MAND_D)/$(TMPS_D)/, \
+                           $(addsuffix $(TPP_EXT), \
                                        $(CLSS)))
-    OBJS     = $(patsubst $(MAND_D)/$(SRCS_D)/%$(CPP_EXT), \
-                          $(OBJS_D)/$(SRCS_D)/%$(OBJ_EXT), \
-                          $(SRCS))
     MAIN_CPP = main$(CPP_EXT)
-    LIB      = $(NAME).a
 endif
 MAIN_OBJ     = $(patsubst %$(CPP_EXT), \
                           $(OBJS_D)/%$(OBJ_EXT), \
@@ -66,10 +62,6 @@ all: $(NAME)
 bonus: $(NAME)
 
 $(OBJS_D)/%$(OBJ_EXT): %$(CPP_EXT) $(INCS) $(TMPS)
-	@$(MK) $(MK_FLAGS) $(dir $@)
-	@$(CPP) $(CPP_FLAGS) -c $< -o $@
-
-$(OBJS_D)/$(SRCS_D)/%$(OBJ_EXT): $(MAND_D)/$(SRCS_D)/%$(CPP_EXT) $(INCS) $(TMPS)
 	@$(MK) $(MK_FLAGS) $(dir $@)
 	@$(CPP) $(CPP_FLAGS) -c $< -o $@
 

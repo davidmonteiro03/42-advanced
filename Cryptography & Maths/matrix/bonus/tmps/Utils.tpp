@@ -6,36 +6,36 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:44:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/03 14:10:40 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:32:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_matrix.hpp"
 
 // vector size
-template <typename T>
-size_t Utils::vector_size(const Vector<T> &vector) { return vector.size(); }
+template <typename R>
+size_t Utils::vector_size(const Vector<R> &vector) { return vector.size(); }
 // matrix shape
-template <typename T>
-const m_shape Utils::matrix_shape(const Matrix<T> &matrix)
+template <typename R>
+const m_shape Utils::matrix_shape(const Matrix<R> &matrix)
 {
 	return std::make_pair(matrix.size(), matrix.size() == 0 ? 0 : matrix[0].size());
 }
-// check if a matrix is square
-template <typename T>
-bool Utils::matrix_is_square(const Matrix<T> &matrix)
+// checR if a matrix is square
+template <typename R>
+bool Utils::matrix_is_square(const Matrix<R> &matrix)
 {
 	const m_shape matrixShape = matrix_shape(matrix);
 	return matrixShape.first == matrixShape.second;
 }
 // reshape a vector into a matrix
-template <typename T>
-Matrix<T> Utils::reshape_vector_into_matrix(const Vector<T> &vector, const size_t &rows, const size_t &cols)
+template <typename R>
+Matrix<R> Utils::reshape_vector_into_matrix(const Vector<R> &vector, const size_t &rows, const size_t &cols)
 {
-	Matrix<T> matrix;
+	Matrix<R> matrix;
 	for (size_t i = 0; i < rows; i++)
 	{
-		Vector<T> tmp;
+		Vector<R> tmp;
 		for (size_t j = 0; j < cols; j++)
 			tmp.push_back(vector[i * cols + j]);
 		matrix.push_back(tmp);
@@ -43,18 +43,18 @@ Matrix<T> Utils::reshape_vector_into_matrix(const Vector<T> &vector, const size_
 	return matrix;
 }
 // reshape a matrix into a vector
-template <typename T>
-Vector<T> Utils::reshape_matrix_into_vector(const Matrix<T> &matrix)
+template <typename R>
+Vector<R> Utils::reshape_matrix_into_vector(const Matrix<R> &matrix)
 {
-	Vector<T> vector;
+	Vector<R> vector;
 	for (size_t i = 0; i < matrix.size(); i++)
 		for (size_t j = 0; j < matrix[i].size(); j++)
 			vector.push_back(matrix[i][j]);
 	return vector;
 }
 // print vector
-template <typename T>
-std::ostream &operator<<(std::ostream &os, const Vector<T> &vector)
+template <typename R>
+std::ostream &operator<<(std::ostream &os, const Vector<R> &vector)
 {
 	os << '[';
 	for (size_t i = 0; i < vector.size(); i++)
@@ -67,8 +67,8 @@ std::ostream &operator<<(std::ostream &os, const Vector<T> &vector)
 	return os;
 }
 // print matrix
-template <typename T>
-std::ostream &operator<<(std::ostream &os, const Matrix<T> &matrix)
+template <typename R>
+std::ostream &operator<<(std::ostream &os, const Matrix<R> &matrix)
 {
 	os << '[';
 	for (size_t i = 0; i < matrix.size(); i++)
@@ -87,73 +87,73 @@ std::ostream &operator<<(std::ostream &os, const Matrix<T> &matrix)
 /* ************************************************************************** */
 
 // add two vectors
-template <typename T>
-Vector<T> operator+(const Vector<T> &u, const Vector<T> &v)
+template <typename R>
+Vector<R> operator+(const Vector<R> &u, const Vector<R> &v)
 {
-	Vector<T> result;
+	Vector<R> result;
 	for (size_t i = 0; i < u.size(); i++)
 		result.push_back(u[i] + v[i]);
 	return result;
 }
 // subtract two vectors
-template <typename T>
-Vector<T> operator-(const Vector<T> &u, const Vector<T> &v)
+template <typename R>
+Vector<R> operator-(const Vector<R> &u, const Vector<R> &v)
 {
-	Vector<T> result;
+	Vector<R> result;
 	for (size_t i = 0; i < u.size(); i++)
 		result.push_back(u[i] - v[i]);
 	return result;
 }
 // scale a vector by a scalar (scalar * vector)
-template <typename T>
-Vector<T> operator*(const Vector<T> &vector, const T &scalar)
+template <typename R>
+Vector<R> operator*(const Vector<R> &vector, const R &scalar)
 {
-	Vector<T> result;
+	Vector<R> result;
 	for (size_t i = 0; i < vector.size(); i++)
 		result.push_back(vector[i] == 0 ? 0 : vector[i] * scalar);
 	return result;
 }
 // scale a vector by a scalar (vector * scalar)
-template <typename T>
-Vector<T> operator*(const T &scalar, const Vector<T> &vector)
+template <typename R>
+Vector<R> operator*(const R &scalar, const Vector<R> &vector)
 {
-	Vector<T> result;
+	Vector<R> result;
 	for (size_t i = 0; i < vector.size(); i++)
-		result.push_back(vector[i] == 0 ? 0 : vector[i] * scalar);
+		result.push_back(vector[i] == static_cast<R>(0) ? static_cast<R>(0) : vector[i] * scalar);
 	return result;
 }
 // add two matrices
-template <typename T>
-Matrix<T> operator+(const Matrix<T> &a, const Matrix<T> &b)
+template <typename R>
+Matrix<R> operator+(const Matrix<R> &a, const Matrix<R> &b)
 {
-	Matrix<T> result;
+	Matrix<R> result;
 	for (size_t i = 0; i < a.size(); i++)
 		result.push_back(a[i] + b[i]);
 	return result;
 }
 // subtract two matrices
-template <typename T>
-Matrix<T> operator-(const Matrix<T> &a, const Matrix<T> &b)
+template <typename R>
+Matrix<R> operator-(const Matrix<R> &a, const Matrix<R> &b)
 {
-	Matrix<T> result;
+	Matrix<R> result;
 	for (size_t i = 0; i < a.size(); i++)
 		result.push_back(a[i] - b[i]);
 	return result;
 }
 // scale a matrix by a scalar (matrix * scalar)
-template <typename T>
-Matrix<T> operator*(const Matrix<T> &matrix, const T &scalar)
+template <typename R>
+Matrix<R> operator*(const Matrix<R> &matrix, const R &scalar)
 {
-	Matrix<T> result;
+	Matrix<R> result;
 	for (size_t i = 0; i < matrix.size(); i++)
 		result.push_back(matrix[i] * scalar);
 	return result;
 }
 // scale a matrix by a scalar (scalar * matrix)
-template <typename T>
-Matrix<T> operator*(const T &scalar, const Matrix<T> &matrix)
+template <typename R>
+Matrix<R> operator*(const R &scalar, const Matrix<R> &matrix)
 {
-	Matrix<T> result;
+	Matrix<R> result;
 	for (size_t i = 0; i < matrix.size(); i++)
 		result.push_back(matrix[i] * scalar);
 	return result;
@@ -164,10 +164,10 @@ Matrix<T> operator*(const T &scalar, const Matrix<T> &matrix)
 /* ************************************************************************** */
 
 // linear combination
-template <typename T>
-Vector<T> linear_combination(const std::vector<Vector<T>> &vectors, const std::vector<T> &scalars)
+template <typename R>
+Vector<R> linear_combination(const std::vector<Vector<R>> &vectors, const std::vector<R> &scalars)
 {
-	Vector<T> result(vectors[0].size());
+	Vector<R> result(vectors[0].size());
 	for (size_t i = 0; i < vectors.size(); i++)
 		result += vectors[i] * scalars[i];
 	return result;
@@ -178,16 +178,16 @@ Vector<T> linear_combination(const std::vector<Vector<T>> &vectors, const std::v
 /* ************************************************************************** */
 
 // linear interpolation (vector)
-template <typename T>
-Vector<T> lerp(const Vector<T> &u, const Vector<T> &v, const T &t)
+template <typename R>
+Vector<R> lerp(const Vector<R> &u, const Vector<R> &v, const R &t)
 {
-	return (1 - t) * u + t * v;
+	return (static_cast<R>(1) - t) * u + t * v;
 }
 // linear interpolation (matrix)
-template <typename T>
-Matrix<T> lerp(const Matrix<T> &u, const Matrix<T> &v, const T &t)
+template <typename R>
+Matrix<R> lerp(const Matrix<R> &u, const Matrix<R> &v, const R &t)
 {
-	return (1 - t) * u + t * v;
+	return (static_cast<R>(1) - t) * u + t * v;
 }
 
 /* ************************************************************************** */
@@ -195,8 +195,8 @@ Matrix<T> lerp(const Matrix<T> &u, const Matrix<T> &v, const T &t)
 /* ************************************************************************** */
 
 // cosine of the angle between two vectors
-template <typename T>
-T angle_cos(const Vector<T> &u, const Vector<T> &v)
+template <typename R>
+R angle_cos(const Vector<R> &u, const Vector<R> &v)
 {
 	return u.dot(v) / (u.norm() * v.norm());
 }
@@ -206,10 +206,10 @@ T angle_cos(const Vector<T> &u, const Vector<T> &v)
 /* ************************************************************************** */
 
 // cross product
-template <typename T>
-Vector<T> cross_product(const Vector<T> &u, const Vector<T> &v)
+template <typename R>
+Vector<R> cross_product(const Vector<R> &u, const Vector<R> &v)
 {
-	return Vector<T>({u[1] * v[2] - u[2] * v[1],
+	return Vector<R>({u[1] * v[2] - u[2] * v[1],
 					  u[2] * v[0] - u[0] * v[2],
 					  u[0] * v[1] - u[1] * v[0]});
 }

@@ -6,27 +6,28 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:54 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/29 10:50:20 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:30:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
 
-class Vector : public std::vector<float>
+template <typename R>
+class Vector : public std::vector<R>
 {
 public:
-	using std::vector<float>::vector;
+	using std::vector<R>::vector;
 	// ex00
-	Vector &operator+=(const Vector &); // add vector
-	Vector &operator-=(const Vector &); // subtract vector
-	Vector &operator*=(const float &);	// scale vector by a scalar
+	Vector<R> &operator+=(const Vector<R> &); // add vector
+	Vector<R> &operator-=(const Vector<R> &); // subtract vector
+	Vector<R> &operator*=(const R &);		  // scale vector by a scalar
 	// ex03
-	float dot(const Vector &) const; // dot product
+	R dot(const Vector<R> &) const; // dot product
 	// ex04
-	float norm_1(void) const;	// manhattan norm
-	float norm(void) const;		// euclidean norm
-	float norm_inf(void) const; // supremum norm
+	R norm_1(void) const;	// manhattan norm
+	R norm(void) const;		// euclidean norm
+	R norm_inf(void) const; // supremum norm
 };
 
 #endif // !VECTOR_HPP

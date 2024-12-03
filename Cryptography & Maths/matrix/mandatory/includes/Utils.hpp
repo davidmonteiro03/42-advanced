@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:41:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/29 10:51:34 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:29:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,41 +18,61 @@ typedef std::pair<size_t, size_t> m_shape;
 class Utils
 {
 public:
-	static size_t vector_size(const Vector &);												  // vector size
-	static const m_shape matrix_shape(const Matrix &);										  // matrix shape
-	static bool matrix_is_square(const Matrix &);											  // check if a matrix is square
-	static Matrix reshape_vector_into_matrix(const Vector &, const size_t &, const size_t &); // reshape a vector into a matrix
-	static Vector reshape_matrix_into_vector(const Matrix &);								  // reshape a matrix into a vector
+	template <typename R>
+	static size_t vector_size(const Vector<R> &); // vector size
+	template <typename R>
+	static const m_shape matrix_shape(const Matrix<R> &); // matrix shape
+	template <typename R>
+	static bool matrix_is_square(const Matrix<R> &); // check if a matrix is square
+	template <typename R>
+	static Matrix<R> reshape_vector_into_matrix(const Vector<R> &, const size_t &, const size_t &); // reshape a vector into a matrix
+	template <typename R>
+	static Vector<R> reshape_matrix_into_vector(const Matrix<R> &); // reshape a matrix into a vector
 
 private:
 	Utils(void);
 	~Utils();
 };
 
-std::ostream &operator<<(std::ostream &, const Vector &); // print vector
-std::ostream &operator<<(std::ostream &, const Matrix &); // print matrix
+template <typename R>
+std::ostream &operator<<(std::ostream &, const Vector<R> &); // print vector
+template <typename R>
+std::ostream &operator<<(std::ostream &, const Matrix<R> &); // print matrix
 
 // ex00
-Vector operator+(const Vector &, const Vector &); // add two vectors
-Vector operator-(const Vector &, const Vector &); // subtract two vectors
-Vector operator*(const Vector &, const float &);  // scale a vector by a scalar (scalar * vector)
-Vector operator*(const float &, const Vector &);  // scale a vector by a scalar (vector * scalar)
-Matrix operator+(const Matrix &, const Matrix &); // add two matrices
-Matrix operator-(const Matrix &, const Matrix &); // subtract two matrices
-Matrix operator*(const Matrix &, const float &);  // scale a matrix by a scalar (matrix * scalar)
-Matrix operator*(const float &, const Matrix &);  // scale a matrix by a scalar (scalar * matrix)
+template <typename R>
+Vector<R> operator+(const Vector<R> &, const Vector<R> &); // add two vectors
+template <typename R>
+Vector<R> operator-(const Vector<R> &, const Vector<R> &); // subtract two vectors
+template <typename R>
+Vector<R> operator*(const Vector<R> &, const R &); // scale a vector by a scalar (scalar * vector)
+template <typename R>
+Vector<R> operator*(const R &, const Vector<R> &); // scale a vector by a scalar (vector * scalar)
+template <typename R>
+Matrix<R> operator+(const Matrix<R> &, const Matrix<R> &); // add two matrices
+template <typename R>
+Matrix<R> operator-(const Matrix<R> &, const Matrix<R> &); // subtract two matrices
+template <typename R>
+Matrix<R> operator*(const Matrix<R> &, const R &); // scale a matrix by a scalar (matrix * scalar)
+template <typename R>
+Matrix<R> operator*(const R &, const Matrix<R> &); // scale a matrix by a scalar (scalar * matrix)
 
 // ex01
-Vector linear_combination(const std::vector<Vector> &, const std::vector<float> &); // linear combination
+template <typename R>
+Vector<R> linear_combination(const std::vector<Vector<R>> &, const std::vector<R> &); // linear combination
 
 // ex02
-Vector lerp(const Vector &, const Vector &, const float &); // linear interpolation (vector)
-Matrix lerp(const Matrix &, const Matrix &, const float &); // linear interpolation (matrix)
+template <typename R>
+Vector<R> lerp(const Vector<R> &, const Vector<R> &, const R &); // linear interpolation (vector)
+template <typename R>
+Matrix<R> lerp(const Matrix<R> &, const Matrix<R> &, const R &); // linear interpolation (matrix)
 
 // ex05
-float angle_cos(const Vector &, const Vector &); // cosine of the angle between two vectors
+template <typename R>
+R angle_cos(const Vector<R> &, const Vector<R> &); // cosine of the angle between two vectors
 
 // ex06
-Vector cross_product(const Vector &, const Vector &); // cross product
+template <typename R>
+Vector<R> cross_product(const Vector<R> &, const Vector<R> &); // cross product
 
 #endif // !UTILS_HPP

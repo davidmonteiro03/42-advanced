@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:48:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/03 13:54:56 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:33:05 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 // Standard library headers
 #include <cmath>	// For mathematical functions
+#include <complex>	// For complex numbers
 #include <cstddef>	// For size_t and other type definitions
 #include <iomanip>	// For input/output manipulators
 #include <iostream> // For standard input/output stream objects

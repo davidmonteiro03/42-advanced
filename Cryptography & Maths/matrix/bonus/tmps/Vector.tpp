@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:39:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/03 13:53:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:37:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,27 @@
 /* ************************************************************************** */
 
 // add vector
-template<typename T>
-Vector<T> &Vector<T>::operator+=(const Vector<T> &other)
+template <typename C>
+Vector<std::complex<C>> &Vector<std::complex<C>>::operator+=(const Vector<std::complex<C>> &other)
 {
 	for (size_t i = 0; i < this->size(); i++)
 		this->at(i) += other[i];
 	return *this;
 }
 // subtract vector
-template<typename T>
-Vector<T> &Vector<T>::operator-=(const Vector<T> &other)
+template <typename R>
+Vector<R> &Vector<R>::operator-=(const Vector<R> &other)
 {
 	for (size_t i = 0; i < this->size(); i++)
 		this->at(i) -= other[i];
 	return *this;
 }
 // scale vector by a scalar
-template<typename T>
-Vector<T> &Vector<T>::operator*=(const T &scalar)
+template <typename R>
+Vector<R> &Vector<R>::operator*=(const R &scalar)
 {
 	for (size_t i = 0; i < this->size(); i++)
-		if (this->at(i) != 0)
+		if (this->at(i) != static_cast<R>(0))
 			this->at(i) *= scalar;
 	return *this;
 }
@@ -47,11 +47,11 @@ Vector<T> &Vector<T>::operator*=(const T &scalar)
 /* ************************************************************************** */
 
 // dot product
-template<typename T>
-T Vector<T>::dot(const Vector<T> &other) const
+template <typename R>
+R Vector<R>::dot(const Vector<R> &other) const
 {
-	Vector tmp(*this);
-	T result = 0;
+	Vector<R> tmp(*this);
+	R result = static_cast<R>(0);
 	for (size_t i = 0; i < tmp.size(); i++)
 		result += tmp[i] * other[i];
 	return result;
@@ -62,35 +62,35 @@ T Vector<T>::dot(const Vector<T> &other) const
 /* ************************************************************************** */
 
 // manhattan norm
-template<typename T>
-T Vector<T>::norm_1(void) const
+template <typename R>
+R Vector<R>::norm_1(void) const
 {
-	T result = 0;
+	R result = static_cast<R>(0);
 	for (size_t i = 0; i < this->size(); i++)
 	{
-		T num = (*this)[i];
-		result += num < 0 ? -num : num;
+		R num = (*this)[i];
+		result += num < static_cast<R>(0) ? -num : num;
 	}
 	return result;
 }
 // euclidean norm
-template<typename T>
-T Vector<T>::norm(void) const
+template <typename R>
+R Vector<R>::norm(void) const
 {
-	T result = 0;
+	R result = static_cast<R>(0);
 	for (size_t i = 0; i < this->size(); i++)
 		result += std::pow((*this)[i], 2);
 	return std::pow(result, 0.5);
 }
 // supremum norm
-template<typename T>
-T Vector<T>::norm_inf(void) const
+template <typename R>
+R Vector<R>::norm_inf(void) const
 {
-	T result = (*this)[0];
+	R result = (*this)[0];
 	for (size_t i = 1; i < this->size(); i++)
 	{
-		T num = (*this)[i];
-		T tmp = num < 0 ? -num : num;
+		R num = (*this)[i];
+		R tmp = num < static_cast<R>(0) ? -num : num;
 		result = std::max(result, tmp);
 	}
 	return result;
