@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:48:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/04 16:03:15 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/04 21:42:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <cstddef>	// For size_t and other type definitions
 #include <iomanip>	// For input/output manipulators
 #include <iostream> // For standard input/output stream objects
+#include <random>	// For random numbers
 #include <vector>	// For std::vector container
 
 // Project-specific headers

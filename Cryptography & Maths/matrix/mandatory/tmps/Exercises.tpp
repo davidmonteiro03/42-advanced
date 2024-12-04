@@ -6,11 +6,33 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:56:01 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/04 16:46:50 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/04 23:07:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_matrix.hpp"
+
+template<typename R, typename Enable = std::enable_if_t<std::is_integral<R>::value>>
+R generateInt(const R &start, const R &end)
+{
+	R minValue = std::min(start, end);
+	R maxValue = std::max(start, end);
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<R> dis(minValue, maxValue);
+	return dis(gen);
+}
+
+template<typename R, typename Enable = valid_real_number<R>>
+R generateReal(const R &start, const R &end)
+{
+	R minValue = std::min(start, end);
+	R maxValue = std::max(start, end);
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_real_distribution<R> dis(minValue, maxValue);
+	return dis(gen);
+}
 
 void Exercises::ex00(void)
 {
@@ -21,14 +43,14 @@ void Exercises::ex00(void)
 	{
 		std::cout << "======================" << std::endl;
 		std::cout << "=> Vector" << std::endl;
-		size_t size = std::rand() % 5 + 1;
+		size_t size = generateInt(1, 5);
 		Vector<float> u(size), v(size);
 		for (size_t i = 0; i < size; i++)
 		{
-			u[i] = std::rand() % 85 - 42;
-			v[i] = std::rand() % 85 - 42;
+			u[i] = generateReal(-42., 42.);
+			v[i] = generateReal(-42., 42.);
 		}
-		float a = std::rand() % 85 - 42;
+		float a = generateReal(-42., 42.);
 		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
 		std::cout << ">>>>>>> u <<<<<<<<" << std::endl
 				  << u << std::endl;
@@ -63,20 +85,20 @@ void Exercises::ex00(void)
 	{
 		std::cout << "======================" << std::endl;
 		std::cout << "=> Matrix" << std::endl;
-		size_t m = std::rand() % 5 + 1, n = std::rand() % 5 + 1;
+		size_t m = generateInt(1, 5), n = generateInt(1, 5);
 		Matrix<float> u, v;
 		for (size_t i = 0; i < m; i++)
 		{
 			Vector<float> rowU(n), rowV(n);
 			for (size_t j = 0; j < n; j++)
 			{
-				rowU[j] = std::rand() % 85 - 42;
-				rowV[j] = std::rand() % 85 - 42;
+				rowU[j] = generateReal(-42., 42.);
+				rowV[j] = generateReal(-42., 42.);
 			}
 			u.push_back(rowU);
 			v.push_back(rowV);
 		}
-		float a = std::rand() % 85 - 42;
+		float a = generateReal(-42., 42.);
 		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
 		std::cout << ">>>>>>> u <<<<<<<<" << std::endl
 				  << u << std::endl;
