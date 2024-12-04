@@ -6,14 +6,12 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:41:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/03 16:29:58 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:13:10 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_HPP
 #define UTILS_HPP
-
-typedef std::pair<size_t, size_t> m_shape;
 
 class Utils
 {
@@ -62,10 +60,8 @@ template <typename R>
 Vector<R> linear_combination(const std::vector<Vector<R>> &, const std::vector<R> &); // linear combination
 
 // ex02
-template <typename R>
-Vector<R> lerp(const Vector<R> &, const Vector<R> &, const R &); // linear interpolation (vector)
-template <typename R>
-Matrix<R> lerp(const Matrix<R> &, const Matrix<R> &, const R &); // linear interpolation (matrix)
+template <typename R, typename V>
+V lerp(const V &u, const V &v, const R &t); // linear interpolation
 
 // ex05
 template <typename R>

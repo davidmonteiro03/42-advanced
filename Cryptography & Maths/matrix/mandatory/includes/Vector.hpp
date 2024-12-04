@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:54 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/03 16:30:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:58:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 #define VECTOR_HPP
 
 template <typename R>
-class Vector : public std::vector<R>
+using valid_real_number = std::enable_if_t<std::is_floating_point<R>::value>;
+
+template<typename R, typename Enable = void>
+class Vector;
+
+template <typename R>
+class Vector<R, valid_real_number<R>> : public std::vector<R>
 {
 public:
 	using std::vector<R>::vector;

@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2024/12/03 16:14:15 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/12/04 08:56:53 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ HPP_EXT      = .hpp
 TPP_EXT      = .tpp
 OBJ_EXT      = .o
 # === FILES ================================================================== #
-CLSS         = Vector Matrix Utils
+CLSS         = Vector Matrix Utils Exercises
 HDRS         = $(CLSS) ft_$(NAME)
 ifeq ($(MAKECMDGOALS),bonus)
     INCS     = $(addprefix $(BNUS_D)/$(INCS_D)/, \

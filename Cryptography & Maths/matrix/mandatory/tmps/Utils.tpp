@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:44:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/03 16:32:08 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:17:33 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,56 +106,56 @@ Vector<R> operator-(const Vector<R> &u, const Vector<R> &v)
 }
 // scale a vector by a scalar (scalar * vector)
 template <typename R>
-Vector<R> operator*(const Vector<R> &vector, const R &scalar)
+Vector<R> operator*(const Vector<R> &u, const R &a)
 {
 	Vector<R> result;
-	for (size_t i = 0; i < vector.size(); i++)
-		result.push_back(vector[i] == 0 ? 0 : vector[i] * scalar);
+	for (size_t i = 0; i < u.size(); i++)
+		result.push_back(u[i] == static_cast<R>(0) ? static_cast<R>(0) : u[i] * a);
 	return result;
 }
 // scale a vector by a scalar (vector * scalar)
 template <typename R>
-Vector<R> operator*(const R &scalar, const Vector<R> &vector)
+Vector<R> operator*(const R &a, const Vector<R> &u)
 {
 	Vector<R> result;
-	for (size_t i = 0; i < vector.size(); i++)
-		result.push_back(vector[i] == static_cast<R>(0) ? static_cast<R>(0) : vector[i] * scalar);
+	for (size_t i = 0; i < u.size(); i++)
+		result.push_back(u[i] == static_cast<R>(0) ? static_cast<R>(0) : u[i] * a);
 	return result;
 }
 // add two matrices
 template <typename R>
-Matrix<R> operator+(const Matrix<R> &a, const Matrix<R> &b)
+Matrix<R> operator+(const Matrix<R> &u, const Matrix<R> &v)
 {
 	Matrix<R> result;
-	for (size_t i = 0; i < a.size(); i++)
-		result.push_back(a[i] + b[i]);
+	for (size_t i = 0; i < u.size(); i++)
+		result.push_back(u[i] + v[i]);
 	return result;
 }
 // subtract two matrices
 template <typename R>
-Matrix<R> operator-(const Matrix<R> &a, const Matrix<R> &b)
+Matrix<R> operator-(const Matrix<R> &u, const Matrix<R> &v)
 {
 	Matrix<R> result;
-	for (size_t i = 0; i < a.size(); i++)
-		result.push_back(a[i] - b[i]);
+	for (size_t i = 0; i < u.size(); i++)
+		result.push_back(u[i] - v[i]);
 	return result;
 }
 // scale a matrix by a scalar (matrix * scalar)
 template <typename R>
-Matrix<R> operator*(const Matrix<R> &matrix, const R &scalar)
+Matrix<R> operator*(const Matrix<R> &u, const R &a)
 {
 	Matrix<R> result;
-	for (size_t i = 0; i < matrix.size(); i++)
-		result.push_back(matrix[i] * scalar);
+	for (size_t i = 0; i < u.size(); i++)
+		result.push_back(u[i] * a);
 	return result;
 }
 // scale a matrix by a scalar (scalar * matrix)
 template <typename R>
-Matrix<R> operator*(const R &scalar, const Matrix<R> &matrix)
+Matrix<R> operator*(const R &a, const Matrix<R> &u)
 {
 	Matrix<R> result;
-	for (size_t i = 0; i < matrix.size(); i++)
-		result.push_back(matrix[i] * scalar);
+	for (size_t i = 0; i < u.size(); i++)
+		result.push_back(u[i] * a);
 	return result;
 }
 
@@ -165,11 +165,11 @@ Matrix<R> operator*(const R &scalar, const Matrix<R> &matrix)
 
 // linear combination
 template <typename R>
-Vector<R> linear_combination(const std::vector<Vector<R>> &vectors, const std::vector<R> &scalars)
+Vector<R> linear_combination(const std::vector<Vector<R>> &u, const std::vector<R> &coefs)
 {
-	Vector<R> result(vectors[0].size());
-	for (size_t i = 0; i < vectors.size(); i++)
-		result += vectors[i] * scalars[i];
+	Vector<R> result(u[0].size());
+	for (size_t i = 0; i < u.size(); i++)
+		result += u[i] * coefs[i];
 	return result;
 }
 
@@ -177,15 +177,9 @@ Vector<R> linear_combination(const std::vector<Vector<R>> &vectors, const std::v
 /*                                    EX02                                    */
 /* ************************************************************************** */
 
-// linear interpolation (vector)
-template <typename R>
-Vector<R> lerp(const Vector<R> &u, const Vector<R> &v, const R &t)
-{
-	return (static_cast<R>(1) - t) * u + t * v;
-}
-// linear interpolation (matrix)
-template <typename R>
-Matrix<R> lerp(const Matrix<R> &u, const Matrix<R> &v, const R &t)
+// linear interpolation
+template <typename R, typename V>
+V lerp(const V &u, const V &v, const R &t)
 {
 	return (static_cast<R>(1) - t) * u + t * v;
 }

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:39:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/03 16:32:38 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:53:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,26 @@
 
 // add matrix
 template <typename R>
-Matrix<R> &Matrix<R>::operator+=(const Matrix<R> &other)
+Matrix<R> &Matrix<R, valid_real_number<R>>::operator+=(const Matrix<R> &v)
 {
 	for (size_t i = 0; i < this->size(); i++)
-		this->at(i) += other[i];
+		this->at(i) += v[i];
 	return *this;
 }
 // subtract matrix
 template <typename R>
-Matrix<R> &Matrix<R>::operator-=(const Matrix<R> &other)
+Matrix<R> &Matrix<R, valid_real_number<R>>::operator-=(const Matrix<R> &v)
 {
 	for (size_t i = 0; i < this->size(); i++)
-		this->at(i) -= other[i];
+		this->at(i) -= v[i];
 	return *this;
 }
 // scale matrix by a scalar
 template <typename R>
-Matrix<R> &Matrix<R>::operator*=(const R &scalar)
+Matrix<R> &Matrix<R, valid_real_number<R>>::operator*=(const R &a)
 {
 	for (size_t i = 0; i < this->size(); i++)
-		this->at(i) *= scalar;
+		this->at(i) *= a;
 	return *this;
 }
 
@@ -47,18 +47,18 @@ Matrix<R> &Matrix<R>::operator*=(const R &scalar)
 
 // multiply matrix by a vector
 template <typename R>
-Vector<R> Matrix<R>::mul_vec(const Vector<R> &vector)
+Vector<R> Matrix<R, valid_real_number<R>>::operator*(const Vector<R> &vec) const
 {
 	Vector<R> result;
 	for (size_t i = 0; i < this->size(); i++)
-		result.push_back(this->at(i).dot(vector));
+		result.push_back(this->at(i).dot(vec));
 	return result;
 }
 // multiply matrix by a matrix
 template <typename R>
-Matrix<R> Matrix<R>::mul_mat(const Matrix<R> &matrix)
+Matrix<R> Matrix<R, valid_real_number<R>>::operator*(const Matrix<R> &mat) const
 {
-	Matrix<R> a = *this, b = matrix, c;
+	Matrix<R> a = *this, b = mat, c;
 	m_shape aShape = Utils::matrix_shape(a), bShape = Utils::matrix_shape(b);
 	size_t m = aShape.first, n = aShape.second, p = bShape.second;
 	for (size_t i = 0; i < m; i++)
@@ -82,7 +82,7 @@ Matrix<R> Matrix<R>::mul_mat(const Matrix<R> &matrix)
 
 // trace
 template <typename R>
-R Matrix<R>::trace(void) const
+R Matrix<R, valid_real_number<R>>::trace(void) const
 {
 	R result = static_cast<R>(0);
 	for (size_t i = 0; i < this->size(); i++)
@@ -96,7 +96,7 @@ R Matrix<R>::trace(void) const
 
 // transpose
 template <typename R>
-Matrix<R> Matrix<R>::transpose(void)
+Matrix<R> Matrix<R, valid_real_number<R>>::transpose(void) const
 {
 	m_shape localShape = Utils::matrix_shape(*this);
 	Matrix<R> result;
@@ -116,7 +116,7 @@ Matrix<R> Matrix<R>::transpose(void)
 
 // get the first non-zero element position (private helper function)
 template <typename R>
-ssize_t Matrix<R>::firstNonZeroPos(const Vector<R> &line)
+ssize_t Matrix<R, valid_real_number<R>>::firstNonZeroPos(const Vector<R> &line) const
 {
 	for (size_t i = 0; i < line.size(); i++)
 		if (line[i] != static_cast<R>(0))
@@ -125,7 +125,7 @@ ssize_t Matrix<R>::firstNonZeroPos(const Vector<R> &line)
 }
 // sort the rows by the first non-zero element (private helper function)
 template <typename R>
-void Matrix<R>::sortTheRowsByTheFirstNonZeroElement(Matrix<R> &matrix)
+void Matrix<R, valid_real_number<R>>::sortTheRowsByTheFirstNonZeroElement(Matrix<R> &matrix) const
 {
 	m_shape shape = Utils::matrix_shape(matrix);
 	std::vector<ssize_t> pivots_poss;
@@ -147,7 +147,7 @@ void Matrix<R>::sortTheRowsByTheFirstNonZeroElement(Matrix<R> &matrix)
 }
 // reset to zero the values below each pivot (private helper function)
 template <typename R>
-void Matrix<R>::resetToZeroTheValuesBelowEachPivot(Matrix<R> &matrix)
+void Matrix<R, valid_real_number<R>>::resetToZeroTheValuesBelowEachPivot(Matrix<R> &matrix) const
 {
 	this->sortTheRowsByTheFirstNonZeroElement(matrix);
 	m_shape shape = Utils::matrix_shape(matrix);
@@ -165,7 +165,7 @@ void Matrix<R>::resetToZeroTheValuesBelowEachPivot(Matrix<R> &matrix)
 }
 // reset to zero the values above each pivot (private helper function)
 template <typename R>
-void Matrix<R>::resetToZeroTheValuesAboveEachPivot(Matrix<R> &matrix)
+void Matrix<R, valid_real_number<R>>::resetToZeroTheValuesAboveEachPivot(Matrix<R> &matrix) const
 {
 	this->sortTheRowsByTheFirstNonZeroElement(matrix);
 	m_shape shape = Utils::matrix_shape(matrix);
@@ -183,7 +183,7 @@ void Matrix<R>::resetToZeroTheValuesAboveEachPivot(Matrix<R> &matrix)
 }
 // normalize the pivot values (private helper function)
 template <typename R>
-void Matrix<R>::normalizeThePivotValues(Matrix<R> &matrix)
+void Matrix<R, valid_real_number<R>>::normalizeThePivotValues(Matrix<R> &matrix) const
 {
 	m_shape shape = Utils::matrix_shape(matrix);
 	for (size_t i = 0; i < shape.first; i++)
@@ -196,7 +196,7 @@ void Matrix<R>::normalizeThePivotValues(Matrix<R> &matrix)
 }
 // row-echelon form
 template <typename R>
-Matrix<R> Matrix<R>::row_echelon(void)
+Matrix<R> Matrix<R, valid_real_number<R>>::row_echelon(void) const
 {
 	Matrix<R> result(*this);
 	this->resetToZeroTheValuesBelowEachPivot(result);
@@ -211,7 +211,7 @@ Matrix<R> Matrix<R>::row_echelon(void)
 
 // minor matrix (private helper function)
 template <typename R>
-Matrix<R> Matrix<R>::minor_matrix(const size_t &i, const size_t &j)
+Matrix<R> Matrix<R, valid_real_number<R>>::minor_matrix(const size_t &i, const size_t &j) const
 {
 	m_shape shape = Utils::matrix_shape(*this);
 	Matrix<R> extracted;
@@ -232,7 +232,7 @@ Matrix<R> Matrix<R>::minor_matrix(const size_t &i, const size_t &j)
 }
 // determinant
 template <typename R>
-R Matrix<R>::determinant(void)
+R Matrix<R, valid_real_number<R>>::determinant(void) const
 {
 	m_shape shape = Utils::matrix_shape(*this);
 	if (shape.first == 2 && shape.second == 2)
@@ -255,7 +255,7 @@ R Matrix<R>::determinant(void)
 
 // inverse
 template <typename R>
-Matrix<R> Matrix<R>::inverse(void)
+Matrix<R> Matrix<R, valid_real_number<R>>::inverse(void) const
 {
 	m_shape shape = Utils::matrix_shape(*this);
 	Matrix<R> result;
@@ -283,7 +283,7 @@ Matrix<R> Matrix<R>::inverse(void)
 
 // rank
 template <typename R>
-size_t Matrix<R>::rank(void)
+size_t Matrix<R, valid_real_number<R>>::rank(void) const
 {
 	Matrix<R> reduced = this->row_echelon();
 	m_shape shape = Utils::matrix_shape(reduced);
