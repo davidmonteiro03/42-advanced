@@ -6,233 +6,201 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:56:01 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/04 23:07:32 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/05 10:50:57 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_matrix.hpp"
 
-template<typename R, typename Enable = std::enable_if_t<std::is_integral<R>::value>>
+#define PRINT_BOX(expr, top, bottom, left, right, fill, width, last) \
+	printBox(expr, top, bottom, left, right, fill, width, last)
+#define PRINT_RESULT(expr, top, bottom, left, right, fill, width, last) \
+	printResult(#expr, expr, top, bottom, left, right, fill, width, last)
+
+void printBox(const std::string &str,
+			  const char &top,
+			  const char &bottom,
+			  const char &left,
+			  const char &right,
+			  const char &fill,
+			  const size_t &width,
+			  const char &last)
+{
+	size_t tmpWidth = width;
+	if (str.size() + 4 > tmpWidth)
+		tmpWidth = str.size() + 4;
+	for (size_t i = 0; i < tmpWidth; i++)
+		std::cout << top;
+	std::cout << std::endl;
+	size_t fillSize = tmpWidth - str.size() - 2;
+	std::cout << left;
+	for (size_t i = 0; i < fillSize / 2 + (str.size() % 2 != tmpWidth % 2); i++)
+		std::cout << fill;
+	std::cout << str;
+	for (size_t i = 0; i < fillSize / 2; i++)
+		std::cout << fill;
+	std::cout << right << std::endl;
+	for (size_t i = 0; i < tmpWidth; i++)
+		std::cout << bottom;
+	std::cout << std::endl
+			  << last;
+}
+
+template <typename T>
+void printResult(const char *expr,
+				 const T &value,
+				 const char &top,
+				 const char &bottom,
+				 const char &left,
+				 const char &right,
+				 const char &fill,
+				 const size_t &width,
+				 const char &last)
+{
+	PRINT_BOX(expr, top, bottom, left, right, fill, width, last);
+	std::cout << value << std::endl
+			  << last;
+}
+
+template <typename R, typename Enable = std::enable_if_t<std::is_integral<R>::value>>
 R generateInt(const R &start, const R &end)
 {
-	R minValue = std::min(start, end);
-	R maxValue = std::max(start, end);
+	R minValue = std::min(start, end), maxValue = std::max(start, end);
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	std::uniform_int_distribution<R> dis(minValue, maxValue);
 	return dis(gen);
 }
 
-template<typename R, typename Enable = valid_real_number<R>>
+template <typename R, typename Enable = valid_real_number<R>>
 R generateReal(const R &start, const R &end)
 {
-	R minValue = std::min(start, end);
-	R maxValue = std::max(start, end);
+	R minValue = std::min(start, end), maxValue = std::max(start, end);
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	std::uniform_real_distribution<R> dis(minValue, maxValue);
 	return dis(gen);
 }
 
+template<typename V, typename Enable = valid_real_number<typename V::value_type>>
+V randomVector(const size_t &size, const typename V::value_type &start, const typename V::value_type &end)
+{
+	V result(size);
+	for (size_t i = 0; i < size; i++)
+		result[i] = generateReal<typename V::value_type>(start, end);
+	return result;
+}
+
+template<typename M, typename V = typename M::value_type, typename Enable = valid_real_number<typename V::value_type>>
+M randomMatrix(const size_t &m, const size_t &n, const typename V::value_type &start, const typename V::value_type &end)
+{
+	M result(m);
+	for (size_t i = 0; i < m; i++)
+		result[i] = randomVector<V>(n, start, end);
+	return result;
+}
+
 void Exercises::ex00(void)
 {
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << "|        EX00        |" << std::endl;
-	std::cout << "+--------------------+" << std::endl;
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
 	std::srand(std::time(nullptr));
 	{
-		std::cout << "======================" << std::endl;
-		std::cout << "=> Vector" << std::endl;
-		size_t size = generateInt(1, 5);
-		Vector<float> u(size), v(size);
-		for (size_t i = 0; i < size; i++)
-		{
-			u[i] = generateReal(-42., 42.);
-			v[i] = generateReal(-42., 42.);
-		}
-		float a = generateReal(-42., 42.);
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>>>> u <<<<<<<<" << std::endl
-				  << u << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>>>> v <<<<<<<<" << std::endl
-				  << v << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>>>> a <<<<<<<<" << std::endl
-				  << a << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>> u + v <<<<<<" << std::endl
-				  << u + v << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>> u - v <<<<<<" << std::endl
-				  << u - v << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>> u * a <<<<<<" << std::endl
-				  << u * a << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>> a * u <<<<<<" << std::endl
-				  << a * u << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>> u += v <<<<<" << std::endl
-				  << (u += v) << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>> u -= v <<<<<" << std::endl
-				  << (u -= v) << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>> u *= a <<<<<" << std::endl
-				  << (u *= a) << std::endl;
+		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', 42, '\n');
+		size_t size = generateInt<size_t>(1, 10);
+		Vector<float> u = randomVector<Vector<float>>(size, -42, 42),
+					  v = randomVector<Vector<float>>(size, -42, 42);
+		float a = generateReal<float>(-42, 42);
+		PRINT_RESULT(u, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(v, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(a, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(u + v, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(u - v, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(u * a, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(a * u, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(u += v, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(u -= v, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(u *= a, '~', '~', '>', '<', ' ', 42, '\n');
 	}
 	{
-		std::cout << "======================" << std::endl;
-		std::cout << "=> Matrix" << std::endl;
-		size_t m = generateInt(1, 5), n = generateInt(1, 5);
-		Matrix<float> u, v;
-		for (size_t i = 0; i < m; i++)
-		{
-			Vector<float> rowU(n), rowV(n);
-			for (size_t j = 0; j < n; j++)
-			{
-				rowU[j] = generateReal(-42., 42.);
-				rowV[j] = generateReal(-42., 42.);
-			}
-			u.push_back(rowU);
-			v.push_back(rowV);
-		}
-		float a = generateReal(-42., 42.);
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>>>> u <<<<<<<<" << std::endl
-				  << u << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>>>> v <<<<<<<<" << std::endl
-				  << v << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>>>> a <<<<<<<<" << std::endl
-				  << a << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>> u + v <<<<<<" << std::endl
-				  << u + v << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>> u - v <<<<<<" << std::endl
-				  << u - v << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>> u * a <<<<<<" << std::endl
-				  << u * a << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>> a * u <<<<<<" << std::endl
-				  << a * u << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>> u += v <<<<<" << std::endl
-				  << (u += v) << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>> u -= v <<<<<" << std::endl
-				  << (u -= v) << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << ">>>>> u *= a <<<<<" << std::endl
-				  << (u *= a) << std::endl;
+		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', 42, '\n');
+		size_t m = generateInt<size_t>(1, 10), n = generateInt<size_t>(1, 10);
+		Matrix<float> u = randomMatrix<Matrix<float>>(m, n, -42, 42),
+					  v = randomMatrix<Matrix<float>>(m, n, -42, 42);
+		float a = generateReal<float>(-42, 42);
+		PRINT_RESULT(u, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(v, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(a, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(u + v, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(u - v, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(u * a, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(a * u, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(u += v, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(u -= v, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_RESULT(u *= a, '~', '~', '>', '<', ' ', 42, '\n');
 	}
-	std::cout << std::endl;
 }
 
 void Exercises::ex01(void)
 {
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << "|        EX01        |" << std::endl;
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << std::endl;
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
 }
 
 void Exercises::ex02(void)
 {
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << "|        EX02        |" << std::endl;
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << std::endl;
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
 }
 
 void Exercises::ex03(void)
 {
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << "|        EX03        |" << std::endl;
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << std::endl;
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
 }
 
 void Exercises::ex04(void)
 {
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << "|        EX04        |" << std::endl;
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << std::endl;
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
 }
 
 void Exercises::ex05(void)
 {
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << "|        EX05        |" << std::endl;
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << std::endl;
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
 }
 
 void Exercises::ex06(void)
 {
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << "|        EX06        |" << std::endl;
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << std::endl;
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
 }
 
 void Exercises::ex07(void)
 {
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << "|        EX07        |" << std::endl;
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << std::endl;
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
 }
 
 void Exercises::ex08(void)
 {
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << "|        EX08        |" << std::endl;
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << std::endl;
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
 }
 
 void Exercises::ex09(void)
 {
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << "|        EX09        |" << std::endl;
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << std::endl;
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
 }
 
 void Exercises::ex10(void)
 {
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << "|        EX10        |" << std::endl;
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << std::endl;
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
 }
 
 void Exercises::ex11(void)
 {
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << "|        EX11        |" << std::endl;
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << std::endl;
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
 }
 
 void Exercises::ex12(void)
 {
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << "|        EX12        |" << std::endl;
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << std::endl;
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
 }
 
 void Exercises::ex13(void)
 {
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << "|        EX13        |" << std::endl;
-	std::cout << "+--------------------+" << std::endl;
-	std::cout << std::endl;
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
 }
