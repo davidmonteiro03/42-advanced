@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:39:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/04 15:58:08 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/05 13:00:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ template <typename R>
 Vector<R> &Vector<R, valid_real_number<R>>::operator*=(const R &a)
 {
 	for (size_t i = 0; i < this->size(); i++)
-		if (this->at(i) != static_cast<R>(0))
+		if (this->at(i) != static_cast<R>(0) && a != static_cast<R>(0))
 			this->at(i) *= a;
 	return *this;
 }

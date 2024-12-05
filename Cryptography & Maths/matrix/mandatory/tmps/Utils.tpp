@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:44:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/04 10:17:33 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/05 13:01:10 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,12 @@ Vector<R> operator*(const Vector<R> &u, const R &a)
 {
 	Vector<R> result;
 	for (size_t i = 0; i < u.size(); i++)
-		result.push_back(u[i] == static_cast<R>(0) ? static_cast<R>(0) : u[i] * a);
+	{
+		if (u[i] != static_cast<R>(0) && a != static_cast<R>(0))
+			result.push_back(u[i] * a);
+		else
+			result.push_back(static_cast<R>(0));
+	}
 	return result;
 }
 // scale a vector by a scalar (vector * scalar)
@@ -119,7 +124,12 @@ Vector<R> operator*(const R &a, const Vector<R> &u)
 {
 	Vector<R> result;
 	for (size_t i = 0; i < u.size(); i++)
-		result.push_back(u[i] == static_cast<R>(0) ? static_cast<R>(0) : u[i] * a);
+	{
+		if (u[i] != static_cast<R>(0) && a != static_cast<R>(0))
+			result.push_back(u[i] * a);
+		else
+			result.push_back(static_cast<R>(0));
+	}
 	return result;
 }
 // add two matrices
