@@ -6,12 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:38:38 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/04 10:51:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:51:22 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATRIX_HPP
-#define MATRIX_HPP
+#pragma once
 
 template <typename R>
 using valid_real_number = std::enable_if_t<std::is_floating_point<R>::value>;
@@ -55,5 +54,3 @@ private:
 	// ex11 (private helper functions for determinant)
 	Matrix<R> minor_matrix(const size_t &, const size_t &) const; // minor matrix (private helper function)
 };
-
-#endif // !MATRIX_HPP

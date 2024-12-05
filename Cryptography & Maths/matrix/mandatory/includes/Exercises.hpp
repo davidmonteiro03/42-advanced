@@ -6,12 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:48:09 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/04 09:31:53 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:51:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXERCISES_HPP
-#define EXERCISES_HPP
+#pragma once
 
 class Exercises
 {
@@ -30,9 +29,8 @@ public:
 	static void ex11(void);
 	static void ex12(void);
 	static void ex13(void);
+
 private:
 	Exercises(void);
 	~Exercises();
 };
-
-#endif // !EXERCISES_HPP

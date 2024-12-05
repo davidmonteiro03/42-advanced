@@ -6,12 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:48:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/04 21:42:18 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:51:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MATRIX_HPP
-#define FT_MATRIX_HPP
+#pragma once
 
 // Standard library headers
 #include <cmath>	// For mathematical functions
@@ -32,5 +31,3 @@
 #include "../tmps/Matrix.tpp"	 // For matrix operations
 #include "../tmps/Utils.tpp"	 // For utility functions
 #include "../tmps/Exercises.tpp" // For exercises
-
-#endif // FT_MATRIX_HPP

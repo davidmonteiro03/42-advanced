@@ -6,17 +6,16 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:54 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/05 10:45:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:51:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_HPP
-#define VECTOR_HPP
+#pragma once
 
 template <typename R>
 using valid_real_number = std::enable_if_t<std::is_floating_point<R>::value>;
 
-template<typename R, typename Enable = void>
+template <typename R, typename Enable = void>
 class Vector;
 
 template <typename R>
@@ -35,5 +34,3 @@ public:
 	R norm(void) const;		// euclidean norm
 	R norm_inf(void) const; // supremum norm
 };
-
-#endif // !VECTOR_HPP

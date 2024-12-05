@@ -6,12 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:41:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/04 10:13:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:51:27 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_HPP
-#define UTILS_HPP
+#pragma once
 
 class Utils
 {
@@ -70,5 +69,3 @@ R angle_cos(const Vector<R> &, const Vector<R> &); // cosine of the angle betwee
 // ex06
 template <typename R>
 Vector<R> cross_product(const Vector<R> &, const Vector<R> &); // cross product
-
-#endif // !UTILS_HPP
