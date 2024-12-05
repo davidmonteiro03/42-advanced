@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:56:01 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/05 13:36:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:03:37 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void printVector(const char *expr,
 template <typename R, typename Enable = std::enable_if_t<std::is_integral<R>::value>>
 R generateInt(const R &start, const R &end)
 {
+	std::srand(std::time(nullptr));
 	R minValue = std::min(start, end), maxValue = std::max(start, end);
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -94,6 +95,7 @@ R generateInt(const R &start, const R &end)
 template <typename R, typename Enable = valid_real_number<R>>
 R generateReal(const R &start, const R &end)
 {
+	std::srand(std::time(nullptr));
 	R minValue = std::min(start, end), maxValue = std::max(start, end);
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -122,7 +124,6 @@ M randomMatrix(const size_t &m, const size_t &n, const typename V::value_type &s
 void Exercises::ex00(void)
 {
 	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
-	std::srand(std::time(nullptr));
 	{
 		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', 42, '\n');
 		size_t size = generateInt<size_t>(1, 10);
@@ -162,7 +163,6 @@ void Exercises::ex00(void)
 void Exercises::ex01(void)
 {
 	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
-	std::srand(std::time(nullptr));
 	{
 		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', 42, '\n');
 		size_t mainSize = generateInt<size_t>(1, 10),
@@ -185,7 +185,6 @@ void Exercises::ex01(void)
 void Exercises::ex02(void)
 {
 	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
-	std::srand(std::time(nullptr));
 	{
 		PRINT_BOX("Real Numbers Set", '=', '=', '|', '|', ' ', 42, '\n');
 		float u = generateReal<float>(-42, 42),
@@ -223,7 +222,6 @@ void Exercises::ex02(void)
 void Exercises::ex03(void)
 {
 	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
-	std::srand(std::time(nullptr));
 	{
 		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', 42, '\n');
 		size_t size = generateInt<size_t>(1, 10);
@@ -238,7 +236,6 @@ void Exercises::ex03(void)
 void Exercises::ex04(void)
 {
 	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
-	std::srand(std::time(nullptr));
 	{
 		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', 42, '\n');
 		size_t size = generateInt<size_t>(1, 10);
@@ -253,7 +250,6 @@ void Exercises::ex04(void)
 void Exercises::ex05(void)
 {
 	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
-	std::srand(std::time(nullptr));
 	{
 		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', 42, '\n');
 		size_t size = generateInt<size_t>(1, 10);
@@ -268,7 +264,6 @@ void Exercises::ex05(void)
 void Exercises::ex06(void)
 {
 	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
-	std::srand(std::time(nullptr));
 	{
 		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', 42, '\n');
 		size_t size = generateInt<size_t>(1, 3);
@@ -283,7 +278,6 @@ void Exercises::ex06(void)
 void Exercises::ex07(void)
 {
 	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
-	std::srand(std::time(nullptr));
 	{
 		PRINT_BOX("Matrix * Vector", '=', '=', '|', '|', ' ', 42, '\n');
 		size_t m = generateInt<size_t>(1, 10), n = generateInt<size_t>(1, 10);
@@ -307,11 +301,26 @@ void Exercises::ex07(void)
 void Exercises::ex08(void)
 {
 	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	{
+		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', 42, '\n');
+		size_t m = generateInt<size_t>(1, 10);
+		Matrix<float> u = randomMatrix<Matrix<float>>(m, m, -42, 42);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_VALUE(u.trace(), '~', '~', '>', '<', ' ', 42, '\n');
+	}
 }
 
 void Exercises::ex09(void)
 {
 	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	{
+		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', 42, '\n');
+		size_t m = generateInt<size_t>(1, 10), n = generateInt<size_t>(1, 10);
+		Matrix<float> u = randomMatrix<Matrix<float>>(m, n, -42, 42),
+					  v = randomMatrix<Matrix<float>>(n, m, -42, 42);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_VALUE(u.transpose(), '~', '~', '>', '<', ' ', 42, '\n');
+	}
 }
 
 void Exercises::ex10(void)
