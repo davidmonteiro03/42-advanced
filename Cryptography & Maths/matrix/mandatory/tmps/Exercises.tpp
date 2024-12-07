@@ -6,18 +6,26 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:56:01 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/05 17:51:37 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/07 09:42:16 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_matrix.hpp"
 
+// display
+#define STRINGIFY(expr) #expr
 #define PRINT_BOX(expr, top, bottom, left, right, fill, width, last) \
 	printBox(expr, top, bottom, left, right, fill, width, last)
 #define PRINT_VALUE(expr, top, bottom, left, right, fill, width, last) \
 	printValue(#expr, expr, top, bottom, left, right, fill, width, last)
 #define PRINT_VECTOR(expr, top, bottom, left, right, fill, width, last) \
 	printVector(#expr, expr, top, bottom, left, right, fill, width, last)
+#define BOX_SIZE 120
+// random
+#define INT_RANDOM_MIN 1
+#define INT_RANDOM_MAX 10
+#define REAL_RANDOM_MIN -10
+#define REAL_RANDOM_MAX 10
 
 void printBox(const std::string &str,
 			  const char &top,
@@ -36,10 +44,10 @@ void printBox(const std::string &str,
 	std::cout << std::endl;
 	size_t fillSize = tmpWidth - str.size() - 2;
 	std::cout << left;
-	for (size_t i = 0; i < fillSize / 2 + (str.size() % 2 != tmpWidth % 2); i++)
+	for (size_t i = 0; i < fillSize / 2; i++)
 		std::cout << fill;
 	std::cout << str;
-	for (size_t i = 0; i < fillSize / 2; i++)
+	for (size_t i = 0; i < fillSize / 2 + (str.size() % 2 != tmpWidth % 2); i++)
 		std::cout << fill;
 	std::cout << right << std::endl;
 	for (size_t i = 0; i < tmpWidth; i++)
@@ -104,8 +112,9 @@ R generateReal(const R &start, const R &end)
 }
 
 template <typename V, typename Enable = valid_real_number<typename V::value_type>>
-V randomVector(const size_t &size, const typename V::value_type &start, const typename V::value_type &end)
+V randomVector(const typename V::value_type &start, const typename V::value_type &end)
 {
+	size_t size = generateInt<size_t>(INT_RANDOM_MIN, INT_RANDOM_MAX);
 	V result(size);
 	for (size_t i = 0; i < size; i++)
 		result[i] = generateReal<typename V::value_type>(start, end);
@@ -113,232 +122,405 @@ V randomVector(const size_t &size, const typename V::value_type &start, const ty
 }
 
 template <typename M, typename V = typename M::value_type, typename Enable = valid_real_number<typename V::value_type>>
-M randomMatrix(const size_t &m, const size_t &n, const typename V::value_type &start, const typename V::value_type &end)
+M randomMatrix(const typename V::value_type &start, const typename V::value_type &end)
 {
-	M result(m);
-	for (size_t i = 0; i < m; i++)
-		result[i] = randomVector<V>(n, start, end);
+	size_t size = generateInt<size_t>(INT_RANDOM_MIN, INT_RANDOM_MAX);
+	M result(size);
+	for (size_t i = 0; i < size; i++)
+		result[i] = randomVector<V>(start, end);
 	return result;
 }
 
 void Exercises::ex00(void)
 {
-	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	{
-		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', 42, '\n');
-		size_t size = generateInt<size_t>(1, 10);
-		Vector<float> u = randomVector<Vector<float>>(size, -42, 42),
-					  v = randomVector<Vector<float>>(size, -42, 42);
-		float a = generateReal<float>(-42, 42);
-		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(a, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u + v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u - v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u * a, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(a * u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u += v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u -= v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u *= a, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Vector<float> u = randomVector<Vector<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX),
+					  v = randomVector<Vector<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		float a = generateReal<float>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(a, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		try
+		{
+			PRINT_VALUE(u + v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u + v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
+		try
+		{
+			PRINT_VALUE(u - v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u - v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
+		try
+		{
+			PRINT_VALUE(u * a, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u * a), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
+		try
+		{
+			PRINT_VALUE(a * u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(a * u), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
+		try
+		{
+			PRINT_VALUE(u += v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u += v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
+		try
+		{
+			PRINT_VALUE(u -= v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u -= v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
+		try
+		{
+			PRINT_VALUE(u *= a, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u *= a), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
 	}
 	{
-		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', 42, '\n');
-		size_t m = generateInt<size_t>(1, 10), n = generateInt<size_t>(1, 10);
-		Matrix<float> u = randomMatrix<Matrix<float>>(m, n, -42, 42),
-					  v = randomMatrix<Matrix<float>>(m, n, -42, 42);
-		float a = generateReal<float>(-42, 42);
-		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(a, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u + v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u - v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u * a, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(a * u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u += v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u -= v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u *= a, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Matrix<float> u = randomMatrix<Matrix<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX),
+					  v = randomMatrix<Matrix<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		float a = generateReal<float>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(a, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		try
+		{
+			PRINT_VALUE(u + v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u + v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
+		try
+		{
+			PRINT_VALUE(u - v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u - v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
+		try
+		{
+			PRINT_VALUE(u * a, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u * a), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
+		try
+		{
+			PRINT_VALUE(a * u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(a * u), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
+		try
+		{
+			PRINT_VALUE(u += v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u += v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
+		try
+		{
+			PRINT_VALUE(u -= v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u -= v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
+		try
+		{
+			PRINT_VALUE(u *= a, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u *= a), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
 	}
 }
 
 void Exercises::ex01(void)
 {
-	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	{
-		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', 42, '\n');
-		size_t mainSize = generateInt<size_t>(1, 10),
-			   elemSize = generateInt<size_t>(1, 10);
-		std::vector<Vector<float>> u(mainSize), v(mainSize);
-		std::vector<float> coefs(mainSize);
-		for (size_t i = 0; i < mainSize; i++)
+		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		std::vector<Vector<float>> u = std::vector<Vector<float>>(generateInt<size_t>(INT_RANDOM_MIN, INT_RANDOM_MAX)),
+								   v = std::vector<Vector<float>>(generateInt<size_t>(INT_RANDOM_MIN, INT_RANDOM_MAX));
+		std::vector<float> coefs = std::vector<float>(generateInt<size_t>(INT_RANDOM_MIN, INT_RANDOM_MAX));
+		for (size_t i = 0; i < u.size(); i++)
+			u[i] = randomVector<Vector<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		for (size_t i = 0; i < v.size(); i++)
+			v[i] = randomVector<Vector<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		for (size_t i = 0; i < coefs.size(); i++)
+			coefs[i] = generateReal<float>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		PRINT_VECTOR(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VECTOR(v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VECTOR(coefs, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		try
 		{
-			u[i] = randomVector<Vector<float>>(elemSize, -42, 42);
-			v[i] = randomVector<Vector<float>>(elemSize, -42, 42);
-			coefs[i] = generateReal<float>(-42, 42);
+			PRINT_VALUE(linear_combination(u, coefs), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
 		}
-		PRINT_VECTOR(u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VECTOR(v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VECTOR(coefs, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(linear_combination(u, coefs), '~', '~', '>', '<', ' ', 42, '\n');
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(linear_combination(u, coefs)), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
 	}
 }
 
 void Exercises::ex02(void)
 {
-	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	{
-		PRINT_BOX("Real Numbers Set", '=', '=', '|', '|', ' ', 42, '\n');
-		float u = generateReal<float>(-42, 42),
-			  v = generateReal<float>(-42, 42),
+		PRINT_BOX("Real Numbers Set", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		float u = generateReal<float>(REAL_RANDOM_MIN, REAL_RANDOM_MAX),
+			  v = generateReal<float>(REAL_RANDOM_MIN, REAL_RANDOM_MAX),
 			  t = generateReal<float>(0, 1);
-		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(t, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(lerp(u, v, t), '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(t, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		try
+		{
+			PRINT_VALUE(lerp(u, v, t), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(lerp(u, v, t)), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
 	}
 	{
-		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', 42, '\n');
-		size_t size = generateInt<size_t>(1, 10);
-		Vector<float> u = randomVector<Vector<float>>(size, -42, 42),
-					  v = randomVector<Vector<float>>(size, -42, 42);
+		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Vector<float> u = randomVector<Vector<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX),
+					  v = randomVector<Vector<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
 		float t = generateReal<float>(0, 1);
-		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(t, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(lerp(u, v, t), '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(t, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		try
+		{
+			PRINT_VALUE(lerp(u, v, t), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(lerp(u, v, t)), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
 	}
 	{
-		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', 42, '\n');
-		size_t m = generateInt<size_t>(1, 10), n = generateInt<size_t>(1, 10);
-		Matrix<float> u = randomMatrix<Matrix<float>>(m, n, -42, 42),
-					  v = randomMatrix<Matrix<float>>(m, n, -42, 42);
+		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Matrix<float> u = randomMatrix<Matrix<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX),
+					  v = randomMatrix<Matrix<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
 		float t = generateReal<float>(0, 1);
-		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(t, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(lerp(u, v, t), '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(t, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		try
+		{
+			PRINT_VALUE(lerp(u, v, t), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(lerp(u, v, t)), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
 	}
 }
 
 void Exercises::ex03(void)
 {
-	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	{
-		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', 42, '\n');
-		size_t size = generateInt<size_t>(1, 10);
-		Vector<float> u = randomVector<Vector<float>>(size, -42, 42),
-					  v = randomVector<Vector<float>>(size, -42, 42);
-		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u.dot(v), '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Vector<float> u = randomVector<Vector<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX),
+					  v = randomVector<Vector<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(u.dot(v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
 	}
 }
 
 void Exercises::ex04(void)
 {
-	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	{
-		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', 42, '\n');
-		size_t size = generateInt<size_t>(1, 10);
-		Vector<float> u = randomVector<Vector<float>>(size, -42, 42);
-		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u.norm_1(), '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u.norm(), '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u.norm_inf(), '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Vector<float> u = randomVector<Vector<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(u.norm_1(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(u.norm(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(u.norm_inf(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
 	}
 }
 
 void Exercises::ex05(void)
 {
-	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	{
-		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', 42, '\n');
-		size_t size = generateInt<size_t>(1, 10);
-		Vector<float> u = randomVector<Vector<float>>(size, -42, 42),
-					  v = randomVector<Vector<float>>(size, -42, 42);
-		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(angle_cos(u, v), '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Vector<float> u = randomVector<Vector<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX),
+					  v = randomVector<Vector<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(angle_cos(u, v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
 	}
 }
 
 void Exercises::ex06(void)
 {
-	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	{
-		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', 42, '\n');
-		size_t size = generateInt<size_t>(1, 3);
-		Vector<float> u = randomVector<Vector<float>>(size, -42, 42),
-					  v = randomVector<Vector<float>>(size, -42, 42);
-		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(cross_product(u, v), '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Vector<float> u = randomVector<Vector<float>>(REAL_RANDOM_MIN, INT_RANDOM_MAX),
+					  v = randomVector<Vector<float>>(REAL_RANDOM_MIN, INT_RANDOM_MAX);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(cross_product(u, v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
 	}
 }
 
 void Exercises::ex07(void)
 {
-	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	{
-		PRINT_BOX("Matrix * Vector", '=', '=', '|', '|', ' ', 42, '\n');
-		size_t m = generateInt<size_t>(1, 10), n = generateInt<size_t>(1, 10);
-		Matrix<float> u = randomMatrix<Matrix<float>>(m, n, -42, 42);
-		Vector<float> v = randomVector<Vector<float>>(n, -42, 42);
-		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u * v, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_BOX("Matrix * Vector", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Matrix<float> u = randomMatrix<Matrix<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		Vector<float> v = randomVector<Vector<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(u * v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
 	}
 	{
-		PRINT_BOX("Matrix * Matrix", '=', '=', '|', '|', ' ', 42, '\n');
-		size_t m = generateInt<size_t>(1, 10), n = generateInt<size_t>(1, 10);
-		Matrix<float> u = randomMatrix<Matrix<float>>(m, n, -42, 42),
-					  v = randomMatrix<Matrix<float>>(n, m, -42, 42);
-		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(v, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u * v, '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_BOX("Matrix * Matrix", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Matrix<float> u = randomMatrix<Matrix<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX),
+					  v = randomMatrix<Matrix<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(u * v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
 	}
 }
 
 void Exercises::ex08(void)
 {
-	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	{
-		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', 42, '\n');
-		size_t m = generateInt<size_t>(1, 10);
-		Matrix<float> u = randomMatrix<Matrix<float>>(m, m, -42, 42);
-		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u.trace(), '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Matrix<float> u = randomMatrix<Matrix<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(u.trace(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
 	}
 }
 
 void Exercises::ex09(void)
 {
-	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	{
-		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', 42, '\n');
-		size_t m = generateInt<size_t>(1, 10), n = generateInt<size_t>(1, 10);
-		Matrix<float> u = randomMatrix<Matrix<float>>(m, n, -42, 42),
-					  v = randomMatrix<Matrix<float>>(n, m, -42, 42);
-		PRINT_VALUE(u, '~', '~', '>', '<', ' ', 42, '\n');
-		PRINT_VALUE(u.transpose(), '~', '~', '>', '<', ' ', 42, '\n');
+		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Matrix<float> u = randomMatrix<Matrix<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(u.transpose(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
 	}
 }
 
 void Exercises::ex10(void)
 {
-	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	{
+		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Matrix<float> u = randomMatrix<Matrix<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(u.row_echelon(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+	}
 }
 
 void Exercises::ex11(void)
 {
-	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	{
+		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Matrix<float> u = randomMatrix<Matrix<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(u.determinant(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+	}
 }
 
 void Exercises::ex12(void)
 {
-	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	{
+		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Matrix<float> u = randomMatrix<Matrix<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(u.inverse(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+	}
 }
 
 void Exercises::ex13(void)
 {
-	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', 42, '\n');
+	PRINT_BOX(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	{
+		PRINT_BOX("Matrix", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		Matrix<float> u = randomMatrix<Matrix<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
+		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		PRINT_VALUE(u.rank(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+	}
 }

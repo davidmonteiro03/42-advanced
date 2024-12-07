@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:44:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/05 17:51:44 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/07 09:45:01 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,14 @@ size_t Utils::vector_size(const Vector<R> &vector) { return vector.size(); }
 template <typename R>
 const m_shape Utils::matrix_shape(const Matrix<R> &matrix)
 {
-	return std::make_pair(matrix.size(), matrix.size() == 0 ? 0 : matrix[0].size());
+	size_t m = matrix.size();
+	if (m == 0)
+		return std::make_pair(0, 0);
+	size_t n = matrix[0].size();
+	for (size_t i = 1; i < m; i++)
+		if (matrix[i].size() != n)
+			throw std::invalid_argument("Matrix must have all the rows with the same size.");
+	return std::make_pair(m, n);
 }
 // checR if a matrix is square
 template <typename R>
@@ -90,31 +97,38 @@ std::ostream &operator<<(std::ostream &os, const Matrix<R> &matrix)
 template <typename R>
 Vector<R> operator+(const Vector<R> &u, const Vector<R> &v)
 {
-	Vector<R> result;
-	for (size_t i = 0; i < u.size(); i++)
-		result.push_back(u[i] + v[i]);
+	size_t uSize = u.size(), vSize = v.size();
+	if (uSize != vSize)
+		throw std::invalid_argument("Vectors must have the same size.");
+	Vector<R> result(uSize);
+	for (size_t i = 0; i < uSize; i++)
+		result[i] = u[i] + v[i];
 	return result;
 }
 // subtract two vectors
 template <typename R>
 Vector<R> operator-(const Vector<R> &u, const Vector<R> &v)
 {
-	Vector<R> result;
-	for (size_t i = 0; i < u.size(); i++)
-		result.push_back(u[i] - v[i]);
+	size_t uSize = u.size(), vSize = v.size();
+	if (uSize != vSize)
+		throw std::invalid_argument("Vectors must have the same size.");
+	Vector<R> result(uSize);
+	for (size_t i = 0; i < uSize; i++)
+		result[i] = u[i] - v[i];
 	return result;
 }
 // scale a vector by a scalar (scalar * vector)
 template <typename R>
 Vector<R> operator*(const Vector<R> &u, const R &a)
 {
-	Vector<R> result;
-	for (size_t i = 0; i < u.size(); i++)
+	size_t uSize = u.size();
+	Vector<R> result(uSize);
+	for (size_t i = 0; i < uSize; i++)
 	{
 		if (u[i] != static_cast<R>(0) && a != static_cast<R>(0))
-			result.push_back(u[i] * a);
+			result[i] = u[i] * a;
 		else
-			result.push_back(static_cast<R>(0));
+			result[i] = static_cast<R>(0);
 	}
 	return result;
 }
@@ -122,13 +136,14 @@ Vector<R> operator*(const Vector<R> &u, const R &a)
 template <typename R>
 Vector<R> operator*(const R &a, const Vector<R> &u)
 {
-	Vector<R> result;
-	for (size_t i = 0; i < u.size(); i++)
+	size_t uSize = u.size();
+	Vector<R> result(uSize);
+	for (size_t i = 0; i < uSize; i++)
 	{
 		if (u[i] != static_cast<R>(0) && a != static_cast<R>(0))
-			result.push_back(u[i] * a);
+			result[i] = u[i] * a;
 		else
-			result.push_back(static_cast<R>(0));
+			result[i] = static_cast<R>(0);
 	}
 	return result;
 }
