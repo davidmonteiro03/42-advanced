@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:39:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/05 17:51:41 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:52:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@
 template <typename R>
 Matrix<R> &Matrix<R, valid_real_number<R>>::operator+=(const Matrix<R> &v)
 {
-	for (size_t i = 0; i < this->size(); i++)
+	const m_shape uShape = Utils::matrix_shape(*this), vShape = Utils::matrix_shape(v);
+	if (uShape != vShape)
+		throw std::invalid_argument("Matrix dimensions must be equal");
+	for (size_t i = 0; i < uShape.first; i++)
 		this->at(i) += v[i];
 	return *this;
 }
@@ -28,7 +31,10 @@ Matrix<R> &Matrix<R, valid_real_number<R>>::operator+=(const Matrix<R> &v)
 template <typename R>
 Matrix<R> &Matrix<R, valid_real_number<R>>::operator-=(const Matrix<R> &v)
 {
-	for (size_t i = 0; i < this->size(); i++)
+	const m_shape uShape = Utils::matrix_shape(*this), vShape = Utils::matrix_shape(v);
+	if (uShape != vShape)
+		throw std::invalid_argument("Matrix dimensions must be equal");
+	for (size_t i = 0; i < uShape.first; i++)
 		this->at(i) -= v[i];
 	return *this;
 }
@@ -36,7 +42,8 @@ Matrix<R> &Matrix<R, valid_real_number<R>>::operator-=(const Matrix<R> &v)
 template <typename R>
 Matrix<R> &Matrix<R, valid_real_number<R>>::operator*=(const R &a)
 {
-	for (size_t i = 0; i < this->size(); i++)
+	const m_shape uShape = Utils::matrix_shape(*this);
+	for (size_t i = 0; i < uShape.first; i++)
 		this->at(i) *= a;
 	return *this;
 }

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:56:01 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/07 09:42:16 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:52:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #define INT_RANDOM_MAX 10
 #define REAL_RANDOM_MIN -10
 #define REAL_RANDOM_MAX 10
+#define INT_RANDOM_BOOL false
 
 void printBox(const std::string &str,
 			  const char &top,
@@ -114,7 +115,9 @@ R generateReal(const R &start, const R &end)
 template <typename V, typename Enable = valid_real_number<typename V::value_type>>
 V randomVector(const typename V::value_type &start, const typename V::value_type &end)
 {
-	size_t size = generateInt<size_t>(INT_RANDOM_MIN, INT_RANDOM_MAX);
+	size_t size = INT_RANDOM_MAX / 2;
+	if (INT_RANDOM_BOOL)
+		size = generateInt<size_t>(INT_RANDOM_MIN, INT_RANDOM_MAX);
 	V result(size);
 	for (size_t i = 0; i < size; i++)
 		result[i] = generateReal<typename V::value_type>(start, end);
@@ -124,7 +127,9 @@ V randomVector(const typename V::value_type &start, const typename V::value_type
 template <typename M, typename V = typename M::value_type, typename Enable = valid_real_number<typename V::value_type>>
 M randomMatrix(const typename V::value_type &start, const typename V::value_type &end)
 {
-	size_t size = generateInt<size_t>(INT_RANDOM_MIN, INT_RANDOM_MAX);
+	size_t size = INT_RANDOM_MAX / 2;
+	if (INT_RANDOM_BOOL)
+		size = generateInt<size_t>(INT_RANDOM_MIN, INT_RANDOM_MAX);
 	M result(size);
 	for (size_t i = 0; i < size; i++)
 		result[i] = randomVector<V>(start, end);
@@ -395,7 +400,16 @@ void Exercises::ex03(void)
 					  v = randomVector<Vector<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
 		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
 		PRINT_VALUE(v, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-		PRINT_VALUE(u.dot(v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		try
+		{
+			PRINT_VALUE(u.dot(v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u.dot(v)), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
 	}
 }
 
@@ -406,9 +420,36 @@ void Exercises::ex04(void)
 		PRINT_BOX("Vector", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
 		Vector<float> u = randomVector<Vector<float>>(REAL_RANDOM_MIN, REAL_RANDOM_MAX);
 		PRINT_VALUE(u, '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-		PRINT_VALUE(u.norm_1(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-		PRINT_VALUE(u.norm(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-		PRINT_VALUE(u.norm_inf(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		try
+		{
+			PRINT_VALUE(u.norm_1(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u.norm_1()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
+		try
+		{
+			PRINT_VALUE(u.norm(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u.norm()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
+		try
+		{
+			PRINT_VALUE(u.norm_inf(), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+		}
+		catch (std::exception &e)
+		{
+			PRINT_BOX(STRINGIFY(u.norm_inf()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+			std::cerr << "Error: " << e.what() << std::endl
+					  << std::endl;
+		}
 	}
 }
 

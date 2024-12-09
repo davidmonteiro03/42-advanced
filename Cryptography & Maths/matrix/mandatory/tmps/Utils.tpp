@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:44:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/07 09:45:01 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:48:43 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,54 @@
 
 // vector size
 template <typename R>
-size_t Utils::vector_size(const Vector<R> &vector) { return vector.size(); }
+size_t Utils::vector_size(const Vector<R> &vec) { return vec.size(); }
 // matrix shape
 template <typename R>
-const m_shape Utils::matrix_shape(const Matrix<R> &matrix)
+const m_shape Utils::matrix_shape(const Matrix<R> &mat)
 {
-	size_t m = matrix.size();
+	size_t m = mat.size();
 	if (m == 0)
 		return std::make_pair(0, 0);
-	size_t n = matrix[0].size();
+	size_t n = mat[0].size();
 	for (size_t i = 1; i < m; i++)
-		if (matrix[i].size() != n)
+		if (mat[i].size() != n)
 			throw std::invalid_argument("Matrix must have all the rows with the same size.");
 	return std::make_pair(m, n);
 }
-// checR if a matrix is square
+// check if a matrix is square
 template <typename R>
-bool Utils::matrix_is_square(const Matrix<R> &matrix)
+bool Utils::matrix_is_square(const Matrix<R> &mat)
 {
-	const m_shape matrixShape = matrix_shape(matrix);
-	return matrixShape.first == matrixShape.second;
+	const m_shape shape = matrix_shape(mat);
+	return shape.first == shape.second;
 }
 // reshape a vector into a matrix
 template <typename R>
-Matrix<R> Utils::reshape_vector_into_matrix(const Vector<R> &vector, const size_t &rows, const size_t &cols)
+Matrix<R> Utils::reshape_vector_into_matrix(const Vector<R> &vec, const size_t &m, const size_t &n)
 {
-	Matrix<R> matrix;
-	for (size_t i = 0; i < rows; i++)
+	const size_t vecSize = vector_size(vec), matSize = m * n;
+	if (vecSize != matSize)
+		throw std::invalid_argument("Rows * cols must be equal to the vector size.");
+	Matrix<R> result(m);
+	for (size_t i = 0; i < result.size(); i++)
 	{
-		Vector<R> tmp;
-		for (size_t j = 0; j < cols; j++)
-			tmp.push_back(vector[i * cols + j]);
-		matrix.push_back(tmp);
+		result[i] = Vector<R>(n);
+		for (size_t j = 0; j < n; j++)
+			result[i][j] = vec[i * n + j];
 	}
-	return matrix;
+	return result;
 }
 // reshape a matrix into a vector
 template <typename R>
-Vector<R> Utils::reshape_matrix_into_vector(const Matrix<R> &matrix)
+Vector<R> Utils::reshape_matrix_into_vector(const Matrix<R> &mat)
 {
-	Vector<R> vector;
-	for (size_t i = 0; i < matrix.size(); i++)
-		for (size_t j = 0; j < matrix[i].size(); j++)
-			vector.push_back(matrix[i][j]);
-	return vector;
+	const m_shape shape = matrix_shape(mat);
+	const size_t size = shape.first * shape.second;
+	Vector<R> result(size);
+	for (size_t i = 0; i < shape.first; i++)
+		for (size_t j = 0; j < shape.second; j++)
+			result[i * shape.second + j] = mat[i][j];
+	return result;
 }
 // print vector
 template <typename R>
@@ -151,36 +155,44 @@ Vector<R> operator*(const R &a, const Vector<R> &u)
 template <typename R>
 Matrix<R> operator+(const Matrix<R> &u, const Matrix<R> &v)
 {
-	Matrix<R> result;
-	for (size_t i = 0; i < u.size(); i++)
-		result.push_back(u[i] + v[i]);
+	const m_shape uShape = Utils::matrix_shape(u), vShape = Utils::matrix_shape(v);
+	if (uShape != vShape)
+		throw std::invalid_argument("Matrices must have the same shape.");
+	Matrix<R> result(uShape.first);
+	for (size_t i = 0; i < uShape.first; i++)
+		result[i] = u[i] + v[i];
 	return result;
 }
 // subtract two matrices
 template <typename R>
 Matrix<R> operator-(const Matrix<R> &u, const Matrix<R> &v)
 {
-	Matrix<R> result;
-	for (size_t i = 0; i < u.size(); i++)
-		result.push_back(u[i] - v[i]);
+	const m_shape uShape = Utils::matrix_shape(u), vShape = Utils::matrix_shape(v);
+	if (uShape != vShape)
+		throw std::invalid_argument("Matrices must have the same shape.");
+	Matrix<R> result(uShape.first);
+	for (size_t i = 0; i < uShape.first; i++)
+		result[i] = u[i] - v[i];
 	return result;
 }
 // scale a matrix by a scalar (matrix * scalar)
 template <typename R>
 Matrix<R> operator*(const Matrix<R> &u, const R &a)
 {
-	Matrix<R> result;
-	for (size_t i = 0; i < u.size(); i++)
-		result.push_back(u[i] * a);
+	const m_shape uShape = Utils::matrix_shape(u);
+	Matrix<R> result(uShape.first);
+	for (size_t i = 0; i < result.size(); i++)
+		result[i] = u[i] * a;
 	return result;
 }
 // scale a matrix by a scalar (scalar * matrix)
 template <typename R>
 Matrix<R> operator*(const R &a, const Matrix<R> &u)
 {
-	Matrix<R> result;
-	for (size_t i = 0; i < u.size(); i++)
-		result.push_back(u[i] * a);
+	const m_shape uShape = Utils::matrix_shape(u);
+	Matrix<R> result(uShape.first);
+	for (size_t i = 0; i < result.size(); i++)
+		result[i] = u[i] * a;
 	return result;
 }
 

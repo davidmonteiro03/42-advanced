@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:39:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/07 08:58:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:46:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@
 template <typename R>
 Vector<R> &Vector<R, valid_real_number<R>>::operator+=(const Vector<R> &v)
 {
-	for (size_t i = 0; i < this->size(); i++)
+	size_t uSize = this->size(), vSize = v.size();
+	if (uSize != vSize)
+		throw std::invalid_argument("Vectors must have the same size.");
+	for (size_t i = 0; i < uSize; i++)
 		this->at(i) += v[i];
 	return *this;
 }
@@ -28,7 +31,10 @@ Vector<R> &Vector<R, valid_real_number<R>>::operator+=(const Vector<R> &v)
 template <typename R>
 Vector<R> &Vector<R, valid_real_number<R>>::operator-=(const Vector<R> &v)
 {
-	for (size_t i = 0; i < this->size(); i++)
+	size_t uSize = this->size(), vSize = v.size();
+	if (uSize != vSize)
+		throw std::invalid_argument("Vectors must have the same size.");
+	for (size_t i = 0; i < uSize; i++)
 		this->at(i) -= v[i];
 	return *this;
 }
@@ -36,7 +42,8 @@ Vector<R> &Vector<R, valid_real_number<R>>::operator-=(const Vector<R> &v)
 template <typename R>
 Vector<R> &Vector<R, valid_real_number<R>>::operator*=(const R &a)
 {
-	for (size_t i = 0; i < this->size(); i++)
+	size_t uSize = this->size();
+	for (size_t i = 0; i < uSize; i++)
 		if (this->at(i) != static_cast<R>(0) && a != static_cast<R>(0))
 			this->at(i) *= a;
 	return *this;
