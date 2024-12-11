@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matrix.hpp                                      :+:      :+:    :+:   */
+/*   tests.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 09:06:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/11 17:50:24 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/12/11 17:37:31 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/12/11 17:54:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "../includes/ft_matrix.hpp"
 
-#include <iostream>
-#include <vector>
+namespace tests
+{
+	namespace
+	{
+		void utils_vector() {}
+	}
 
-#include "./Vector.hpp"
-#include "./Matrix.hpp"
-#include "./tests.hpp"
-#include "./display.hpp"
-#include "./vector.hpp"
-#include "./matrix.hpp"
-
-#define STRINGIFY(var) #var
-#define BOX_SIZE 75
-
-#include "../tmps/general.tpp"
-#include "../tmps/Vector.tpp"
-#include "../tmps/Matrix.tpp"
+	void utils()
+	{
+		display::box(__func__, '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+		utils_vector();
+	}
+}

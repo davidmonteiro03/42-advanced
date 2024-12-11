@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2024/12/11 15:20:04 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/12/11 17:50:30 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,12 +29,16 @@ TPP_EXT      = .tpp
 OBJ_EXT      = .o
 # === FILES ================================================================== #
 CLSS         = Vector Matrix
-HDRS         = $(CLSS) ft_$(NAME)
-TMPL         = $(CLSS) vector matrix display general
+CPPS         = tests display vector matrix
+HDRS         = $(CLSS) ft_$(NAME) tests display vector matrix
+TMPL         = $(CLSS) general
 ifeq ($(MAKECMDGOALS),bonus)
     INCS     = $(addprefix $(BNUS_D)/$(INCS_D)/, \
                            $(addsuffix $(HPP_EXT), \
                                        $(HDRS)))
+    SRCS     = $(addprefix $(BNUS_D)/$(SRCS_D)/, \
+                           $(addsuffix $(CPP_EXT), \
+                                       $(CPPS)))
     TMPS     = $(addprefix $(BNUS_D)/$(TMPS_D)/, \
                            $(addsuffix $(TPP_EXT), \
                                        $(TMPL)))
@@ -43,6 +47,12 @@ else
     INCS     = $(addprefix $(MAND_D)/$(INCS_D)/, \
                            $(addsuffix $(HPP_EXT), \
                                        $(HDRS)))
+    SRCS     = $(addprefix $(MAND_D)/$(SRCS_D)/, \
+                           $(addsuffix $(CPP_EXT), \
+                                       $(CPPS)))
+    OBJS     = $(patsubst $(MAND_D)/$(SRCS_D)/%$(CPP_EXT), \
+                          $(OBJS_D)/$(MAND_D)/$(SRCS_D)/%$(OBJ_EXT), \
+                          $(SRCS))
     TMPS     = $(addprefix $(MAND_D)/$(TMPS_D)/, \
                            $(addsuffix $(TPP_EXT), \
                                        $(TMPL)))
@@ -57,6 +67,7 @@ MK_FLAGS     = -p
 RM_FLAGS     = -rfv
 # === PROJECT ================================================================ #
 NAME         = matrix
+LIB          = $(NAME).a
 # === RULES ================================================================== #
 all: $(NAME)
 
@@ -66,8 +77,15 @@ $(OBJS_D)/%$(OBJ_EXT): %$(CPP_EXT) $(INCS) $(TMPS)
 	@$(MK) $(MK_FLAGS) $(dir $@)
 	@$(CPP) $(CPP_FLAGS) -c $< -o $@
 
-$(NAME): $(MAIN_OBJ)
-	@$(CPP) $(CPP_FLAGS) $(MAIN_OBJ) -o $(NAME)
+$(OBJS_D)/$(MAND_D)/$(SRCS_D)/%$(OBJ_EXT): $(MAND_D)/$(SRCS_D)/%$(CPP_EXT) $(INCS) $(TMPS)
+	@$(MK) $(MK_FLAGS) $(dir $@)
+	@$(CPP) $(CPP_FLAGS) -c $< -o $@
+
+$(LIB): $(OBJS)
+	@$(AR_RCS) $(LIB) $(OBJS)
+
+$(NAME): $(LIB) $(MAIN_OBJ)
+	@$(CPP) $(CPP_FLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME)
 
 clean:
 	@$(RM) $(RM_FLAGS) $(OBJS_D)

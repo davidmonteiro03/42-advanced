@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matrix.hpp                                      :+:      :+:    :+:   */
+/*   display.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 09:06:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/11 17:50:24 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/12/11 17:43:34 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/12/11 17:44:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
-#include <vector>
+#include "../includes/ft_matrix.hpp"
 
-#include "./Vector.hpp"
-#include "./Matrix.hpp"
-#include "./tests.hpp"
-#include "./display.hpp"
-#include "./vector.hpp"
-#include "./matrix.hpp"
+namespace display
+{
+	void box(const std::string &,
+			 const char &,
+			 const char &,
+			 const char &,
+			 const char &,
+			 const char &,
+			 const size_t &,
+			 const char &);
 
-#define STRINGIFY(var) #var
-#define BOX_SIZE 75
+	template <typename T>
+	void value(const T &);
 
-#include "../tmps/general.tpp"
-#include "../tmps/Vector.tpp"
-#include "../tmps/Matrix.tpp"
+	void error(const std::string &);
+}

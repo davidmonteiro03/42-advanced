@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:24:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/11 13:00:23 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:48:51 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ namespace vector
 	template <typename R>
 	size_t size(const Vector<R> &vec) { return vec.size(); }
 
-	template<typename R>
-	Matrix<R> reshape(const Vector<R> &vec, const size_t &m, const size_t &n)
+	template <typename R>
+	Matrix<R> reshape(const Vector<R> &vec,
+					  const size_t &m,
+					  const size_t &n)
 	{
 		const size_t vecSize = vector::size(vec);
 		if (m * n != vecSize)
@@ -35,7 +37,8 @@ namespace vector
 }
 
 template <typename R>
-std::ostream &operator<<(std::ostream &os, const Vector<R> &vec)
+std::ostream &operator<<(std::ostream &os,
+						 const Vector<R> &vec)
 {
 	os << '[';
 	const size_t vecSize = vector::size(vec);
@@ -50,7 +53,8 @@ std::ostream &operator<<(std::ostream &os, const Vector<R> &vec)
 }
 
 template <typename R>
-Vector<R> operator+(const Vector<R> &u, const Vector<R> &v)
+Vector<R> operator+(const Vector<R> &u,
+					const Vector<R> &v)
 {
 	const size_t uSize = vector::size(u), vSize = vector::size(v);
 	if (uSize != vSize)
@@ -62,7 +66,8 @@ Vector<R> operator+(const Vector<R> &u, const Vector<R> &v)
 }
 
 template <typename R>
-Vector<R> operator-(const Vector<R> &u, const Vector<R> &v)
+Vector<R> operator-(const Vector<R> &u,
+					const Vector<R> &v)
 {
 	const size_t uSize = vector::size(u), vSize = vector::size(v);
 	if (uSize != vSize)
@@ -74,7 +79,8 @@ Vector<R> operator-(const Vector<R> &u, const Vector<R> &v)
 }
 
 template <typename R>
-Vector<R> operator*(const Vector<R> &u, const R &a)
+Vector<R> operator*(const Vector<R> &u,
+					const R &a)
 {
 	const size_t uSize = vector::size(u);
 	Vector<R> res(uSize);
@@ -89,7 +95,8 @@ Vector<R> operator*(const Vector<R> &u, const R &a)
 }
 
 template <typename R>
-Vector<R> operator*(const R &a, const Vector<R> &v)
+Vector<R> operator*(const R &a,
+					const Vector<R> &v)
 {
 	const size_t vSize = vector::size(v);
 	Vector<R> res(vSize);

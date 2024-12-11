@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix.tpp                                         :+:      :+:    :+:   */
+/*   matrix.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 10:48:44 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/11 13:11:47 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:48:28 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ namespace matrix
 		return matShape.first == matShape.second;
 	}
 
-	template<typename R>
+	template <typename R>
 	Vector<R> reshape(const Matrix<R> &mat)
 	{
 		const shape_t matShape = shape(mat);
@@ -60,7 +60,8 @@ std::ostream &operator<<(std::ostream &os,
 }
 
 template <typename R>
-std::ostream &operator<<(std::ostream &os, const Matrix<R> &mat)
+std::ostream &operator<<(std::ostream &os,
+						 const Matrix<R> &mat)
 {
 	const shape_t matShape = matrix::shape(mat);
 	os << '[';
@@ -76,7 +77,8 @@ std::ostream &operator<<(std::ostream &os, const Matrix<R> &mat)
 }
 
 template <typename R>
-Matrix<R> operator+(const Matrix<R> &u, const Matrix<R> &v)
+Matrix<R> operator+(const Matrix<R> &u,
+					const Matrix<R> &v)
 {
 	const shape_t uShape = matrix::shape(u), vShape = matrix::shape(v);
 	if (uShape != vShape)
@@ -88,7 +90,8 @@ Matrix<R> operator+(const Matrix<R> &u, const Matrix<R> &v)
 }
 
 template <typename R>
-Matrix<R> operator-(const Matrix<R> &u, const Matrix<R> &v)
+Matrix<R> operator-(const Matrix<R> &u,
+					const Matrix<R> &v)
 {
 	const shape_t uShape = matrix::shape(u), vShape = matrix::shape(v);
 	if (uShape != vShape)
@@ -100,7 +103,8 @@ Matrix<R> operator-(const Matrix<R> &u, const Matrix<R> &v)
 }
 
 template <typename R>
-Matrix<R> operator*(const Matrix<R> &u, const R &a)
+Matrix<R> operator*(const Matrix<R> &u,
+					const R &a)
 {
 	const shape_t uShape = matrix::shape(u);
 	Matrix<R> res(uShape.first);
@@ -110,7 +114,8 @@ Matrix<R> operator*(const Matrix<R> &u, const R &a)
 }
 
 template <typename R>
-Matrix<R> operator*(const R &a, const Matrix<R> &v)
+Matrix<R> operator*(const R &a,
+					const Matrix<R> &v)
 {
 	const shape_t vShape = matrix::shape(v);
 	Matrix<R> res(vShape.first);
