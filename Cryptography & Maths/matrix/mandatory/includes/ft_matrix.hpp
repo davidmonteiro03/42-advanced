@@ -5,29 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 10:48:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/07 08:22:34 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/12/11 09:06:26 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/12/11 16:38:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-// Standard library headers
-#include <cmath>	// For mathematical functions
-#include <cstddef>	// For size_t and other type definitions
-#include <iomanip>	// For input/output manipulators
-#include <iostream> // For standard input/output stream objects
-#include <random>	// For random numbers
-#include <vector>	// For std::vector container
+#include <iostream>
+#include <vector>
 
-// Project-specific headers
-#include "Vector.hpp"	 // For vector operations
-#include "Matrix.hpp"	 // For matrix operations
-#include "Utils.hpp"	 // For utility functions
-#include "Exercises.hpp" // For exercises
+#include "./Vector.hpp"
+#include "./Matrix.hpp"
 
-// Project-specific templates
-#include "../tmps/Vector.tpp"	 // For vector operations
-#include "../tmps/Matrix.tpp"	 // For matrix operations
-#include "../tmps/Utils.tpp"	 // For utility functions
-#include "../tmps/Exercises.tpp" // For exercises
+#define STRINGIFY(var) #var
+#define BOX_SIZE 75
+
+#include "../tmps/vector.tpp"
+#include "../tmps/matrix.tpp"
+#include "../tmps/display.tpp"
+#include "../tmps/general.tpp"
+#include "../tmps/tests.tpp"
+#include "../tmps/Vector.tpp"
+#include "../tmps/Matrix.tpp"
