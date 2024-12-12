@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2024/12/11 17:50:30 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/12/12 10:39:56 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,11 @@ HPP_EXT      = .hpp
 TPP_EXT      = .tpp
 OBJ_EXT      = .o
 # === FILES ================================================================== #
+TSTS         = utils ex00
 CLSS         = Vector Matrix
-CPPS         = tests display vector matrix
-HDRS         = $(CLSS) ft_$(NAME) tests display vector matrix
-TMPL         = $(CLSS) general
+CPPS         = display $(TSTS)
+HDRS         = $(CLSS) ft_$(NAME) vector matrix display $(TSTS)
+TMPL         = $(CLSS) vector matrix display general
 ifeq ($(MAKECMDGOALS),bonus)
     INCS     = $(addprefix $(BNUS_D)/$(INCS_D)/, \
                            $(addsuffix $(HPP_EXT), \
@@ -85,6 +86,7 @@ $(LIB): $(OBJS)
 	@$(AR_RCS) $(LIB) $(OBJS)
 
 $(NAME): $(LIB) $(MAIN_OBJ)
+	@echo $(TSTS)
 	@$(CPP) $(CPP_FLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME)
 
 clean:

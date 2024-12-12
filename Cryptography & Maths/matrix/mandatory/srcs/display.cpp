@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:28:13 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/11 17:44:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:21:16 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,6 @@ namespace display
 			std::cout << bottom;
 		std::cout << std::endl
 				  << last;
-	}
-
-	template <typename T>
-	void value(const T &value)
-	{
-		std::cerr << value << std::endl
-				  << std::endl;
 	}
 
 	void error(const std::string &reason)

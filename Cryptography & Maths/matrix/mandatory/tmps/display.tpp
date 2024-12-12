@@ -1,30 +1,23 @@
-/* ************************************************************************** */
+ // .../* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.hpp                                        :+:      :+:    :+:   */
+/*   display.tpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 17:43:34 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/12 11:19:55 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/12/11 11:28:13 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/12/12 08:21:01 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "../includes/ft_matrix.hpp"
 
 namespace display
 {
-	void box(const std::string &,
-			 const char &,
-			 const char &,
-			 const char &,
-			 const char &,
-			 const char &,
-			 const size_t &,
-			 const char &);
-
 	template <typename T>
-	void value(const T &);
-
-	void error(const std::string &);
+	void value(const T &value)
+	{
+		std::cout << value << std::endl
+				  << std::endl;
+	}
 }

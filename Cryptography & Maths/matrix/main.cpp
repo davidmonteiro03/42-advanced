@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/11 17:54:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/12/12 10:40:25 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int main(void)
 {
-	tests::utils();
+	display::box("utils", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	utils::vector();
+	utils::matrix();
+	display::box("ex00", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	ex00::vector();
+	ex00::matrix();
 	return 0;
 }

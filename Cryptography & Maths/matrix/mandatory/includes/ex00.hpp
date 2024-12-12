@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.hpp                                          :+:      :+:    :+:   */
+/*   ex00.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 17:36:36 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/11 17:54:28 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/12/12 10:32:18 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/12/12 10:32:49 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-namespace tests
+namespace ex00
 {
-	void utils();
+	void vector(void);
+	void matrix(void);
 }
