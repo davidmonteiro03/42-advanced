@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 10:48:44 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/12 08:48:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:26:40 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-using shape_t = std::pair<size_t, size_t>;
+using shape_t = std::pair<size_t,
+						  size_t>;
 
 namespace matrix
 {
@@ -32,7 +33,8 @@ namespace matrix
 template <typename A,
 		  typename B>
 std::ostream &operator<<(std::ostream &,
-						 const std::pair<A, B> &);
+						 const std::pair<A,
+										 B> &);
 
 template <typename R>
 std::ostream &operator<<(std::ostream &,

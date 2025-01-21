@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex00.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 10:32:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/12 10:32:49 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:26:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 namespace ex00
 {
+	template<typename R>
 	void vector(void);
+
+	template<typename R>
 	void matrix(void);
 }

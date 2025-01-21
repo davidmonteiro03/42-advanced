@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.tpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:24:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/12 08:41:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:05:33 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ template <typename R>
 Vector<R> operator+(const Vector<R> &u,
 					const Vector<R> &v)
 {
-	const size_t uSize = vector::utils::size(u), vSize = vector::utils::size(v);
+	const size_t uSize = vector::utils::size(u),
+				 vSize = vector::utils::size(v);
 	if (uSize != vSize)
 		throw std::invalid_argument("Vectors must have the same size");
 	Vector<R> res(uSize);
@@ -72,7 +73,8 @@ template <typename R>
 Vector<R> operator-(const Vector<R> &u,
 					const Vector<R> &v)
 {
-	const size_t uSize = vector::utils::size(u), vSize = vector::utils::size(v);
+	const size_t uSize = vector::utils::size(u),
+				 vSize = vector::utils::size(v);
 	if (uSize != vSize)
 		throw std::invalid_argument("Vectors must have the same size");
 	Vector<R> res(uSize);

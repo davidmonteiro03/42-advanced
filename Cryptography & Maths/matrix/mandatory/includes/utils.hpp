@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 17:36:36 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/12 10:25:09 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:23:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 namespace utils
 {
+	template<typename R>
 	void vector(void);
+
+	template<typename R>
 	void matrix(void);
 }

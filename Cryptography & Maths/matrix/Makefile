@@ -3,36 +3,43 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
+#    By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2024/12/12 10:39:56 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/01/21 18:59:52 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # === COMMANDS =============================================================== #
+
 CPP          = c++
 MK           = mkdir
 RM           = rm
 AR_RCS       = ar rcs
+
 # === DIRECTORIES ============================================================ #
+
 INCS_D       = includes
 SRCS_D       = srcs
 OBJS_D       = objs
 TMPS_D       = tmps
 MAND_D       = mandatory
 BNUS_D       = bonus
+
 # === EXTENSIONS ============================================================= #
+
 CPP_EXT      = .cpp
 HPP_EXT      = .hpp
 TPP_EXT      = .tpp
 OBJ_EXT      = .o
+
 # === FILES ================================================================== #
-TSTS         = utils ex00
+
+TSTS         = utils ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex10
 CLSS         = Vector Matrix
-CPPS         = display $(TSTS)
-HDRS         = $(CLSS) ft_$(NAME) vector matrix display $(TSTS)
-TMPL         = $(CLSS) vector matrix display general
+CPPS         = display
+HDRS         = $(CLSS) ft_$(NAME) vector matrix display general $(TSTS)
+TMPL         = $(CLSS) vector matrix display general $(TSTS)
 ifeq ($(MAKECMDGOALS),bonus)
     INCS     = $(addprefix $(BNUS_D)/$(INCS_D)/, \
                            $(addsuffix $(HPP_EXT), \
@@ -62,38 +69,43 @@ endif
 MAIN_OBJ     = $(patsubst %$(CPP_EXT), \
                           $(OBJS_D)/%$(OBJ_EXT), \
                           $(MAIN_CPP))
+
 # === FLAGS ================================================================== #
-CPP_FLAGS    = -Wall -Wextra -Werror -std=c++2b -pedantic -g -v
+
+CPP_FLAGS    = -Wall -Wextra -Werror -std=c++2b -pedantic -g #-v
 MK_FLAGS     = -p
 RM_FLAGS     = -rfv
+
 # === PROJECT ================================================================ #
+
 NAME         = matrix
 LIB          = $(NAME).a
+
 # === RULES ================================================================== #
+
 all: $(NAME)
 
 bonus: $(NAME)
 
 $(OBJS_D)/%$(OBJ_EXT): %$(CPP_EXT) $(INCS) $(TMPS)
 	@$(MK) $(MK_FLAGS) $(dir $@)
-	@$(CPP) $(CPP_FLAGS) -c $< -o $@
+	$(CPP) $(CPP_FLAGS) -c $< -o $@
 
 $(OBJS_D)/$(MAND_D)/$(SRCS_D)/%$(OBJ_EXT): $(MAND_D)/$(SRCS_D)/%$(CPP_EXT) $(INCS) $(TMPS)
 	@$(MK) $(MK_FLAGS) $(dir $@)
-	@$(CPP) $(CPP_FLAGS) -c $< -o $@
+	$(CPP) $(CPP_FLAGS) -c $< -o $@
 
 $(LIB): $(OBJS)
 	@$(AR_RCS) $(LIB) $(OBJS)
 
 $(NAME): $(LIB) $(MAIN_OBJ)
-	@echo $(TSTS)
-	@$(CPP) $(CPP_FLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME)
+	$(CPP) $(CPP_FLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME)
 
 clean:
 	@$(RM) $(RM_FLAGS) $(OBJS_D)
 
 fclean: clean
-	@$(RM) $(RM_FLAGS) $(NAME)
+	@$(RM) $(RM_FLAGS) $(NAME) $(LIB)
 
 re: fclean all
 

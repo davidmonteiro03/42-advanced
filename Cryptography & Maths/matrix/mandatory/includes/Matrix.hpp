@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   Matrix.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:27:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/11 13:05:53 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:10:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-template<typename R>
-using valid_arithemic_field = std::enable_if_t<std::is_arithmetic<R>::value>;
-
-template <typename R, typename Enable = void>
-class Matrix;
-
 template <typename R>
-class Matrix<R, valid_arithemic_field<R>> : public std::vector<Vector<R>>
+class Matrix : public std::vector<Vector<R>>
 {
 private:
 	using std::vector<Vector<R>>::vector;
+
 public:
 	Matrix<R> &operator+=(const Matrix<R> &);
 	Matrix<R> &operator-=(const Matrix<R> &);
 	Matrix<R> &operator*=(const R &);
+	Vector<R> operator*(const Vector<R> &) const;
+	Matrix<R> operator*(const Matrix<R> &) const;
+	R trace(void) const;
+	Matrix<R> transpose(void) const;
+	Matrix<R> row_echelon(void) const;
 };
 
 template <typename R>

@@ -1,4 +1,4 @@
- // .../* ************************************************************************** */
+// .../* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   display.tpp                                        :+:      :+:    :+:   */
@@ -19,5 +19,13 @@ namespace display
 	{
 		std::cout << value << std::endl
 				  << std::endl;
+	}
+
+	template <typename T>
+	void vector(const std::vector<T> &vector)
+	{
+		for (size_t i = 0; i < vector.size(); i++)
+			std::cout << vector[i] << std::endl;
+		std::cout << std::endl;
 	}
 }

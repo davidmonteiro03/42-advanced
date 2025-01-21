@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Vector.hpp                                         :+:      :+:    :+:   */
+/*   general.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 09:06:17 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/21 15:02:29 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/12/11 13:26:23 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/21 18:45:55 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "../includes/ft_matrix.hpp"
 
 template <typename R>
-class Vector : public std::vector<R>
-{
-private:
-	using std::vector<R>::vector;
+Vector<R> linear_combination(const std::vector<Vector<R>> &,
+							 const std::vector<R> &);
 
-public:
-	Vector<R> &operator+=(const Vector<R> &);
-	Vector<R> &operator-=(const Vector<R> &);
-	Vector<R> &operator*=(const R &);
-	R dot(const Vector<R> &) const;
-	R norm_1(void) const;
-	R norm(void) const;
-	R norm_inf(void) const;
-};
+template <typename V,
+		  typename R>
+V lerp(const V &,
+	   const V &,
+	   const R &);
 
 template <typename R>
-Vector(std::initializer_list<R>) -> Vector<R>;
+R angle_cos(const Vector<R> &,
+			const Vector<R> &);
+
+template <typename R>
+Vector<R> cross_product(const Vector<R> &,
+						const Vector<R> &);

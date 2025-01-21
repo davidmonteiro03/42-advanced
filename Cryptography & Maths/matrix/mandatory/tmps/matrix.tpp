@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.tpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 10:48:44 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/12 08:40:45 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/21 09:02:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ namespace matrix
 template <typename A,
 		  typename B>
 std::ostream &operator<<(std::ostream &os,
-						 const std::pair<A, B> &pair)
+						 const std::pair<A,
+										 B> &pair)
 {
 	os << '(' << pair.first << ", " << pair.second << ')';
 	return os;
@@ -80,7 +81,8 @@ template <typename R>
 Matrix<R> operator+(const Matrix<R> &u,
 					const Matrix<R> &v)
 {
-	const shape_t uShape = matrix::utils::shape(u), vShape = matrix::utils::shape(v);
+	const shape_t uShape = matrix::utils::shape(u),
+				  vShape = matrix::utils::shape(v);
 	if (uShape != vShape)
 		throw std::invalid_argument("Matrices must have the same shape");
 	Matrix<R> res(uShape.first);
@@ -93,7 +95,8 @@ template <typename R>
 Matrix<R> operator-(const Matrix<R> &u,
 					const Matrix<R> &v)
 {
-	const shape_t uShape = matrix::utils::shape(u), vShape = matrix::utils::shape(v);
+	const shape_t uShape = matrix::utils::shape(u),
+				  vShape = matrix::utils::shape(v);
 	if (uShape != vShape)
 		throw std::invalid_argument("Matrices must have the same shape");
 	Matrix<R> res(uShape.first);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.cpp                                          :+:      :+:    :+:   */
+/*   utils.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 17:37:31 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/12/12 11:21:28 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:08:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 namespace utils
 {
+	template <typename R>
 	void vector(void)
 	{
 		display::box("Vector", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
-		Vector u = {1., 2., 3., 4., 5., 6.};
+
+		Vector<R> u = {1., 2., 3., 4., 5., 6.};
+
 		try
 		{
 			display::box(STRINGIFY(u), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
@@ -27,6 +30,7 @@ namespace utils
 		{
 			display::error(e.what());
 		}
+
 		try
 		{
 			display::box(STRINGIFY(vector::utils::size(u)), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
@@ -36,6 +40,7 @@ namespace utils
 		{
 			display::error(e.what());
 		}
+
 		try
 		{
 			display::box(STRINGIFY(vector::utils::reshape(u, 3, 2)), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
@@ -47,11 +52,14 @@ namespace utils
 		}
 	}
 
+	template <typename R>
 	void matrix(void)
 	{
 		display::box("Matrix", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
-		Matrix u = {{1., 2., 3.},
-					{4., 5., 6.}};
+
+		Matrix<R> u = {{1., 2., 3.},
+					   {4., 5., 6.}};
+
 		try
 		{
 			display::box(STRINGIFY(u), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
@@ -61,6 +69,7 @@ namespace utils
 		{
 			display::error(e.what());
 		}
+
 		try
 		{
 			display::box(STRINGIFY(matrix::utils::shape(u)), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
@@ -70,6 +79,7 @@ namespace utils
 		{
 			display::error(e.what());
 		}
+
 		try
 		{
 			display::box(STRINGIFY(matrix::utils::is_square(u)), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
@@ -79,6 +89,7 @@ namespace utils
 		{
 			display::error(e.what());
 		}
+
 		try
 		{
 			display::box(STRINGIFY(matrix::utils::reshape(u)), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
