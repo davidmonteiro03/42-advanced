@@ -5,104 +5,49 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 09:06:00 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/22 11:39:10 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/22 18:28:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+
 #include "../includes/ft_matrix.hpp"
 
-template <typename R>
-Vector<R> &Vector<R>::operator+=(const Vector<R> &v)
+template <typename K>
+Vector<K>::Vector(std::initializer_list<K> data)
 {
-	Vector<R> &u = *this;
-	const size_t uSize = vector::utils::size(u),
-				 vSize = vector::utils::size(v);
-	if (uSize != vSize)
-		throw std::invalid_argument("Vectors must have the same size");
-	for (size_t i = 0; i < uSize; i++)
-		u[i] += v[i];
-	return *this;
+	this->_data = NULL;
+	this->_size = data.size();
+	if (this->_size == 0)
+		return;
+	this->_data = new K[this->_size];
+	if (this->_data == NULL)
+		return;
+	size_t i = 0;
+	for (const K &value : data)
+		this->_data[i++] = value;
 }
 
-template <typename R>
-Vector<R> &Vector<R>::operator-=(const Vector<R> &v)
+template <typename K>
+Vector<K>::~Vector()
 {
-	Vector<R> &u = *this;
-	const size_t uSize = vector::utils::size(u),
-				 vSize = vector::utils::size(v);
-	if (uSize != vSize)
-		throw std::invalid_argument("Vectors must have the same size");
-	for (size_t i = 0; i < uSize; i++)
-		u[i] -= v[i];
-	return *this;
+	if (this->_data == NULL)
+		return;
+	delete[] this->_data;
 }
 
-template <typename R>
-Vector<R> &Vector<R>::operator*=(const R &a)
+template <typename K>
+K &Vector<K>::operator[](const size_t &index)
 {
-	Vector<R> &u = *this;
-	const size_t uSize = vector::utils::size(u);
-	for (size_t i = 0; i < uSize; i++)
-		if (u[i] != static_cast<R>(0) && a != static_cast<R>(0))
-			u[i] *= a;
-	return *this;
+	if (index < 0 || index > this->_size)
+		throw std::invalid_argument("Index out of range.");
+	return this->_data[index];
 }
 
-template <typename R>
-R Vector<R>::dot(const Vector<R> &v) const
+template <typename K>
+std::ostream &operator<<(std::ostream &os, const Vector<K> &vector)
 {
-	Vector<R> u = *this;
-	const size_t uSize = vector::utils::size(u),
-				 vSize = vector::utils::size(v);
-	if (uSize != vSize)
-		throw std::invalid_argument("Vectors must have the same size");
-	R res = 0;
-	for (size_t i = 0; i < uSize; i++)
-		res += u[i] * v[i];
-	return res;
-}
-
-template <typename R>
-R Vector<R>::norm_1(void) const
-{
-	Vector<R> u = *this;
-	const size_t uSize = vector::utils::size(u);
-	R res = 0;
-	for (size_t i = 0; i < uSize; i++)
-		res += u[i] < 0 ? -u[i] : u[i];
-	return res;
-}
-
-template <typename R>
-R Vector<R>::norm(void) const
-{
-	Vector<R> u = *this;
-	const size_t uSize = vector::utils::size(u);
-	R res = 0;
-	for (size_t i = 0; i < uSize; i++)
-		res += u[i] * u[i];
-	return pow(res, 0.5);
-}
-
-template <typename R>
-R Vector<R>::norm_inf(void) const
-{
-	Vector<R> u = *this;
-	const size_t uSize = vector::utils::size(u);
-	R res = 0;
-	for (size_t i = 0; i < uSize; i++)
-		res = std::max(res, u[i] < 0 ? -u[i] : u[i]);
-	return res;
-}
-
-template <typename R>
-ssize_t Vector<R>::firstNonZeroPos(void) const
-{
-	const Vector<R> &u = *this;
-	const size_t uSize = vector::utils::size(u);
-	for (size_t i = 0; i < uSize; i++)
-		if (u[i] != 0)
-			return i;
-	return -1;
+	os << &vector;
+	return os;
 }

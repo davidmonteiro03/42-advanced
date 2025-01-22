@@ -5,31 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 09:06:17 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/22 11:37:19 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/01/22 17:09:08 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/22 17:46:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-template <typename R>
-class Vector : public std::vector<R>
+template <typename K>
+class Vector
 {
 private:
-	using std::vector<R>::vector;
+	K *_data;
+	size_t _size;
 
 public:
-	Vector<R> &operator+=(const Vector<R> &);
-	Vector<R> &operator-=(const Vector<R> &);
-	Vector<R> &operator*=(const R &);
+	Vector(std::initializer_list<K>);
+	~Vector();
 
-	R dot(const Vector<R> &) const;
-	R norm_1(void) const;
-	R norm(void) const;
-	R norm_inf(void) const;
-
-	ssize_t firstNonZeroPos(void) const;
+	K &operator[](const size_t &);
 };
 
-template <typename R>
-Vector(std::initializer_list<R>) -> Vector<R>;
+template <typename K>
+std::ostream &operator<<(std::ostream &, const Vector<K> &);
+
+template <typename K>
+Vector(std::initializer_list<K>) -> Vector<K>;
