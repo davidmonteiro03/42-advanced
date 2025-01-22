@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:06:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/21 19:55:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/22 08:41:25 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 #include "./ex10.hpp"
 #include "./ex11.hpp"
 #include "./ex12.hpp"
+#include "./ex13.hpp"
 
 #define STRINGIFY(var) #var
 #define BOX_SIZE 75
@@ -67,3 +68,4 @@
 #include "../tmps/ex10.tpp"
 #include "../tmps/ex11.tpp"
 #include "../tmps/ex12.tpp"
+#include "../tmps/ex13.tpp"

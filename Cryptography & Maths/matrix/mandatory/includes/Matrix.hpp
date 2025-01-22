@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:27:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/21 19:49:45 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:44:53 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ class Matrix : public std::vector<Vector<R>>
 private:
 	using std::vector<Vector<R>>::vector;
 
-	ssize_t firstNonZeroPos(const Vector<R> &);
 	void sortTheRowsByTheFirstNonZeroElement(void);
 	void resetToZeroTheValuesBelowEachPivot(void);
 	void resetToZeroTheValuesAboveEachPivot(void);
@@ -39,6 +38,7 @@ public:
 	Matrix<R> row_echelon(void) const;
 	R determinant(void) const;
 	Matrix<R> inverse(void) const;
+	size_t rank(void) const;
 };
 
 template <typename R>

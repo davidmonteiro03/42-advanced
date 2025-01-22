@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:26:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/21 20:14:09 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:34:33 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,28 +117,20 @@ Matrix<R> Matrix<R>::transpose(void) const
 }
 
 template <typename R>
-ssize_t Matrix<R>::firstNonZeroPos(const Vector<R> &row)
-{
-	const size_t rowSize = vector::utils::size(row);
-	for (size_t i = 0; i < rowSize; i++)
-		if (row[i] != 0)
-			return i;
-	return -1;
-}
-
-template <typename R>
 void Matrix<R>::sortTheRowsByTheFirstNonZeroElement(void)
 {
 	Matrix<R> &mat = *this;
 	const shape_t matShape = matrix::utils::shape(mat);
 	std::vector<ssize_t> pivotsPoss(matShape.first);
 	for (size_t i = 0; i < matShape.first; i++)
-		pivotsPoss[i] = firstNonZeroPos(mat[i]);
+		pivotsPoss[i] = mat[i].firstNonZeroPos();
 	for (size_t i = 0; i < matShape.first; i++)
 	{
 		for (size_t j = i + 1; j < matShape.first; j++)
 		{
-			if (pivotsPoss[i] > pivotsPoss[j])
+			if (pivotsPoss[j] == -1)
+				continue;
+			if (pivotsPoss[i] == -1 || pivotsPoss[i] > pivotsPoss[j])
 			{
 				std::swap(pivotsPoss[i], pivotsPoss[j]);
 				std::swap(mat[i], mat[j]);
@@ -157,13 +149,12 @@ void Matrix<R>::resetToZeroTheValuesBelowEachPivot(void)
 	{
 		for (size_t i = j + 1; i < matShape.first; i++)
 		{
-			ssize_t currPivotPos = firstNonZeroPos(mat[i]),
-					prevPivotPos = firstNonZeroPos(mat[j]);
+			ssize_t currPivotPos = mat[i].firstNonZeroPos(),
+					prevPivotPos = mat[j].firstNonZeroPos();
 			if (currPivotPos == prevPivotPos)
 				mat[i] = mat[i] * mat[j][prevPivotPos] - mat[j] * mat[i][currPivotPos];
 		}
 	}
-	mat.sortTheRowsByTheFirstNonZeroElement();
 }
 
 template <typename R>
@@ -176,23 +167,23 @@ void Matrix<R>::resetToZeroTheValuesAboveEachPivot(void)
 	{
 		for (size_t j = i + 1; j < matShape.first; j++)
 		{
-			ssize_t pivotPos = firstNonZeroPos(mat[j]);
+			ssize_t pivotPos = mat[j].firstNonZeroPos();
 			if (pivotPos == -1)
 				continue;
 			mat[i] = mat[i] * mat[j][pivotPos] - mat[j] * mat[i][pivotPos];
 		}
 	}
-	mat.sortTheRowsByTheFirstNonZeroElement();
 }
 
 template <typename R>
 void Matrix<R>::normalizeThePivotValues(void)
 {
 	Matrix<R> &mat = *this;
+	mat.sortTheRowsByTheFirstNonZeroElement();
 	const shape_t matShape = matrix::utils::shape(mat);
 	for (size_t i = 0; i < matShape.first; i++)
 	{
-		ssize_t pivotPos = firstNonZeroPos(mat[i]);
+		ssize_t pivotPos = mat[i].firstNonZeroPos();
 		if (pivotPos == -1)
 			continue;
 		mat[i] *= 1 / mat[i][pivotPos];
@@ -203,7 +194,6 @@ template <typename R>
 Matrix<R> Matrix<R>::row_echelon(void) const
 {
 	Matrix<R> result = *this;
-	result.sortTheRowsByTheFirstNonZeroElement();
 	result.resetToZeroTheValuesBelowEachPivot();
 	result.resetToZeroTheValuesAboveEachPivot();
 	result.normalizeThePivotValues();
@@ -274,5 +264,20 @@ Matrix<R> Matrix<R>::inverse(void) const
 	}
 	result = result.transpose();
 	result *= 1 / mat.determinant();
+	return result;
+}
+
+template <typename R>
+size_t Matrix<R>::rank(void) const
+{
+	const Matrix<R> &mat = *this;
+	const Matrix<R> reduced = mat.row_echelon();
+	const shape_t reducedShape = matrix::utils::shape(reduced);
+	size_t result = 0;
+	for (size_t i = 0; i < reducedShape.first; i++)
+	{
+		ssize_t pivotPos = reduced[i].firstNonZeroPos();
+		result += pivotPos != -1;
+	}
 	return result;
 }

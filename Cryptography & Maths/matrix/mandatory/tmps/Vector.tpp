@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:06:00 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/21 18:49:11 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:39:10 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,15 @@ R Vector<R>::norm_inf(void) const
 	for (size_t i = 0; i < uSize; i++)
 		res = std::max(res, u[i] < 0 ? -u[i] : u[i]);
 	return res;
+}
+
+template <typename R>
+ssize_t Vector<R>::firstNonZeroPos(void) const
+{
+	const Vector<R> &u = *this;
+	const size_t uSize = vector::utils::size(u);
+	for (size_t i = 0; i < uSize; i++)
+		if (u[i] != 0)
+			return i;
+	return -1;
 }
