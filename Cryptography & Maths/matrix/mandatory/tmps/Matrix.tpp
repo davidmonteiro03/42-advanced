@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:26:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/21 18:54:06 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/21 20:14:09 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,80 +117,85 @@ Matrix<R> Matrix<R>::transpose(void) const
 }
 
 template <typename R>
-ssize_t firstNonZeroPos(const Vector<R> &line)
+ssize_t Matrix<R>::firstNonZeroPos(const Vector<R> &row)
 {
-	for (size_t i = 0; i < line.size(); i++)
-		if (line[i] != 0)
+	const size_t rowSize = vector::utils::size(row);
+	for (size_t i = 0; i < rowSize; i++)
+		if (row[i] != 0)
 			return i;
 	return -1;
 }
 
 template <typename R>
-void sortTheRowsByTheFirstNonZeroElement(Matrix<R> &matrix)
+void Matrix<R>::sortTheRowsByTheFirstNonZeroElement(void)
 {
-	const shape_t shape = matrix::utils::shape(matrix);
-	std::vector<ssize_t> pivots_poss;
-	for (size_t i = 0; i < shape.first; i++)
-		pivots_poss.push_back(firstNonZeroPos(matrix[i]));
-	for (size_t i = 0; i < shape.first; i++)
+	Matrix<R> &mat = *this;
+	const shape_t matShape = matrix::utils::shape(mat);
+	std::vector<ssize_t> pivotsPoss(matShape.first);
+	for (size_t i = 0; i < matShape.first; i++)
+		pivotsPoss[i] = firstNonZeroPos(mat[i]);
+	for (size_t i = 0; i < matShape.first; i++)
 	{
-		for (size_t j = i + 1; j < shape.first; j++)
+		for (size_t j = i + 1; j < matShape.first; j++)
 		{
-			if (pivots_poss[i] > pivots_poss[j])
+			if (pivotsPoss[i] > pivotsPoss[j])
 			{
-				std::swap(pivots_poss[i], pivots_poss[j]);
-				std::swap(matrix[i], matrix[j]);
+				std::swap(pivotsPoss[i], pivotsPoss[j]);
+				std::swap(mat[i], mat[j]);
 			}
 		}
 	}
 }
 
 template <typename R>
-void resetToZeroTheValuesBelowEachPivot(Matrix<R> &matrix)
+void Matrix<R>::resetToZeroTheValuesBelowEachPivot(void)
 {
-	sortTheRowsByTheFirstNonZeroElement(matrix);
-	const shape_t shape = matrix::utils::shape(matrix);
-	for (size_t j = 0; j < shape.second; j++)
+	Matrix<R> &mat = *this;
+	mat.sortTheRowsByTheFirstNonZeroElement();
+	const shape_t matShape = matrix::utils::shape(mat);
+	for (size_t j = 0; j < matShape.second; j++)
 	{
-		for (size_t i = j + 1; i < shape.first; i++)
+		for (size_t i = j + 1; i < matShape.first; i++)
 		{
-			ssize_t currPivotPos = firstNonZeroPos(matrix[i]),
-					prevPivotPos = firstNonZeroPos(matrix[j]);
+			ssize_t currPivotPos = firstNonZeroPos(mat[i]),
+					prevPivotPos = firstNonZeroPos(mat[j]);
 			if (currPivotPos == prevPivotPos)
-				matrix[i] = matrix[i] * matrix[j][prevPivotPos] - matrix[j] * matrix[i][currPivotPos];
+				mat[i] = mat[i] * mat[j][prevPivotPos] - mat[j] * mat[i][currPivotPos];
 		}
 	}
-	sortTheRowsByTheFirstNonZeroElement(matrix);
+	mat.sortTheRowsByTheFirstNonZeroElement();
 }
 
 template <typename R>
-void resetToZeroTheValuesAboveEachPivot(Matrix<R> &matrix)
+void Matrix<R>::resetToZeroTheValuesAboveEachPivot(void)
 {
-	sortTheRowsByTheFirstNonZeroElement(matrix);
-	const shape_t shape = matrix::utils::shape(matrix);
-	for (size_t i = 0; i < shape.first; i++)
+	Matrix<R> &mat = *this;
+	mat.sortTheRowsByTheFirstNonZeroElement();
+	const shape_t matShape = matrix::utils::shape(mat);
+	for (size_t i = 0; i < matShape.first; i++)
 	{
-		for (size_t j = i + 1; j < shape.first; j++)
+		for (size_t j = i + 1; j < matShape.first; j++)
 		{
-			ssize_t pivotPos = firstNonZeroPos(matrix[j]);
+			ssize_t pivotPos = firstNonZeroPos(mat[j]);
 			if (pivotPos == -1)
 				continue;
-			matrix[i] = matrix[i] * matrix[j][pivotPos] - matrix[j] * matrix[i][pivotPos];
+			mat[i] = mat[i] * mat[j][pivotPos] - mat[j] * mat[i][pivotPos];
 		}
 	}
-	sortTheRowsByTheFirstNonZeroElement(matrix);
+	mat.sortTheRowsByTheFirstNonZeroElement();
 }
 
 template <typename R>
-void normalizeThePivotValues(Matrix<R> &matrix)
+void Matrix<R>::normalizeThePivotValues(void)
 {
-	const shape_t shape = matrix::utils::shape(matrix);
-	for (size_t i = 0; i < shape.first; i++)
+	Matrix<R> &mat = *this;
+	const shape_t matShape = matrix::utils::shape(mat);
+	for (size_t i = 0; i < matShape.first; i++)
 	{
-		ssize_t pivotPos = firstNonZeroPos(matrix[i]);
+		ssize_t pivotPos = firstNonZeroPos(mat[i]);
 		if (pivotPos == -1)
 			continue;
-		matrix[i] *= 1 / matrix[i][pivotPos];
+		mat[i] *= 1 / mat[i][pivotPos];
 	}
 }
 
@@ -198,9 +203,76 @@ template <typename R>
 Matrix<R> Matrix<R>::row_echelon(void) const
 {
 	Matrix<R> result = *this;
-	sortTheRowsByTheFirstNonZeroElement(result);
-	resetToZeroTheValuesBelowEachPivot(result);
-	resetToZeroTheValuesAboveEachPivot(result);
-	normalizeThePivotValues(result);
+	result.sortTheRowsByTheFirstNonZeroElement();
+	result.resetToZeroTheValuesBelowEachPivot();
+	result.resetToZeroTheValuesAboveEachPivot();
+	result.normalizeThePivotValues();
+	return result;
+}
+
+template <typename R>
+Matrix<R> Matrix<R>::minorMatrix(const size_t &i,
+								 const size_t &j) const
+{
+	const Matrix<R> &mat = *this;
+	const shape_t matShape = matrix::utils::shape(mat);
+	Matrix<R> extracted(matShape.first - 1);
+	size_t extractedRow = 0;
+	for (size_t k = 0; k < matShape.first; k++)
+	{
+		if (k == i)
+			continue;
+		extracted[extractedRow] = Vector<R>(matShape.first - 1);
+		size_t extractedColumn = 0;
+		for (size_t l = 0; l < matShape.first; l++)
+		{
+			if (l == j)
+				continue;
+			extracted[extractedRow][extractedColumn++] = mat[k][l];
+		}
+		extractedRow++;
+	}
+	return extracted;
+}
+
+template <typename R>
+R Matrix<R>::determinant(void) const
+{
+	const Matrix<R> &mat = *this;
+	const shape_t matShape = matrix::utils::shape(mat);
+	if (matShape.first != matShape.second)
+		throw std::invalid_argument("The matrix must be square");
+	if (matShape.first == 1 && matShape.second == 1)
+		return mat[0][0];
+	if (matShape.first == 2 && matShape.second == 2)
+		return mat[0][0] * mat[1][1] - mat[0][1] * mat[1][0];
+	R result = 0;
+	for (size_t i = 0; i < matShape.second; i++)
+	{
+		Matrix extract = mat.minorMatrix(0, i);
+		result += mat[0][i] * (i % 2 == 0 ? extract.determinant() : -extract.determinant());
+	}
+	return result;
+}
+
+template <typename R>
+Matrix<R> Matrix<R>::inverse(void) const
+{
+	const Matrix<R> &mat = *this;
+	const shape_t matShape = matrix::utils::shape(mat);
+	if (matShape.first != matShape.second)
+		throw std::invalid_argument("The matrix must be square");
+	Matrix<R> result(matShape.first);
+	for (size_t i = 0; i < matShape.first; i++)
+	{
+		result[i] = Vector<R>(matShape.second);
+		for (size_t j = 0; j < matShape.second; j++)
+		{
+			Matrix<R> extract = mat.minorMatrix(i, j);
+			result[i][j] = (i == j || i == matShape.second - j - 1 ? extract.determinant() : -extract.determinant());
+		}
+	}
+	result = result.transpose();
+	result *= 1 / mat.determinant();
 	return result;
 }

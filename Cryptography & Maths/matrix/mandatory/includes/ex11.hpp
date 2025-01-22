@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Vector.hpp                                         :+:      :+:    :+:   */
+/*   ex11.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 09:06:17 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/21 19:02:59 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/12/12 10:32:18 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/21 19:06:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-template <typename R>
-class Vector : public std::vector<R>
+namespace ex11
 {
-private:
-	using std::vector<R>::vector;
-
-public:
-	Vector<R> &operator+=(const Vector<R> &);
-	Vector<R> &operator-=(const Vector<R> &);
-	Vector<R> &operator*=(const R &);
-	R dot(const Vector<R> &) const;
-	R norm_1(void) const;
-	R norm(void) const;
-	R norm_inf(void) const;
-};
-
-template <typename R>
-Vector(std::initializer_list<R>) -> Vector<R>;
+	template<typename R>
+	void matrix(void);
+}

@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/01/21 18:59:52 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/01/21 19:55:36 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,13 @@ OBJ_EXT      = .o
 
 # === FILES ================================================================== #
 
-TSTS         = utils ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex10
+TSTS         = utils ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex10 ex11 \
+               ex12
 CLSS         = Vector Matrix
 CPPS         = display
 HDRS         = $(CLSS) ft_$(NAME) vector matrix display general $(TSTS)
 TMPL         = $(CLSS) vector matrix display general $(TSTS)
+
 ifeq ($(MAKECMDGOALS),bonus)
     INCS     = $(addprefix $(BNUS_D)/$(INCS_D)/, \
                            $(addsuffix $(HPP_EXT), \
@@ -66,13 +68,14 @@ else
                                        $(TMPL)))
     MAIN_CPP = main$(CPP_EXT)
 endif
+
 MAIN_OBJ     = $(patsubst %$(CPP_EXT), \
                           $(OBJS_D)/%$(OBJ_EXT), \
                           $(MAIN_CPP))
 
 # === FLAGS ================================================================== #
 
-CPP_FLAGS    = -Wall -Wextra -Werror -std=c++2b -pedantic -g #-v
+CPP_FLAGS    = -Wall -Wextra -Werror -std=c++2b -pedantic -g
 MK_FLAGS     = -p
 RM_FLAGS     = -rfv
 

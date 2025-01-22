@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/21 18:57:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:56:11 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ int main(void)
 
 	display::box("ex10", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	ex10::matrix<number_t>();
+
+	display::box("ex11", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	ex11::matrix<number_t>();
+
+	display::box("ex12", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	ex12::matrix<number_t>();
 
 	return 0;
 }

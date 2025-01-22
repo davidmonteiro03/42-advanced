@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ex10.tpp                                           :+:      :+:    :+:   */
+/*   ex11.tpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 10:32:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/21 19:20:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:09:51 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_matrix.hpp"
 
-namespace ex10
+namespace ex11
 {
 	template <typename R>
 	void matrix(void)
@@ -21,9 +21,8 @@ namespace ex10
 		{
 			display::box("test 1", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
 			{
-				const Matrix<R> u = {{1., 0., 0.},
-									 {0., 1., 0.},
-									 {0., 0., 1.}};
+				const Matrix<R> u = {{1., -1.},
+									 {-1., 1.}};
 
 				try
 				{
@@ -37,8 +36,8 @@ namespace ex10
 
 				try
 				{
-					display::box(STRINGIFY(u.row_echelon()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-					display::value(u.row_echelon());
+					display::box(STRINGIFY(u.determinant()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u.determinant());
 				}
 				catch (const std::exception &e)
 				{
@@ -48,8 +47,9 @@ namespace ex10
 
 			display::box("test 2", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
 			{
-				const Matrix<R> u = {{1., 2.},
-									 {3., 4.}};
+				const Matrix<R> u = {{2., 0., 0.},
+									 {0., 2., 0.},
+									 {0., 0., 2.}};
 
 				try
 				{
@@ -63,8 +63,8 @@ namespace ex10
 
 				try
 				{
-					display::box(STRINGIFY(u.row_echelon()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-					display::value(u.row_echelon());
+					display::box(STRINGIFY(u.determinant()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u.determinant());
 				}
 				catch (const std::exception &e)
 				{
@@ -74,8 +74,9 @@ namespace ex10
 
 			display::box("test 3", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
 			{
-				const Matrix<R> u = {{1., 2.},
-									 {2., 4.}};
+				const Matrix<R> u = {{8., 5., -2.},
+									 {4., 7., 20.},
+									 {7., 6., 1.}};
 
 				try
 				{
@@ -89,8 +90,8 @@ namespace ex10
 
 				try
 				{
-					display::box(STRINGIFY(u.row_echelon()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-					display::value(u.row_echelon());
+					display::box(STRINGIFY(u.determinant()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u.determinant());
 				}
 				catch (const std::exception &e)
 				{
@@ -100,9 +101,10 @@ namespace ex10
 
 			display::box("test 4", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
 			{
-				const Matrix<R> u = {{8., 5., -2., 4., 28.},
-									 {4., 2.5, 20., 4., -4.},
-									 {8., 5., 1., 4., 17.}};
+				const Matrix<R> u = {{8., 5., -2., 4.},
+									 {4., 2.5, 20., 4.},
+									 {8., 5., 1., 4.},
+									 {28., -4., 17., 1.}};
 
 				try
 				{
@@ -116,8 +118,8 @@ namespace ex10
 
 				try
 				{
-					display::box(STRINGIFY(u.row_echelon()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-					display::value(u.row_echelon());
+					display::box(STRINGIFY(u.determinant()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u.determinant());
 				}
 				catch (const std::exception &e)
 				{
