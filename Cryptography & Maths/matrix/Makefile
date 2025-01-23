@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/01/22 17:10:07 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/01/23 14:52:34 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ OBJ_EXT      = .o
 # === FILES ================================================================== #
 
 TSTS         =
-CLSS         = Vector
+CLSS         = Vector Matrix
 CPPS         =
 HDRS         = $(CLSS) ft_$(NAME) $(TSTS)
 TMPL         = $(CLSS) $(TSTS)

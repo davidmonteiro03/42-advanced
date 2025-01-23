@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Vector.hpp                                         :+:      :+:    :+:   */
+/*   Matrix.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 17:09:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/23 16:37:34 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/01/23 14:51:16 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/23 16:37:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
+using shape_t = std::pair<size_t, size_t>;
+
 template <typename K>
-class Vector : public std::vector<K>
+class Matrix : public std::vector<Vector<K>>
 {
 private:
-	using std::vector<K>::vector;
+	using std::vector<Vector<K>>::vector;
+public:
+	Matrix(const std::initializer_list<std::initializer_list<K>>);
+	shape_t shape(void) const;
+	bool isSquare(void) const;
 };
 
 template <typename K>
-Vector(std::initializer_list<K>) -> Vector<K>;
+Matrix(std::initializer_list<std::initializer_list<K>>) -> Matrix<K>;
 
 template <typename K>
-std::ostream &operator<<(std::ostream &, const Vector<K> &);
+std::ostream &operator<<(std::ostream &, const Matrix<K> &);
