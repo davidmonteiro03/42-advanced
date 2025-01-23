@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   display.tpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 08:06:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/23 18:31:14 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/12/11 11:28:13 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/23 18:29:50 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mandatory/includes/ft_matrix.hpp"
-// #include <complex>
+#include "../includes/ft_matrix.hpp"
 
-using number_t = _Float32x;
-
-int main(void)
+namespace display
 {
-	std::cout.precision(std::numeric_limits<number_t>::digits10);
-	std::cerr.precision(std::numeric_limits<number_t>::digits10);
+	template <typename T>
+	void value(const T &value)
+	{
+		std::cout << value << std::endl
+				  << std::endl;
+	}
 
-	display::box("utils", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
-	utils::vector<number_t>();
-	utils::matrix<number_t>();
-
-	return 0;
+	template<typename A, typename B>
+	std::ostream &operator<<(std::ostream &os, const std::pair<A, B> &pair)
+	{
+		os << '(' << pair.first << ", " << pair.second << ')';
+		return os;
+	}
 }

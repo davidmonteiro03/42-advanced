@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/23 16:42:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:17:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,60 @@ template <typename K>
 bool Matrix<K>::isSquare(void) const
 {
 	const Matrix<K> &mat = *this;
-	try
-	{
-		const shape_t matShape = mat.shape();
-		return matShape.first == matShape.second;
-	}
-	catch (const std::exception &e)
-	{
-		return false;
-	}
+	const shape_t matShape = mat.shape();
+	return matShape.first == matShape.second;
+}
+
+template <typename K>
+Vector<K> Matrix<K>::reshape(void) const
+{
+	const Matrix<K> &mat = *this;
+	const shape_t matShape = mat.shape();
+	const size_t vecSize = matShape.first * matShape.second;
+	Vector<K> vec(vecSize);
+	for (size_t i = 0; i < matShape.first; i++)
+		for (size_t j = 0; j < matShape.second; j++)
+			vec[i * matShape.second + j] = mat[i][j];
+	return vec;
+}
+
+template <typename K>
+Matrix<K> &Matrix<K>::operator+=(const Matrix<K> &v)
+{
+	Matrix<K> &u = *this;
+	const shape_t uShape = u.shape();
+	const shape_t vShape = v.shape();
+	if (uShape != vShape)
+		throw std::invalid_argument("Matrices must have the same shape.");
+	for (size_t j = 0; j < uShape.second; j++)
+		for (size_t i = 0; i < uShape.first; i++)
+			u[i][j] += v[i][j];
+	return *this;
+}
+
+template <typename K>
+Matrix<K> &Matrix<K>::operator-=(const Matrix<K> &v)
+{
+	Matrix<K> &u = *this;
+	const shape_t uShape = u.shape();
+	const shape_t vShape = v.shape();
+	if (uShape != vShape)
+		throw std::invalid_argument("Matrices must have the same shape.");
+	for (size_t j = 0; j < uShape.second; j++)
+		for (size_t i = 0; i < uShape.first; i++)
+			u[i][j] -= v[i][j];
+	return *this;
+}
+
+template <typename K>
+Matrix<K> &Matrix<K>::operator*=(const K &a)
+{
+	Matrix<K> &u = *this;
+	const shape_t uShape = u.shape();
+	for (size_t j = 0; j < uShape.second; j++)
+		for (size_t i = 0; i < uShape.first; i++)
+			u[i][j] *= a;
+	return *this;
 }
 
 template <typename K>

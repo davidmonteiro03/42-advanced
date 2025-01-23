@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:51:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/23 16:37:32 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:06:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ public:
 	Matrix(const std::initializer_list<std::initializer_list<K>>);
 	shape_t shape(void) const;
 	bool isSquare(void) const;
+	Vector<K> reshape(void) const;
+
+	Matrix<K> &operator+=(const Matrix<K> &);
+	Matrix<K> &operator-=(const Matrix<K> &);
+	Matrix<K> &operator*=(const K &);
 };
 
 template <typename K>

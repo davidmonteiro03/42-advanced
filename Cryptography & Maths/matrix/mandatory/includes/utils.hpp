@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 08:06:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/23 18:31:14 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/12/11 17:36:36 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/23 18:24:50 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mandatory/includes/ft_matrix.hpp"
-// #include <complex>
+#pragma once
 
-using number_t = _Float32x;
-
-int main(void)
+namespace utils
 {
-	std::cout.precision(std::numeric_limits<number_t>::digits10);
-	std::cerr.precision(std::numeric_limits<number_t>::digits10);
+	template <typename K>
+	void vector(void);
 
-	display::box("utils", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
-	utils::vector<number_t>();
-	utils::matrix<number_t>();
-
-	return 0;
+	template <typename K>
+	void matrix(void);
 }

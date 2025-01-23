@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/23 16:37:34 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:14:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ class Vector : public std::vector<K>
 {
 private:
 	using std::vector<K>::vector;
+
+public:
+	Matrix<K> reshape(const size_t &, const size_t &) const;
+
+	Vector<K> &operator+=(const Vector<K> &);
+	Vector<K> &operator-=(const Vector<K> &);
+	Vector<K> &operator*=(const K &);
 };
 
 template <typename K>
