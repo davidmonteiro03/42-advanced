@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:06:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/23 18:25:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/24 09:15:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 #include <vector>
 #include <limits>
 
-template<typename K>
+template <typename K>
 class Vector;
 
-template<typename K>
+template <typename K>
 class Matrix;
 
 #include "./Vector.hpp"
@@ -27,6 +27,8 @@ class Matrix;
 
 #include "./display.hpp"
 #include "./utils.hpp"
+#include "./ex00.hpp"
+#include "./ex01.hpp"
 
 #define STRINGIFY(x) #x
 #define BOX_SIZE 64
@@ -36,3 +38,5 @@ class Matrix;
 
 #include "../tmps/display.tpp"
 #include "../tmps/utils.tpp"
+#include "../tmps/ex00.tpp"
+#include "../tmps/ex01.tpp"

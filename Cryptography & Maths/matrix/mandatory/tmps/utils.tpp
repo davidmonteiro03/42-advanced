@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 17:37:31 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/23 18:27:17 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/24 09:16:16 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 namespace utils
 {
-	template <typename R>
+	template <typename K>
 	void vector(void)
 	{
 		display::box("Vector", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
 
-		Vector<R> u = {1., 2., 3., 4., 5., 6.};
+		Vector<K> u = {1., 2., 3., 4., 5., 6.};
 
 		try
 		{
@@ -52,12 +52,12 @@ namespace utils
 		}
 	}
 
-	template <typename R>
+	template <typename K>
 	void matrix(void)
 	{
 		display::box("Matrix", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
 
-		Matrix<R> u = {{1., 2., 3.},
+		Matrix<K> u = {{1., 2., 3.},
 					   {4., 5., 6.}};
 
 		try

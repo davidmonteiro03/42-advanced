@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.hpp                                          :+:      :+:    :+:   */
+/*   ex01.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 17:36:36 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/24 09:15:57 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/12/12 10:32:18 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/24 09:15:49 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-namespace utils
+namespace ex01
 {
 	template <typename K>
 	void vector(void);
-
-	template <typename K>
-	void matrix(void);
 }

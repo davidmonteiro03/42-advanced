@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:28:13 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/23 18:29:50 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/24 09:17:11 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,15 @@ namespace display
 				  << std::endl;
 	}
 
-	template<typename A, typename B>
+	template <typename T>
+	void vector(const std::vector<T> &vector)
+	{
+		for (size_t i = 0; i < vector.size(); i++)
+			std::cout << vector[i] << std::endl;
+		std::cout << std::endl;
+	}
+
+	template <typename A, typename B>
 	std::ostream &operator<<(std::ostream &os, const std::pair<A, B> &pair)
 	{
 		os << '(' << pair.first << ", " << pair.second << ')';

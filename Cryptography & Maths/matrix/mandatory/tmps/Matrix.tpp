@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/23 18:17:06 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/24 09:16:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ Matrix<K>::Matrix(const std::initializer_list<std::initializer_list<K>> initList
 	Matrix<K> &mat = *this;
 	const shape_t matShape = initListShape(initList);
 	mat = Matrix<K>(matShape.second);
-	for (size_t i = 0; i < matShape.second; i++)
+	for (size_t j = 0; j < matShape.second; j++)
 	{
-		mat[i] = Vector<K>(matShape.first);
-		for (size_t j = 0; j < matShape.first; j++)
-			mat[i][j] = initList.begin()[j].begin()[i];
+		mat[j] = Vector<K>(matShape.first);
+		for (size_t i = 0; i < matShape.first; i++)
+			mat[j][i] = initList.begin()[i].begin()[j];
 	}
 }
 
@@ -113,6 +113,27 @@ Matrix<K> &Matrix<K>::operator*=(const K &a)
 		for (size_t i = 0; i < uShape.first; i++)
 			u[i][j] *= a;
 	return *this;
+}
+
+template <typename K>
+Matrix<K> Matrix<K>::operator+(const Matrix<K> &v) const
+{
+	Matrix<K> result(*this);
+	return result += v;
+}
+
+template <typename K>
+Matrix<K> Matrix<K>::operator-(const Matrix<K> &v) const
+{
+	Matrix<K> result(*this);
+	return result -= v;
+}
+
+template <typename K>
+Matrix<K> Matrix<K>::operator*(const K &a) const
+{
+	Matrix<K> result(*this);
+	return result *= a;
 }
 
 template <typename K>

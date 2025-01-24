@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/23 18:15:36 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/24 09:16:59 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ Matrix<K> Vector<K>::reshape(const size_t &m, const size_t &n) const
 	return result;
 }
 
-template<typename K>
+template <typename K>
 Vector<K> &Vector<K>::operator+=(const Vector<K> &v)
 {
 	Vector<K> &u = *this;
@@ -44,7 +44,7 @@ Vector<K> &Vector<K>::operator+=(const Vector<K> &v)
 	return *this;
 }
 
-template<typename K>
+template <typename K>
 Vector<K> &Vector<K>::operator-=(const Vector<K> &v)
 {
 	Vector<K> &u = *this;
@@ -57,7 +57,7 @@ Vector<K> &Vector<K>::operator-=(const Vector<K> &v)
 	return *this;
 }
 
-template<typename K>
+template <typename K>
 Vector<K> &Vector<K>::operator*=(const K &a)
 {
 	Vector<K> &u = *this;
@@ -65,6 +65,46 @@ Vector<K> &Vector<K>::operator*=(const K &a)
 	for (size_t i = 0; i < uSize; i++)
 		u[i] *= a;
 	return *this;
+}
+
+template <typename K>
+Vector<K> Vector<K>::operator+(const Vector<K> &v) const
+{
+	Vector<K> result = *this;
+	return result += v;
+}
+
+template <typename K>
+Vector<K> Vector<K>::operator-(const Vector<K> &v) const
+{
+	Vector<K> result = *this;
+	return result -= v;
+}
+
+template <typename K>
+Vector<K> Vector<K>::operator*(const K &a) const
+{
+	Vector<K> result = *this;
+	return result *= a;
+}
+
+template <typename K>
+Vector<K> linear_combination(const std::vector<Vector<K>> &u, const std::vector<K> &coefs)
+{
+	const size_t uSize = u.size();
+	const size_t coefsSize = coefs.size();
+	if (uSize != coefsSize)
+		throw std::invalid_argument("Vectors and coefficients must have the same size.");
+	if (uSize == 0)
+		return Vector<K>();
+	const size_t elemSize = u[0].size();
+	for (size_t i = 1; i < uSize; i++)
+		if (u[i].size() != elemSize)
+			throw std::invalid_argument("Vectors must have the same size.");
+	Vector<K> result(elemSize);
+	for (size_t i = 0; i < uSize; i++)
+		result += u[i] * coefs[i];
+	return result;
 }
 
 template <typename K>
