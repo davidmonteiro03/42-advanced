@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Matrix.tpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/24 09:16:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/24 22:01:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,21 +118,21 @@ Matrix<K> &Matrix<K>::operator*=(const K &a)
 template <typename K>
 Matrix<K> Matrix<K>::operator+(const Matrix<K> &v) const
 {
-	Matrix<K> result(*this);
+	Matrix<K> result = *this;
 	return result += v;
 }
 
 template <typename K>
 Matrix<K> Matrix<K>::operator-(const Matrix<K> &v) const
 {
-	Matrix<K> result(*this);
+	Matrix<K> result = *this;
 	return result -= v;
 }
 
 template <typename K>
 Matrix<K> Matrix<K>::operator*(const K &a) const
 {
-	Matrix<K> result(*this);
+	Matrix<K> result = *this;
 	return result *= a;
 }
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+         #
+#    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/01/24 09:12:06 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/01/24 21:55:45 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,11 @@ OBJ_EXT      = .o
 
 # === FILES ================================================================== #
 
-TSTS         = utils ex00 ex01
+TSTS         = utils ex00 ex01 ex02 ex03 ex04
 CLSS         = Vector Matrix
 CPPS         = display
-HDRS         = $(CLSS) ft_$(NAME) $(TSTS) display
-TMPL         = $(CLSS) $(TSTS) display
+HDRS         = $(CLSS) ft_$(NAME) $(TSTS) display general
+TMPL         = $(CLSS) $(TSTS) display general
 
 ifeq ($(MAKECMDGOALS),bonus)
     INCS     = $(addprefix $(BNUS_D)/$(INCS_D)/, \

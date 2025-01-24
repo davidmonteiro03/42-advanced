@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Vector.tpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/24 09:16:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/24 22:09:04 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,66 @@ Vector<K> Vector<K>::operator*(const K &a) const
 }
 
 template <typename K>
+K Vector<K>::dot(const Vector<K> &v) const
+{
+	const Vector<K> &u = *this;
+	const size_t uSize = u.size();
+	const size_t vSize = v.size();
+	if (uSize != vSize)
+		throw std::invalid_argument("Vectors must have the same size.");
+	K result = 0;
+	for (size_t i = 0; i < uSize; i++)
+		result += u[i] * v[i];
+	return result;
+}
+
+template <typename K>
+_Float32x Vector<K>::norm_1(void) const
+{
+	const Vector<K> &u = *this;
+	const size_t uSize = u.size();
+	_Float32x result = 0;
+	for (size_t i = 0; i < uSize; i++)
+		result += ft_abs(u[i]);
+	return result;
+}
+
+template <typename K>
+_Float32x Vector<K>::norm(void) const
+{
+	const Vector<K> &u = *this;
+	const size_t uSize = u.size();
+	_Float32x result = 0;
+	for (size_t i = 0; i < uSize; i++)
+		result += std::pow(ft_abs(u[i]), 2);
+	return std::pow(result, 0.5);
+}
+
+template <typename K>
+_Float32x Vector<K>::norm_inf(void) const
+{
+	const Vector<K> &u = *this;
+	const size_t uSize = u.size();
+	_Float32x result = 0;
+	for (size_t i = 0; i < uSize; i++)
+		result = std::max(result, ft_abs(u[i]));
+	return result;
+}
+
+template <typename K>
+std::ostream &operator<<(std::ostream &os, const Vector<K> &vec)
+{
+	os << '[';
+	for (size_t i = 0; i < vec.size(); i++)
+	{
+		if (i > 0)
+			os << ' ';
+		os << vec[i];
+	}
+	return os << ']';
+}
+
+template <typename K>
 Vector<K> linear_combination(const std::vector<Vector<K>> &u, const std::vector<K> &coefs)
 {
 	const size_t uSize = u.size();
@@ -105,17 +165,4 @@ Vector<K> linear_combination(const std::vector<Vector<K>> &u, const std::vector<
 	for (size_t i = 0; i < uSize; i++)
 		result += u[i] * coefs[i];
 	return result;
-}
-
-template <typename K>
-std::ostream &operator<<(std::ostream &os, const Vector<K> &vec)
-{
-	os << '[';
-	for (size_t i = 0; i < vec.size(); i++)
-	{
-		if (i > 0)
-			os << ' ';
-		os << vec[i];
-	}
-	return os << ']';
 }

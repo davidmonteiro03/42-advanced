@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_matrix.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:06:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/24 09:15:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/24 22:02:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <iostream>
 #include <vector>
 #include <limits>
+#include <cmath>
+#include <complex>
 
 template <typename K>
 class Vector;
@@ -26,9 +28,14 @@ class Matrix;
 #include "./Matrix.hpp"
 
 #include "./display.hpp"
+#include "./general.hpp"
+
 #include "./utils.hpp"
 #include "./ex00.hpp"
 #include "./ex01.hpp"
+#include "./ex02.hpp"
+#include "./ex03.hpp"
+#include "./ex04.hpp"
 
 #define STRINGIFY(x) #x
 #define BOX_SIZE 64
@@ -37,6 +44,11 @@ class Matrix;
 #include "../tmps/Matrix.tpp"
 
 #include "../tmps/display.tpp"
+#include "../tmps/general.tpp"
+
 #include "../tmps/utils.tpp"
 #include "../tmps/ex00.tpp"
 #include "../tmps/ex01.tpp"
+#include "../tmps/ex02.tpp"
+#include "../tmps/ex03.tpp"
+#include "../tmps/ex04.tpp"

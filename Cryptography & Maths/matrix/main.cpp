@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/24 09:16:21 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/24 22:26:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,20 @@ int main(void)
 
 	display::box("ex01", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	ex01::vector<number_t>();
+
+	display::box("ex01", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	ex01::vector<number_t>();
+
+	display::box("ex02", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	ex02::scalar<number_t>();
+	ex02::vector<number_t>();
+	ex02::matrix<number_t>();
+
+	display::box("ex03", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	ex03::vector<number_t>();
+
+	display::box("ex04", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	ex04::vector<number_t>();
 
 	return 0;
 }
