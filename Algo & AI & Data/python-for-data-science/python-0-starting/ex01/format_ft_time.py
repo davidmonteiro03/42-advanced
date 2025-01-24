@@ -1,9 +1,15 @@
-import datetime
+import datetime as dt
 
-time = datetime.datetime.now()
-seconds = float(time.strftime("%s")) + time.microsecond / 1000000
-date = time.strftime("%b %d %Y")
-print(f"Seconds since January 1, 1970:"
-      f" {seconds:,.4f} or {seconds:.2e}"
-      f" in scientific notation")
-print(f"{date}")
+now = dt.datetime.now()
+timestamp = now.timestamp()
+
+line1 = "Seconds since January 1, 1970: "
+line1 += f"{timestamp:,.4f}"
+line1 += " or "
+line1 += f"{timestamp:.3}"
+line1 += " in scientific notation"
+
+line2 = f"{now.strftime('%b %d %Y')}"
+
+print(line1)
+print(line2)
