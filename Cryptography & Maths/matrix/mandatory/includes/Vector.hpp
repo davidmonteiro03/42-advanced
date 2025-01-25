@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/24 22:00:06 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/25 21:03:25 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ public:
 	Vector<K> operator*(const K &) const;
 
 	K dot(const Vector<K> &) const;
-	_Float32x norm_1(void) const;
-	_Float32x norm(void) const;
-	_Float32x norm_inf(void) const;
+	auto norm_1(void) const;
+	auto norm(void) const;
+	auto norm_inf(void) const;
 };
 
 template <typename K>
@@ -43,3 +43,9 @@ std::ostream &operator<<(std::ostream &, const Vector<K> &);
 
 template <typename K>
 Vector<K> linear_combination(const std::vector<Vector<K>> &, const std::vector<K> &);
+
+template<typename K>
+K angle_cos(const Vector<K> &, const Vector<K> &);
+
+template<typename K>
+Vector<K> cross_product(const Vector<K> &, const Vector<K> &);

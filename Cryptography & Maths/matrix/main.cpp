@@ -44,5 +44,11 @@ int main(void)
 	display::box("ex04", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	ex04::vector<number_t>();
 
+	display::box("ex05", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	ex05::vector<number_t>();
+
+	display::box("ex06", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	ex06::vector<number_t>();
+
 	return 0;
 }

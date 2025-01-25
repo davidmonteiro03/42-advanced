@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/24 22:09:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/25 21:37:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,34 +103,34 @@ K Vector<K>::dot(const Vector<K> &v) const
 }
 
 template <typename K>
-_Float32x Vector<K>::norm_1(void) const
+auto Vector<K>::norm_1(void) const
 {
 	const Vector<K> &u = *this;
 	const size_t uSize = u.size();
-	_Float32x result = 0;
-	for (size_t i = 0; i < uSize; i++)
+	auto result = ft_abs(u[0]);
+	for (size_t i = 1; i < uSize; i++)
 		result += ft_abs(u[i]);
 	return result;
 }
 
 template <typename K>
-_Float32x Vector<K>::norm(void) const
+auto Vector<K>::norm(void) const
 {
 	const Vector<K> &u = *this;
 	const size_t uSize = u.size();
-	_Float32x result = 0;
-	for (size_t i = 0; i < uSize; i++)
+	auto result = std::pow(ft_abs(u[0]), 2);
+	for (size_t i = 1; i < uSize; i++)
 		result += std::pow(ft_abs(u[i]), 2);
 	return std::pow(result, 0.5);
 }
 
 template <typename K>
-_Float32x Vector<K>::norm_inf(void) const
+auto Vector<K>::norm_inf(void) const
 {
 	const Vector<K> &u = *this;
 	const size_t uSize = u.size();
-	_Float32x result = 0;
-	for (size_t i = 0; i < uSize; i++)
+	auto result = ft_abs(u[0]);
+	for (size_t i = 1; i < uSize; i++)
 		result = std::max(result, ft_abs(u[i]));
 	return result;
 }
@@ -165,4 +165,21 @@ Vector<K> linear_combination(const std::vector<Vector<K>> &u, const std::vector<
 	for (size_t i = 0; i < uSize; i++)
 		result += u[i] * coefs[i];
 	return result;
+}
+
+template <typename K>
+K angle_cos(const Vector<K> &u, const Vector<K> &v) { return u.dot(v) / (u.norm() * v.norm()); }
+
+template <typename K>
+Vector<K> cross_product(const Vector<K> &u, const Vector<K> &v)
+{
+	const size_t uSize = u.size();
+	const size_t vSize = v.size();
+	if (uSize != vSize)
+		throw std::invalid_argument("Vectors must have the same size.");
+	if (uSize != 3)
+		throw std::invalid_argument("Cross product is only defined for 3D vectors.");
+	return Vector<K>{u[1] * v[2] - u[2] * v[1],
+					 u[2] * v[0] - u[0] * v[2],
+					 u[0] * v[1] - u[1] * v[0]};
 }
