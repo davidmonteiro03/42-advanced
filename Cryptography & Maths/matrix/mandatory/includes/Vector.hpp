@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/25 21:03:25 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/26 20:58:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ public:
 	Vector<K> operator*(const K &) const;
 
 	K dot(const Vector<K> &) const;
+
 	auto norm_1(void) const;
 	auto norm(void) const;
 	auto norm_inf(void) const;
+
+	ssize_t firstNonZeroPos(void) const;
 };
 
 template <typename K>

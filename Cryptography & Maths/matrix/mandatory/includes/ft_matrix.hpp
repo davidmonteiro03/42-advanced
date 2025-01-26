@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:06:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/25 21:28:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/26 19:50:31 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ class Matrix;
 #include "./ex04.hpp"
 #include "./ex05.hpp"
 #include "./ex06.hpp"
+#include "./ex07.hpp"
+#include "./ex08.hpp"
+#include "./ex09.hpp"
+#include "./ex10.hpp"
 
 #define STRINGIFY(x) #x
 #define BOX_SIZE 64
@@ -56,3 +60,7 @@ class Matrix;
 #include "../tmps/ex04.tpp"
 #include "../tmps/ex05.tpp"
 #include "../tmps/ex06.tpp"
+#include "../tmps/ex07.tpp"
+#include "../tmps/ex08.tpp"
+#include "../tmps/ex09.tpp"
+#include "../tmps/ex10.tpp"

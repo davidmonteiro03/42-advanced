@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/25 21:37:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:30:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ Matrix<K> Vector<K>::reshape(const size_t &m, const size_t &n) const
 	const size_t uSize = u.size();
 	if (m * n != uSize)
 		throw std::invalid_argument("Invalid reshape dimensions.");
-	Matrix<K> result(m);
-	for (size_t i = 0; i < m; i++)
+	Matrix<K> result(n);
+	for (size_t i = 0; i < n; i++)
 	{
-		result[i] = Vector<K>(n);
-		for (size_t j = 0; j < n; j++)
-			result[i][j] = u[i * n + j];
+		result[i] = Vector<K>(m);
+		for (size_t j = 0; j < m; j++)
+			result[i][j] = u[j * n + i];
 	}
 	return result;
 }
@@ -63,7 +63,13 @@ Vector<K> &Vector<K>::operator*=(const K &a)
 	Vector<K> &u = *this;
 	const size_t uSize = u.size();
 	for (size_t i = 0; i < uSize; i++)
+	{
+		if (a == 0)
+			break ;
+		if (u[i] == 0)
+			continue ;
 		u[i] *= a;
+	}
 	return *this;
 }
 
@@ -182,4 +188,15 @@ Vector<K> cross_product(const Vector<K> &u, const Vector<K> &v)
 	return Vector<K>{u[1] * v[2] - u[2] * v[1],
 					 u[2] * v[0] - u[0] * v[2],
 					 u[0] * v[1] - u[1] * v[0]};
+}
+
+template <typename K>
+ssize_t Vector<K>::firstNonZeroPos(void) const
+{
+	const Vector<K> &u = *this;
+	const size_t uSize = u.size();
+	for (size_t i = 0; i < uSize; i++)
+		if (u[i] != 0)
+			return i;
+	return -1;
 }

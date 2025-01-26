@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:51:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/24 22:00:41 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:27:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ class Matrix : public std::vector<Vector<K>>
 private:
 	using std::vector<Vector<K>>::vector;
 
+	void sortTheRowsByTheFirstNonZeroElement(void);
+	void resetToZeroTheValuesBelowEachPivot(void);
+	void resetToZeroTheValuesAboveEachPivot(void);
+	void normalizeThePivotsValues(void);
+
 public:
-	Matrix(const std::initializer_list<std::initializer_list<K>>);
 	shape_t shape(void) const;
 	bool isSquare(void) const;
 	Vector<K> reshape(void) const;
@@ -33,6 +37,15 @@ public:
 	Matrix<K> operator+(const Matrix<K> &) const;
 	Matrix<K> operator-(const Matrix<K> &) const;
 	Matrix<K> operator*(const K &) const;
+
+	Vector<K> operator*(const Vector<K> &) const;
+	Matrix<K> operator*(const Matrix<K> &) const;
+
+	K trace(void) const;
+
+	Matrix<K> transpose(void) const;
+
+	Matrix<K> row_echelon(void) const;
 };
 
 template <typename K>

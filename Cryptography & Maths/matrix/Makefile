@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/01/25 21:30:01 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/01/26 19:50:53 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ OBJ_EXT      = .o
 
 # === FILES ================================================================== #
 
-TSTS         = utils ex00 ex01 ex02 ex03 ex04 ex05 ex06
+TSTS         = utils ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09 ex10
 CLSS         = Vector Matrix
 CPPS         = display
 HDRS         = $(CLSS) ft_$(NAME) $(TSTS) display general
