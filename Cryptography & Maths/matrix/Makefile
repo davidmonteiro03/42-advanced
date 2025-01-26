@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/01/26 19:50:53 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/01/26 22:34:47 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ MAIN_OBJ     = $(patsubst %$(CPP_EXT), \
 
 # === FLAGS ================================================================== #
 
-CPP_FLAGS    = -Wall -Wextra -Werror -std=c++2b -pedantic -g
+CPP_FLAGS    = -Wall -Wextra -Werror -std=c++2a -pedantic -g
 MK_FLAGS     = -p
 RM_FLAGS     = -rfv
 
