@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ex00.tpp                                           :+:      :+:    :+:   */
+/*   ex07.tpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 10:32:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/27 15:09:38 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/26 17:58:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_matrix.hpp"
 
-namespace ex00
+namespace ex07
 {
 	template <typename K>
 	void vector(void)
@@ -21,8 +21,9 @@ namespace ex00
 		{
 			display::box("test 1", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
 			{
-				Vector<K> u = {2., 3.};
-				const Vector<K> v = {5., 7.};
+				const Matrix<K> u = {{1., 0.},
+									 {0., 1.}};
+				const Vector<K> v = {4., 2.};
 
 				try
 				{
@@ -46,8 +47,8 @@ namespace ex00
 
 				try
 				{
-					display::box(STRINGIFY(u += v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-					display::value(u += v);
+					display::box(STRINGIFY(u * v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u * v);
 				}
 				catch (const std::exception &e)
 				{
@@ -57,8 +58,9 @@ namespace ex00
 
 			display::box("test 2", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
 			{
-				Vector<K> u = {2., 3.};
-				const Vector<K> v = {5., 7.};
+				const Matrix<K> u = {{2., 0.},
+									 {0., 2.}};
+				const Vector<K> v = {4., 2.};
 
 				try
 				{
@@ -82,8 +84,8 @@ namespace ex00
 
 				try
 				{
-					display::box(STRINGIFY(u -= v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-					display::value(u -= v);
+					display::box(STRINGIFY(u * v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u * v);
 				}
 				catch (const std::exception &e)
 				{
@@ -93,8 +95,9 @@ namespace ex00
 
 			display::box("test 3", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
 			{
-				Vector<K> u = {2., 3.};
-				K a = 2.;
+				const Matrix<K> u = {{2., -2.},
+									 {-2., 2.}};
+				const Vector<K> v = {4., 2.};
 
 				try
 				{
@@ -108,8 +111,8 @@ namespace ex00
 
 				try
 				{
-					display::box(STRINGIFY(a), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-					display::value(a);
+					display::box(STRINGIFY(v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(v);
 				}
 				catch (const std::exception &e)
 				{
@@ -118,8 +121,8 @@ namespace ex00
 
 				try
 				{
-					display::box(STRINGIFY(u *= a), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-					display::value(u *= a);
+					display::box(STRINGIFY(u * v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u * v);
 				}
 				catch (const std::exception &e)
 				{
@@ -136,10 +139,10 @@ namespace ex00
 		{
 			display::box("test 1", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
 			{
-				Matrix<K> u = {{1., 2.},
-							   {3., 4.}};
-				const Matrix<K> v = {{7., 4.},
-									 {-2., 2.}};
+				const Matrix<K> u = {{1., 0.},
+									 {0., 1.}};
+				const Matrix<K> v = {{1., 0.},
+									 {0., 1.}};
 
 				try
 				{
@@ -163,8 +166,8 @@ namespace ex00
 
 				try
 				{
-					display::box(STRINGIFY(u += v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-					display::value(u += v);
+					display::box(STRINGIFY(u * v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u * v);
 				}
 				catch (const std::exception &e)
 				{
@@ -174,10 +177,10 @@ namespace ex00
 
 			display::box("test 2", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
 			{
-				Matrix<K> u = {{1., 2.},
-							   {3., 4.}};
-				const Matrix<K> v = {{7., 4.},
-									 {-2., 2.}};
+				const Matrix<K> u = {{1., 0.},
+									 {0., 1.}};
+				const Matrix<K> v = {{2., 1.},
+									 {4., 2.}};
 
 				try
 				{
@@ -201,8 +204,8 @@ namespace ex00
 
 				try
 				{
-					display::box(STRINGIFY(u -= v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-					display::value(u -= v);
+					display::box(STRINGIFY(u * v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u * v);
 				}
 				catch (const std::exception &e)
 				{
@@ -212,9 +215,10 @@ namespace ex00
 
 			display::box("test 3", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
 			{
-				Matrix<K> u = {{1., 2.},
-							   {3., 4.}};
-				K a = 2.;
+				const Matrix<K> u = {{3., -5.},
+									 {6., 8.}};
+				const Matrix<K> v = {{2., 1.},
+									 {4., 2.}};
 
 				try
 				{
@@ -228,8 +232,8 @@ namespace ex00
 
 				try
 				{
-					display::box(STRINGIFY(a), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-					display::value(a);
+					display::box(STRINGIFY(v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(v);
 				}
 				catch (const std::exception &e)
 				{
@@ -238,8 +242,8 @@ namespace ex00
 
 				try
 				{
-					display::box(STRINGIFY(u *= a), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-					display::value(u *= a);
+					display::box(STRINGIFY(u * v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u * v);
 				}
 				catch (const std::exception &e)
 				{

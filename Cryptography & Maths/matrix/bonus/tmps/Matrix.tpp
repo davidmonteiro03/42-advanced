@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/27 12:10:24 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:15:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ void Matrix<K>::normalizeThePivotsValues(void)
 		ssize_t pivotPos = self[i].firstNonZeroPos();
 		if (pivotPos == -1)
 			continue;
-		self[i] *= 1 / self[i][pivotPos];
+		self[i] *= static_cast<K>(1) / self[i][pivotPos];
 	}
 }
 
@@ -314,7 +314,7 @@ Matrix<K> Matrix<K>::inverse(void) const
 		}
 	}
 	result = result.transpose();
-	result *= 1 / self.determinant();
+	result *= static_cast<K>(1) / self.determinant();
 	return result;
 }
 

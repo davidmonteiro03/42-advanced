@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 08:06:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/26 19:52:08 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:27:51 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ int main(void)
 	display::box("ex00", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	ex00::vector<number_t>();
 	ex00::matrix<number_t>();
-
-	display::box("ex01", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
-	ex01::vector<number_t>();
 
 	display::box("ex01", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	ex01::vector<number_t>();
@@ -62,6 +59,15 @@ int main(void)
 
 	display::box("ex10", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
 	ex10::matrix<number_t>();
+
+	display::box("ex11", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	ex11::matrix<number_t>();
+
+	display::box("ex12", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	ex12::matrix<number_t>();
+
+	display::box("ex13", '#', '#', '#', '#', ' ', BOX_SIZE, '\n');
+	ex13::matrix<number_t>();
 
 	return 0;
 }

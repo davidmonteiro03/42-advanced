@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:06:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/27 12:15:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:16:50 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <vector>
 #include <limits>
 #include <cmath>
+#include <complex>
 
 template <typename K>
 class Vector;

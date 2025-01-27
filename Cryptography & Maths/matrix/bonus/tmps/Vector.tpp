@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/27 15:22:20 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:09:59 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ Vector<K> &Vector<K>::operator*=(const K &a)
 	const size_t uSize = u.size();
 	for (size_t i = 0; i < uSize; i++)
 	{
-		if (u[i] == 0)
+		if (u[i] == static_cast<K>(0))
 			continue;
-		if (a == 0)
-			u[i] = 0;
+		if (a == static_cast<K>(0))
+			u[i] = static_cast<K>(0);
 		else
 			u[i] *= a;
 	}
@@ -143,6 +143,25 @@ auto Vector<K>::norm_inf(void) const
 }
 
 template <typename K>
+std::ostream &operator<<(std::ostream &os, const std::complex<K> &zValue)
+{
+	const K realPart = zValue.real();
+	const K imagPart = zValue.imag();
+	const K imagAbs = ft_abs(imagPart);
+	if (realPart != 0)
+		os << realPart;
+	if (imagPart != 0)
+	{
+		if (realPart != 0)
+			os << (imagPart > 0 ? " + " : " - ");
+		if (imagAbs != 1)
+			os << imagAbs;
+		os << 'i';
+	}
+	return os;
+}
+
+template <typename K>
 std::ostream &operator<<(std::ostream &os, const Vector<K> &vec)
 {
 	os << '[';
@@ -197,7 +216,7 @@ ssize_t Vector<K>::firstNonZeroPos(void) const
 	const Vector<K> &u = *this;
 	const size_t uSize = u.size();
 	for (size_t i = 0; i < uSize; i++)
-		if (u[i] != 0)
+		if (u[i] != static_cast<K>(0))
 			return i;
 	return -1;
 }

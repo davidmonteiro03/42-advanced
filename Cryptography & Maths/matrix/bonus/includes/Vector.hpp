@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/27 18:30:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:10:57 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ public:
 
 template <typename K>
 Vector(std::initializer_list<K>) -> Vector<K>;
+
+template <typename K>
+std::ostream &operator<<(std::ostream &, const std::complex<K> &);
 
 template <typename K>
 std::ostream &operator<<(std::ostream &, const Vector<K> &);

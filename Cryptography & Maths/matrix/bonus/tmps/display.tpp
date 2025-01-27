@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.hpp                                        :+:      :+:    :+:   */
+/*   display.tpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 17:45:34 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/27 15:09:56 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/12/11 11:28:13 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/27 15:18:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "../includes/ft_matrix.hpp"
 
 namespace display
 {
-	void box(const std::string &,
-			 const char &,
-			 const char &,
-			 const char &,
-			 const char &,
-			 const char &,
-			 const size_t &,
-			 const char &);
+	template <typename T>
+	void value(const T &value)
+	{
+		std::cout << value << std::endl
+				  << std::endl;
+	}
 
 	template <typename T>
-	void value(const T &);
-
-	template <typename T>
-	void vector(const std::vector<T> &);
+	void vector(const std::vector<T> &vector)
+	{
+		for (size_t i = 0; i < vector.size(); i++)
+			std::cout << vector[i] << std::endl;
+		std::cout << std::endl;
+	}
 
 	template <typename A, typename B>
-	std::ostream &operator<<(std::ostream &, const std::pair<A, B> &);
-
-	void error(const std::exception &);
+	std::ostream &operator<<(std::ostream &os, const std::pair<A, B> &pair)
+	{
+		os << '(' << pair.first << ", " << pair.second << ')';
+		return os;
+	}
 }

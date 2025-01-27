@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
+#    By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/01/26 22:34:47 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/01/27 12:17:52 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ OBJ_EXT      = .o
 
 # === FILES ================================================================== #
 
-TSTS         = utils ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09 ex10
+TSTS         = utils ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09 ex10 \
+               ex11 ex12 ex13
 CLSS         = Vector Matrix
 CPPS         = display
 HDRS         = $(CLSS) ft_$(NAME) $(TSTS) display general
@@ -48,6 +49,9 @@ ifeq ($(MAKECMDGOALS),bonus)
     SRCS     = $(addprefix $(BNUS_D)/$(SRCS_D)/, \
                            $(addsuffix $(CPP_EXT), \
                                        $(CPPS)))
+    OBJS     = $(patsubst $(BNUS_D)/$(SRCS_D)/%$(CPP_EXT), \
+                          $(OBJS_D)/$(BNUS_D)/$(SRCS_D)/%$(OBJ_EXT), \
+                          $(SRCS))
     TMPS     = $(addprefix $(BNUS_D)/$(TMPS_D)/, \
                            $(addsuffix $(TPP_EXT), \
                                        $(TMPL)))
@@ -94,6 +98,10 @@ $(OBJS_D)/%$(OBJ_EXT): %$(CPP_EXT) $(INCS) $(TMPS)
 	$(CPP) $(CPP_FLAGS) -c $< -o $@
 
 $(OBJS_D)/$(MAND_D)/$(SRCS_D)/%$(OBJ_EXT): $(MAND_D)/$(SRCS_D)/%$(CPP_EXT) $(INCS) $(TMPS)
+	@$(MK) $(MK_FLAGS) $(dir $@)
+	$(CPP) $(CPP_FLAGS) -c $< -o $@
+
+$(OBJS_D)/$(BNUS_D)/$(SRCS_D)/%$(OBJ_EXT): $(BNUS_D)/$(SRCS_D)/%$(CPP_EXT) $(INCS) $(TMPS)
 	@$(MK) $(MK_FLAGS) $(dir $@)
 	$(CPP) $(CPP_FLAGS) -c $< -o $@
 
