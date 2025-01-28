@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 13:45:07 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:08:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,6 +292,8 @@ K Matrix<K>::determinant(void) const
 	for (size_t i = 0; i < selfShape.first; i++)
 	{
 		const Matrix<K> extract = self.minorMatrix(0, i);
+		if (extract.determinant() == static_cast<K>(0))
+			continue;
 		result += self[0][i] * (i % 2 == 0 ? extract.determinant() : -extract.determinant());
 	}
 	return result;
@@ -311,6 +313,8 @@ Matrix<K> Matrix<K>::inverse(void) const
 		for (size_t j = 0; j < selfShape.second; j++)
 		{
 			Matrix<K> extract = self.minorMatrix(i, j);
+			if (extract.determinant() == static_cast<K>(0))
+				continue;
 			result[i][j] = (i == j || i == selfShape.second - j - 1 ? extract.determinant() : -extract.determinant());
 		}
 	}
