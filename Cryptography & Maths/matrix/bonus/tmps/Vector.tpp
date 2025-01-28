@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 09:07:42 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:14:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,27 @@ auto Vector<K>::norm_inf(void) const
 }
 
 template <typename K>
+std::ostream &operator<<(std::ostream &os, const std::complex<K> &a)
+{
+	const K realPart = a.real();
+	const K imagPart = a.imag();
+	const K imagAbs = ft_abs(imagPart);
+	if (realPart == 0 && imagPart == 0)
+		return os << 0;
+	if (realPart != 0)
+		os << realPart;
+	if (imagPart != 0)
+	{
+		if (realPart != 0)
+			os << (imagPart > 0 ? " + " : " - ");
+		if (imagAbs != 1)
+			os << imagAbs;
+		os << 'i';
+	}
+	return os;
+}
+
+template <typename K>
 std::ostream &operator<<(std::ostream &os, const Vector<K> &vec)
 {
 	os << '[';
@@ -173,6 +194,9 @@ Vector<K> linear_combination(const std::vector<Vector<K>> &u, const std::vector<
 		result += u[i] * coefs[i];
 	return result;
 }
+
+template <typename K>
+K angle_cos(const Vector<std::complex<K>> &u, const Vector<std::complex<K>> &v) { return u.dot(v).real() / (u.norm() * v.norm()); }
 
 template <typename K>
 K angle_cos(const Vector<K> &u, const Vector<K> &v) { return u.dot(v) / (u.norm() * v.norm()); }

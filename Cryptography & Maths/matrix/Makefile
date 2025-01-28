@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/01/27 12:17:52 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/01/28 09:50:11 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,11 +41,14 @@ CLSS         = Vector Matrix
 CPPS         = display
 HDRS         = $(CLSS) ft_$(NAME) $(TSTS) display general
 TMPL         = $(CLSS) $(TSTS) display general
+TSTS_B       = $(TSTS) ex14 ex15
+HDRS_B       = $(CLSS) ft_$(NAME) $(TSTS_B) display general
+TMPL_B       = $(CLSS) $(TSTS_B) display general
 
 ifeq ($(MAKECMDGOALS),bonus)
     INCS     = $(addprefix $(BNUS_D)/$(INCS_D)/, \
                            $(addsuffix $(HPP_EXT), \
-                                       $(HDRS)))
+                                       $(HDRS_B)))
     SRCS     = $(addprefix $(BNUS_D)/$(SRCS_D)/, \
                            $(addsuffix $(CPP_EXT), \
                                        $(CPPS)))
@@ -54,7 +57,7 @@ ifeq ($(MAKECMDGOALS),bonus)
                           $(SRCS))
     TMPS     = $(addprefix $(BNUS_D)/$(TMPS_D)/, \
                            $(addsuffix $(TPP_EXT), \
-                                       $(TMPL)))
+                                       $(TMPL_B)))
     MAIN_CPP = bonus$(CPP_EXT)
 else
     INCS     = $(addprefix $(MAND_D)/$(INCS_D)/, \

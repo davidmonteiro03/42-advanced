@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 13:19:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:22:51 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -356,4 +356,19 @@ std::ostream &operator<<(std::ostream &os, const Matrix<K> &mat)
 		os << mat[i];
 	}
 	return os << ']';
+}
+
+template <typename K>
+Matrix<K> projection(const K &fov, const K &ratio, const K &near, const K &far)
+{
+	Matrix<K> result(4);
+	for (size_t i = 0; i < 4; i++)
+		result[i] = Vector<K>(4);
+	const K tanHalfFov = std::tan(fov / static_cast<K>(2));
+	result[0][0] = static_cast<K>(1) / (ratio * tanHalfFov);
+	result[1][1] = static_cast<K>(1) / tanHalfFov;
+	result[2][2] = -((far + near) / (far - near));
+	result[2][3] = -(static_cast<K>(2) * far * near / (far - near));
+	result[3][2] = static_cast<K>(-1);
+	return result;
 }

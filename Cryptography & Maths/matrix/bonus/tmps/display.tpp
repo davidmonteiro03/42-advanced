@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:28:13 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 10:14:20 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:14:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,27 @@
 
 namespace display
 {
+	template <typename T>
+	std::ostream &operator<<(std::ostream &os, const std::complex<T> &a)
+	{
+		const T realPart = a.real();
+		const T imagPart = a.imag();
+		const T imagAbs = ft_abs(imagPart);
+		if (realPart == 0 && imagPart == 0)
+			return os << 0;
+		if (realPart != 0)
+			os << realPart;
+		if (imagPart != 0)
+		{
+			if (realPart != 0)
+				os << (imagPart > 0 ? " + " : " - ");
+			if (imagAbs != 1)
+				os << imagAbs;
+			os << 'i';
+		}
+		return os;
+	}
+
 	template <typename T>
 	void value(const T &value)
 	{
