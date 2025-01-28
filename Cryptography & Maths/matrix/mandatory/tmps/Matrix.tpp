@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 13:19:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:29:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,21 +182,11 @@ void Matrix<K>::sortTheRowsByTheFirstNonZeroElement(void)
 		{
 			if (pivotsPoss[j] == -1)
 				continue;
-			if (pivotsPoss[i] == -1 || pivotsPoss[i] > pivotsPoss[j])
+			if (pivotsPoss[i] == -1 || pivotsPoss[i] > pivotsPoss[j] || \
+				(pivotsPoss[i] == pivotsPoss[j] && ft_abs(self[i][pivotsPoss[i]]) > ft_abs(self[j][pivotsPoss[j]])))
 			{
 				std::swap(pivotsPoss[i], pivotsPoss[j]);
 				std::swap(self[i], self[j]);
-				continue;
-			}
-			if (pivotsPoss[i] == pivotsPoss[j])
-			{
-				const auto currElement = ft_abs(self[i][pivotsPoss[i]]);
-				const auto nextElement = ft_abs(self[j][pivotsPoss[j]]);
-				if (currElement > nextElement)
-				{
-					std::swap(pivotsPoss[i], pivotsPoss[j]);
-					std::swap(self[i], self[j]);
-				}
 			}
 		}
 	}
