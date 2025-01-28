@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:06:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 10:58:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:32:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <vector>
 #include <limits>
 #include <cmath>
-#include <type_traits>
 #include <complex>
 
 template <typename K>

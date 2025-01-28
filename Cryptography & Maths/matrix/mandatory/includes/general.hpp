@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 19:42:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/24 23:00:24 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:36:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ Matrix<K> operator*(const K &, const Matrix<K> &);
 template <typename K>
 K ft_abs(const K &);
 
-template<typename V, typename K>
+template <typename V, typename K>
 V lerp(const V &, const V &, const K &);

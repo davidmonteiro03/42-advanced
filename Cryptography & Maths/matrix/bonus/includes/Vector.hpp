@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 11:41:40 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:32:41 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ std::ostream &operator<<(std::ostream &, const Vector<K> &);
 template <typename K>
 Vector<K> linear_combination(const std::vector<Vector<K>> &, const std::vector<K> &);
 
-template<typename K>
+template <typename K>
 K angle_cos(const Vector<std::complex<K>> &, const Vector<std::complex<K>> &);
 
-template<typename K>
+template <typename K>
 K angle_cos(const Vector<K> &, const Vector<K> &);
 
-template<typename K>
+template <typename K>
 Vector<K> cross_product(const Vector<K> &, const Vector<K> &);

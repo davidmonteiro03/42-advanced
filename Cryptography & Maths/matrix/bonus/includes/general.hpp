@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 19:42:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 11:28:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:32:25 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ K ft_abs(const std::complex<K> &);
 template <typename K>
 K ft_abs(const K &);
 
-template<typename V, typename K>
+template <typename V, typename K>
 V lerp(const V &, const V &, const K &);
