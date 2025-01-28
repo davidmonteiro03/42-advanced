@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ex10.hpp                                           :+:      :+:    :+:   */
+/*   add.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 10:32:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 13:35:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:55:47 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-namespace ex10
+namespace add
 {
-	template <typename K>
-	void matrix(void);
+	template <typename V>
+	void execute(const std::vector<std::pair<V, V>> &);
 }

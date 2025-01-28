@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ex05.hpp                                           :+:      :+:    :+:   */
+/*   linear_combination.hpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 10:32:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 13:35:42 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/01/28 20:06:49 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/28 20:11:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-namespace ex05
+namespace lin_comb
 {
 	template <typename K>
-	void vector(void);
+	void execute(const std::vector<std::pair<std::vector<Vector<K>>, std::vector<K>>> &);
 }

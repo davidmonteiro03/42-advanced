@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ex07.hpp                                           :+:      :+:    :+:   */
+/*   dot_product.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 10:32:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 13:35:47 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/01/28 20:39:18 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/28 20:40:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-namespace ex07
+namespace dot_product
 {
-	template <typename K>
-	void vector(void);
-
-	template <typename K>
-	void matrix(void);
+	template <typename V>
+	void execute(const std::vector<std::pair<V, V>> &);
 }
