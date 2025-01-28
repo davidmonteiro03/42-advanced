@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 20:13:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 13:34:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:16:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,4 @@ template <typename K>
 K ft_abs(const K &a) { return a > static_cast<K>(0) ? a : -a; }
 
 template <typename V, typename K>
-V lerp(const V &u, const V &v, const K &t) { return (static_cast<K>(1) - t) * u + t * v; }
+V lerp(const V &u, const V &v, const K &t) { return u * (static_cast<K>(1) - t) + v * t; }

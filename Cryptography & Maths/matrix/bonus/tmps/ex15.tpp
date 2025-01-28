@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:48:51 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 13:52:00 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:17:37 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -406,11 +406,58 @@ namespace ex15
 
 		display::box("EX02", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
 		{
-			display::box("scalar", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
+			display::box("real", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
+			{
+				const typename K::value_type u = 0.;
+				const typename K::value_type v = 1.;
+				const typename K::value_type t = 0.5;
+
+				try
+				{
+					display::box(STRINGIFY(u), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u);
+				}
+				catch (const std::exception &e)
+				{
+					display::error(e);
+				}
+
+				try
+				{
+					display::box(STRINGIFY(v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(v);
+				}
+				catch (const std::exception &e)
+				{
+					display::error(e);
+				}
+
+				try
+				{
+					display::box(STRINGIFY(t), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(t);
+				}
+				catch (const std::exception &e)
+				{
+					display::error(e);
+				}
+
+				try
+				{
+					display::box(STRINGIFY(lerp(u, v, t)), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(lerp(u, v, t));
+				}
+				catch (const std::exception &e)
+				{
+					display::error(e);
+				}
+			}
+
+			display::box("complex", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
 			{
 				const K u = {1., 2.};
 				const K v = {3., 4.};
-				const K t = 0.5;
+				const typename K::value_type t = 0.5;
 
 				try
 				{
@@ -457,7 +504,7 @@ namespace ex15
 			{
 				const Vector<K> u = {{1., 2.}, {3., 4.}};
 				const Vector<K> v = {{5., 6.}, {7., 8.}};
-				const K t = 0.5;
+				const typename K::value_type t = 0.5;
 
 				try
 				{
@@ -506,7 +553,7 @@ namespace ex15
 									 {{5., 6.}, {7., 8.}}};
 				const Matrix<K> v = {{{2., 1.}, {4., 3.}},
 									 {{6., 5.}, {8., 7.}}};
-				const K t = 0.5;
+				const typename K::value_type t = 0.5;
 
 				try
 				{
