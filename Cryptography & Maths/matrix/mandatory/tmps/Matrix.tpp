@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 13:37:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:44:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,6 +315,8 @@ Matrix<K> Matrix<K>::inverse(void) const
 		}
 	}
 	result = result.transpose();
+	if (self.determinant() == static_cast<K>(0))
+		throw std::invalid_argument("The matrix must be invertible.");
 	result *= static_cast<K>(1) / self.determinant();
 	return result;
 }

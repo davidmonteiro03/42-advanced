@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:48:51 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 13:34:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:52:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -877,6 +877,96 @@ namespace ex15
 				{
 					display::box(STRINGIFY(u.row_echelon()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
 					display::value(u.row_echelon());
+				}
+				catch (const std::exception &e)
+				{
+					display::error(e);
+				}
+			}
+		}
+
+		display::box("EX11", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		{
+			display::box("matrix", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
+			{
+				const Matrix<K> u = {{{2., 1.}, {3., 4.}, {5., 6.}},
+									 {{7., 8.}, {9., 10.}, {11., 12.}},
+									 {{13., 14.}, {15., 16.}, {17., 18.}}};
+
+				try
+				{
+					display::box(STRINGIFY(u), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u);
+				}
+				catch (const std::exception &e)
+				{
+					display::error(e);
+				}
+
+				try
+				{
+					display::box(STRINGIFY(u.determinant()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u.determinant());
+				}
+				catch (const std::exception &e)
+				{
+					display::error(e);
+				}
+			}
+		}
+
+		display::box("EX12", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		{
+			display::box("matrix", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
+			{
+				const Matrix<K> u = {{{2., 1.}, {3., 4.}, {5., 6.}},
+									 {{7., 8.}, {9., 10.}, {11., 12.}},
+									 {{13., 14.}, {15., 16.}, {17., 18.}}};
+
+				try
+				{
+					display::box(STRINGIFY(u), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u);
+				}
+				catch (const std::exception &e)
+				{
+					display::error(e);
+				}
+
+				try
+				{
+					display::box(STRINGIFY(u.inverse()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u.inverse());
+				}
+				catch (const std::exception &e)
+				{
+					display::error(e);
+				}
+			}
+		}
+
+		display::box("EX13", '=', '=', '|', '|', ' ', BOX_SIZE, '\n');
+		{
+			display::box("matrix", '*', '*', '/', '/', ' ', BOX_SIZE, '\n');
+			{
+				const Matrix<K> u = {{{2., 1.}, {3., 4.}, {5., 6.}},
+									 {{7., 8.}, {9., 10.}, {11., 12.}},
+									 {{13., 14.}, {15., 16.}, {17., 18.}}};
+
+				try
+				{
+					display::box(STRINGIFY(u), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u);
+				}
+				catch (const std::exception &e)
+				{
+					display::error(e);
+				}
+
+				try
+				{
+					display::box(STRINGIFY(u.rank()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+					display::value(u.rank());
 				}
 				catch (const std::exception &e)
 				{
