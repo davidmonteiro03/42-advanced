@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/01/28 09:50:11 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/01/28 15:11:51 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ CLSS         = Vector Matrix
 CPPS         = display
 HDRS         = $(CLSS) ft_$(NAME) $(TSTS) display general
 TMPL         = $(CLSS) $(TSTS) display general
-TSTS_B       = $(TSTS) ex14 ex15
+TSTS_B       = ex14 ex15
 HDRS_B       = $(CLSS) ft_$(NAME) $(TSTS_B) display general
 TMPL_B       = $(CLSS) $(TSTS_B) display general
 
