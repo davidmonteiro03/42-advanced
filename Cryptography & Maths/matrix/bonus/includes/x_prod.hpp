@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ex14.hpp                                           :+:      :+:    :+:   */
+/*   x_prod.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 10:32:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 13:32:07 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/01/29 08:10:33 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/29 08:43:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-namespace ex14
+namespace x_prod
 {
 	template <typename K>
-	void matrix(void);
+	void execute(const std::vector<std::pair<Vector<K>, Vector<K>>> &);
 }

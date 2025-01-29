@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/01/28 20:40:12 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/01/29 13:33:36 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,12 +35,14 @@ OBJ_EXT      = .o
 
 # === FILES ================================================================== #
 
-TSTS         = add subtract multiply lin_comb lin_inter dot_product
+TSTS         = add subtract multiply lin_comb lin_inter dot_product \
+               vector_norm cosine x_prod lin_map mat_trace mat_transpose \
+               mat_row_echelon mat_determinant mat_inverse mat_rank
 CLSS         = Vector Matrix
 CPPS         = display
 HDRS         = $(CLSS) ft_$(NAME) $(TSTS) display general
 TMPL         = $(CLSS) $(TSTS) display general
-TSTS_B       = ex14 ex15
+TSTS_B       = $(TSTS)
 HDRS_B       = $(CLSS) ft_$(NAME) $(TSTS_B) display general
 TMPL_B       = $(CLSS) $(TSTS_B) display general
 

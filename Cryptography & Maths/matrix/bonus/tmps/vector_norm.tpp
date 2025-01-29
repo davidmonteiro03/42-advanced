@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dot_product.tpp                                    :+:      :+:    :+:   */
+/*   vector_norm.tpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 10:32:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/29 09:06:51 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/01/29 07:39:36 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/29 08:42:16 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_matrix.hpp"
+#pragma once
 
-namespace dot_product
+namespace vector_norm
 {
 	template <typename K>
-	void execute(const std::vector<std::pair<Vector<K>, Vector<K>>> &tests)
+	void execute(const std::vector<Vector<K>> &tests)
 	{
 		for (size_t i = 0; i < tests.size(); i++)
 		{
-			const Vector<K> u = tests[i].first;
-			const Vector<K> v = tests[i].second;
+			const Vector<K> u = tests[i];
 			std::stringstream testStream;
 
 			testStream << "Test " << i + 1;
@@ -36,8 +35,8 @@ namespace dot_product
 			}
 			try
 			{
-				display::box(STRINGIFY(v), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-				display::value(v);
+				display::box(STRINGIFY(u.norm_1()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+				display::value(u.norm_1());
 			}
 			catch (const std::exception &e)
 			{
@@ -45,8 +44,17 @@ namespace dot_product
 			}
 			try
 			{
-				display::box(STRINGIFY(u.dot(v)), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-				display::value(u.dot(v));
+				display::box(STRINGIFY(u.norm()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+				display::value(u.norm());
+			}
+			catch (const std::exception &e)
+			{
+				display::error(e);
+			}
+			try
+			{
+				display::box(STRINGIFY(u.norm_inf()), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+				display::value(u.norm_inf());
 			}
 			catch (const std::exception &e)
 			{

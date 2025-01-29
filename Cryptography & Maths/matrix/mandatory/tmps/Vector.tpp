@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 15:01:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:51:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ K Vector<K>::dot(const Vector<K> &v) const
 		throw std::invalid_argument("Vectors must have the same size.");
 	K result = 0;
 	for (size_t i = 0; i < uSize; i++)
-		result += u[i] * v[i];
+		result += ft_dot(u[i], v[i]);
 	return result;
 }
 

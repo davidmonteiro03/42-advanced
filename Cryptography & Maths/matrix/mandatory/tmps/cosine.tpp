@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dot_product.tpp                                    :+:      :+:    :+:   */
+/*   cosine.tpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 10:32:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/29 09:06:51 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/01/29 08:01:07 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/29 09:06:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_matrix.hpp"
+#pragma once
 
-namespace dot_product
+namespace cosine
 {
 	template <typename K>
 	void execute(const std::vector<std::pair<Vector<K>, Vector<K>>> &tests)
@@ -45,8 +45,8 @@ namespace dot_product
 			}
 			try
 			{
-				display::box(STRINGIFY(u.dot(v)), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
-				display::value(u.dot(v));
+				display::box(STRINGIFY(angle_cos(u, v)), '~', '~', '>', '<', ' ', BOX_SIZE, '\n');
+				display::value(angle_cos(u, v));
 			}
 			catch (const std::exception &e)
 			{

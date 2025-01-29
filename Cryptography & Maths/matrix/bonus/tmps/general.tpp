@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 20:13:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 14:16:06 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:57:36 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@ template <typename K>
 Matrix<K> operator*(const K &a, const Matrix<K> &u) { return u * a; }
 
 template <typename K>
+std::complex<K> ft_dot(const std::complex<K> &a, const std::complex<K> &b)
+{
+	return a * std::complex<K>(b.real(), -b.imag());
+}
+
+template <typename K>
+K ft_dot(const K &a, const K &b) { return a * b; }
+
+template <typename K>
 K ft_abs(const std::complex<K> &a)
 {
 	const K realPart = a.real();
@@ -31,7 +40,7 @@ K ft_abs(const std::complex<K> &a)
 }
 
 template <typename K>
-K ft_abs(const K &a) { return a > static_cast<K>(0) ? a : -a; }
+K ft_abs(const K &a) { return a >= static_cast<K>(0) ? a : -a; }
 
 template <typename V, typename K>
 V lerp(const V &u, const V &v, const K &t) { return u * (static_cast<K>(1) - t) + v * t; }

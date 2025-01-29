@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dot_product.hpp                                    :+:      :+:    :+:   */
+/*   multiply.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 20:39:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/29 08:40:10 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/12/12 10:32:18 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/28 19:55:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-namespace dot_product
+namespace multiply
 {
-	template <typename K>
-	void execute(const std::vector<std::pair<Vector<K>, Vector<K>>> &);
+	template <typename V, typename K>
+	void execute(const std::vector<std::pair<V, K>> &);
 }

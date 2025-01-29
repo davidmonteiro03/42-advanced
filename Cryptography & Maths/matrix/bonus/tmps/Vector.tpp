@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 13:35:11 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/29 12:29:33 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ K Vector<K>::dot(const Vector<K> &v) const
 		throw std::invalid_argument("Vectors must have the same size.");
 	K result = 0;
 	for (size_t i = 0; i < uSize; i++)
-		result += u[i] * v[i];
+		result += ft_dot(u[i], v[i]);
 	return result;
 }
 
@@ -156,6 +156,8 @@ std::ostream &operator<<(std::ostream &os, const std::complex<K> &a)
 	{
 		if (realPart != 0)
 			os << (imagPart > 0 ? " + " : " - ");
+		else if (imagPart < 0)
+			os << '-';
 		if (imagAbs != 1)
 			os << imagAbs;
 		os << 'i';

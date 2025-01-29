@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 09:06:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 15:12:23 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/29 10:17:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,22 @@ class Matrix;
 
 #include "./display.hpp"
 #include "./general.hpp"
-
-#include "./ex14.hpp"
-#include "./ex15.hpp"
+#include "./add.hpp"
+#include "./subtract.hpp"
+#include "./multiply.hpp"
+#include "./lin_comb.hpp"
+#include "./lin_inter.hpp"
+#include "./dot_product.hpp"
+#include "./vector_norm.hpp"
+#include "./cosine.hpp"
+#include "./x_prod.hpp"
+#include "./lin_map.hpp"
+#include "./mat_trace.hpp"
+#include "./mat_transpose.hpp"
+#include "./mat_row_echelon.hpp"
+#include "./mat_determinant.hpp"
+#include "./mat_inverse.hpp"
+#include "./mat_rank.hpp"
 
 #define STRINGIFY(x) #x
 #define BOX_SIZE 64
@@ -41,6 +54,19 @@ class Matrix;
 
 #include "../tmps/display.tpp"
 #include "../tmps/general.tpp"
-
-#include "../tmps/ex14.tpp"
-#include "../tmps/ex15.tpp"
+#include "../tmps/add.tpp"
+#include "../tmps/subtract.tpp"
+#include "../tmps/multiply.tpp"
+#include "../tmps/lin_comb.tpp"
+#include "../tmps/lin_inter.tpp"
+#include "../tmps/dot_product.tpp"
+#include "../tmps/vector_norm.tpp"
+#include "../tmps/cosine.tpp"
+#include "../tmps/x_prod.tpp"
+#include "../tmps/lin_map.tpp"
+#include "../tmps/mat_trace.tpp"
+#include "../tmps/mat_transpose.tpp"
+#include "../tmps/mat_row_echelon.tpp"
+#include "../tmps/mat_determinant.tpp"
+#include "../tmps/mat_inverse.tpp"
+#include "../tmps/mat_rank.tpp"

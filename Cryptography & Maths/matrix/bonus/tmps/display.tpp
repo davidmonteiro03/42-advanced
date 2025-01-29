@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:28:13 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 13:32:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/01/29 12:29:30 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ namespace display
 		{
 			if (realPart != 0)
 				os << (imagPart > 0 ? " + " : " - ");
+			else if (imagPart < 0)
+				os << '-';
 			if (imagAbs != 1)
 				os << imagAbs;
 			os << 'i';

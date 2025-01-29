@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dot_product.hpp                                    :+:      :+:    :+:   */
+/*   vector_norm.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 20:39:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/29 08:40:10 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/01/29 07:39:36 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/01/29 08:42:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-namespace dot_product
+namespace vector_norm
 {
 	template <typename K>
-	void execute(const std::vector<std::pair<Vector<K>, Vector<K>>> &);
+	void execute(const std::vector<Vector<K>> &);
 }
