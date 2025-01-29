@@ -1,101 +1,51 @@
-import cv2 as ocv
-from PIL import Image as img
 import numpy as np
+from PIL import Image as img
+from matplotlib import pyplot as plt
 
 
-def ft_invert(array: list) -> list:
-    """
-    Inverts the colors of an image.
-
-    Args:
-        array (list): A 3D list representing the image in RGB format.
-
-    Returns:
-        list: A 3D list representing the image with \
-inverted colors in BGR format.
-    """
-    original_image = img.fromarray(array)
-    original_array = np.array(original_image)
-    inverted_array = 255 - original_array
-    inverted_array = inverted_array * 1
-    ocv.imshow('Invert', inverted_array)
-    return inverted_array
+def ft_invert(array: np.ndarray) -> np.ndarray:
+    """Inverts the color of the image received."""
+    invert_array = array.copy()
+    invert_array = 255 - invert_array
+    plt.imshow(img.fromarray(invert_array))
+    plt.show()
+    return invert_array
 
 
-def ft_red(array: list) -> list:
-    """
-    Applies a red filter to the image by zeroing out \
-the green and blue channels.
-
-    Args:
-        array (list): A 3D list representing the image in RGB format.
-
-    Returns:
-        list: A 3D list representing the image with only the red channel.
-    """
-    original_image = img.fromarray(array)
-    original_array = np.array(original_image)
-    red_array = original_array.copy()
-    red_array[:, :, 0] = 0
+def ft_red(array: np.ndarray) -> np.ndarray:
+    """Isolates the red channel of the image received."""
+    red_array = array.copy()
     red_array[:, :, 1] = 0
-    ocv.imshow('Red', red_array)
+    red_array[:, :, 2] = 0
+    plt.imshow(img.fromarray(red_array))
+    plt.show()
     return red_array
 
 
-def ft_green(array: list) -> list:
-    """
-    Applies a green filter to the image by zeroing out \
-the red and blue channels.
-
-    Args:
-        array (list): A 3D list representing the image in RGB format.
-
-    Returns:
-        list: A 3D list representing the image with only the green channel.
-    """
-    original_image = img.fromarray(array)
-    original_array = np.array(original_image)
-    green_array = original_array.copy()
+def ft_green(array: np.ndarray) -> np.ndarray:
+    """Isolates the green channel of the image received."""
+    green_array = array.copy()
     green_array[:, :, 0] = 0
     green_array[:, :, 2] = 0
-    ocv.imshow('Green', green_array)
+    plt.imshow(img.fromarray(green_array))
+    plt.show()
     return green_array
 
 
-def ft_blue(array: list) -> list:
-    """
-    Applies a blue filter to the image by zeroing out \
-the red and green channels.
-
-    Args:
-        array (list): A 3D list representing the image in RGB format.
-
-    Returns:
-        list: A 3D list representing the image with only the blue channel.
-    """
-    original_image = img.fromarray(array)
-    original_array = np.array(original_image)
-    blue_array = original_array.copy()
+def ft_blue(array: np.ndarray) -> np.ndarray:
+    """Isolates the blue channel of the image received."""
+    blue_array = array.copy()
+    blue_array[:, :, 0] = 0
     blue_array[:, :, 1] = 0
-    blue_array[:, :, 2] = 0
-    ocv.imshow('Blue', blue_array)
+    plt.imshow(img.fromarray(blue_array))
+    plt.show()
     return blue_array
 
 
-def ft_grey(array: list) -> list:
-    """
-    Converts the image to grayscale.
-
-    Args:
-        array (list): A 3D list representing the image in RGB format.
-
-    Returns:
-        list: A 2D list representing the grayscale image.
-    """
-    original_image = img.fromarray(array)
-    original_array = np.array(original_image)
-    grey_array = (original_array[:, :, 0] / 3 +
-                  original_array[:, :, 1] / 3 +
-                  original_array[:, :, 2] / 3).astype(np.uint8)
-    ocv.imshow('Grey', grey_array)
+def ft_grey(array: np.ndarray) -> np.ndarray:
+    """Converts the image to greyscale."""
+    grey_array = array.copy()
+    grey_array = np.dot(grey_array[..., :3], [0.2989, 0.5870, 0.1140])
+    plt.imshow(img.fromarray(grey_array))
+    plt.show()
     return grey_array

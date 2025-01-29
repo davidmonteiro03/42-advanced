@@ -1,18 +1,15 @@
-import cv2 as ocv
+import numpy as np
+from PIL import Image as img
 
 
-def ft_load(path: str) -> list:
-    """Load an image from the specified file path and return it as a list.
-
-    Args:
-        path (str): The file path to the image.
-
-    Returns:
-        list: The loaded image as a list. \
-If the path is not a string, returns None.
-    """
-    if type(path) is not str:
+def ft_load(path: str) -> np.ndarray:
+    """This is a function that loads an image, prints its format,
+and its pixels content in RGB format."""
+    try:
+        image = img.open(path)
+        array = np.array(image)
+        print(f"The shape of image is: {array.shape}")
+        return array
+    except Exception as e:
+        print(f"Error: {e}")
         return None
-    image = ocv.cvtColor(ocv.imread(path), ocv.COLOR_BGR2RGB)
-    print(f"The shape of image is: {image.shape}")
-    return image

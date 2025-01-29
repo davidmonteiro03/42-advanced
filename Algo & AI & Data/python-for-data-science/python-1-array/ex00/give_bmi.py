@@ -1,49 +1,26 @@
 def give_bmi(height: list[int | float],
              weight: list[int | float]) -> list[int | float]:
-    """Calculate the Body Mass Index (BMI) for a list of heights and weights.
-
-    Args:
-        height (list[int | float]): A list of heights in meters.
-        weight (list[int | float]): A list of weights in kilograms.
-
-    Raises:
-        Exception: If the height and weight lists are not of the same size.
-
-    Returns:
-        list[int | float]: A list of BMI values calculated \
-from the given heights and weights.
-    """
-    if type(height) is not list[int | float] or \
-       type(weight) is not list[int | float]:
-        return None
-    try:
-        if len(height) != len(weight):
-            raise Exception("The list must be the same size.")
-        result: list[int | float] = list[int | float]()
-        for h, w in zip(height, weight):
-            result.append(w / (h ** 2))
-        return result
-    except Exception as e:
-        print(f"Error: {e}")
-        return None
+    """This is a function that takes 2 lists of integers or floats
+and returns a list of BMI values."""
+    if type(height) is not list or type(weight) is not list:
+        raise ValueError("The arguments must be lists.")
+    if not any([elem for elem in height
+                if type(elem) is float or type(elem) is int]) or \
+       not any([elem for elem in weight
+                if type(elem) is float or type(elem) is int]):
+        raise ValueError("Each element of the lists must be int or float.")
+    if len(height) != len(weight):
+        raise ValueError("The lists must have the same size.")
+    return [w / (h ** 2) for h, w in zip(height, weight)]
 
 
-def apply_limit(bmi: list[int | float],
-                limit: int) -> list[bool]:
-    """Apply a limit to a list of BMI values and \
-return a list of booleans indicating if each BMI exceeds the limit.
-
-    Args:
-        bmi (list[int | float]): A list of BMI values.
-        limit (int): The BMI limit to compare against.
-
-    Returns:
-        list[bool]: A list of booleans where each boolean indicates \
-if the corresponding BMI value exceeds the limit.
-    """
-    if type(bmi) is not list[int | float] or type(limit) is not int:
-        return None
-    result: list[bool] = list[bool]()
-    for b in bmi:
-        result.append(b > limit)
-    return result
+def apply_limit(bmi: list[int | float], limit: int) -> list[bool]:
+    """This is a function that accepts a list of integers or floats
+and an integer representing a limit and returns a list of booleans
+(True if above the limit)."""
+    if type(bmi) is not list or type(limit) is not int:
+        raise ValueError("BMI must be a list and limit must be an integer.")
+    if not any([elem for elem in bmi
+                if type(elem) is float or type(elem) is int]):
+        raise ValueError("Each element of the list must be int or float.")
+    return [b > limit for b in bmi]
