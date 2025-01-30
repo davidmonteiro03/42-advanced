@@ -30,7 +30,6 @@ cuts a square part from it and transpose it to produce a new image."""
     print(f"New shape after slicing: {zoom_array.shape}")
     print(zoom_array)
     rotate = ft_transpose_img(zoom)
-    rotate = rotate.transpose(img.FLIP_TOP_BOTTOM)
     rotate_array: np.ndarray = zoom_array[:, :, 0]
     print(f"New shape after Transpose: {rotate_array.shape}")
     print(rotate_array)
