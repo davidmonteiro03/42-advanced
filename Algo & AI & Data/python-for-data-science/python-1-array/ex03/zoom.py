@@ -14,8 +14,7 @@ prints some information about it and display it after "zooming"."""
     print(image_array)
     image = img.fromarray(image_array)
     zoom = image.crop((450, 100, 850, 500))
-    zoom.save('zoom.jpeg')
-    zoom_array = np.array(zoom)
+    zoom_array: np.ndarray = np.array(zoom)
     zoom_array = zoom_array[:, :, :1]
     print(f"New shape after slicing: {zoom_array.shape}")
     print(zoom_array)
@@ -25,4 +24,3 @@ prints some information about it and display it after "zooming"."""
 
 if __name__ == "__main__":
     main()
-

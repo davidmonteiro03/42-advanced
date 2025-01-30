@@ -1,7 +1,18 @@
 from load_image import ft_load
-from PIL import Image as img, ImageOps as imgops
+from PIL import Image as img
 import numpy as np
 import matplotlib.pyplot as plt
+
+
+def ft_transpose_img(image: img.Image) -> img.Image:
+    """This is a function that transposes an image."""
+    width, height = image.size
+    transposed_image = img.new("RGB", (height, width))
+    for y in range(height):
+        for x in range(width):
+            pixel = image.getpixel((x, y))
+            transposed_image.putpixel((y, x), pixel)
+    return transposed_image
 
 
 def main():
@@ -14,14 +25,13 @@ cuts a square part from it and transpose it to produce a new image."""
     print(image_array)
     image = img.fromarray(image_array)
     zoom = image.crop((450, 100, 850, 500))
-    zoom.save('zoom.jpeg')
-    zoom_array = np.array(zoom)
+    zoom_array: np.ndarray = np.array(zoom)
     zoom_array = zoom_array[:, :, :1]
     print(f"New shape after slicing: {zoom_array.shape}")
     print(zoom_array)
-    rotate = zoom.rotate(90)
-    rotate = imgops.flip(rotate)
-    rotate_array = zoom_array[:, :, 0]
+    rotate = ft_transpose_img(zoom)
+    rotate = rotate.transpose(img.FLIP_TOP_BOTTOM)
+    rotate_array: np.ndarray = zoom_array[:, :, 0]
     print(f"New shape after Transpose: {rotate_array.shape}")
     print(rotate_array)
     plt.imshow(rotate)
