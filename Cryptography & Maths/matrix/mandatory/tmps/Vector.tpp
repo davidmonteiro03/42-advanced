@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/29 11:51:19 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/01 11:52:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ auto Vector<K>::norm_1(void) const
 {
 	const Vector<K> &u = *this;
 	const size_t uSize = u.size();
+	if (uSize == 0)
+		return ft_abs(static_cast<K>(0));
 	auto result = ft_abs(u[0]);
 	for (size_t i = 1; i < uSize; i++)
 		result += ft_abs(u[i]);
@@ -125,6 +127,8 @@ auto Vector<K>::norm(void) const
 {
 	const Vector<K> &u = *this;
 	const size_t uSize = u.size();
+	if (uSize == 0)
+		return ft_abs(static_cast<K>(0));
 	auto result = std::pow(ft_abs(u[0]), 2);
 	for (size_t i = 1; i < uSize; i++)
 		result += std::pow(ft_abs(u[i]), 2);
@@ -136,6 +140,8 @@ auto Vector<K>::norm_inf(void) const
 {
 	const Vector<K> &u = *this;
 	const size_t uSize = u.size();
+	if (uSize == 0)
+		return ft_abs(static_cast<K>(0));
 	auto result = ft_abs(u[0]);
 	for (size_t i = 1; i < uSize; i++)
 		result = std::max(result, ft_abs(u[i]));
@@ -175,7 +181,16 @@ Vector<K> linear_combination(const std::vector<Vector<K>> &u, const std::vector<
 }
 
 template <typename K>
-K angle_cos(const Vector<K> &u, const Vector<K> &v) { return u.dot(v) / (u.norm() * v.norm()); }
+K angle_cos(const Vector<K> &u, const Vector<K> &v)
+{
+	const size_t uSize = u.size();
+	const size_t vSize = v.size();
+	if (uSize != vSize)
+		throw std::invalid_argument("Vectors must have the same size.");
+	if (uSize == 0)
+		return ft_abs(static_cast<K>(0));
+	return u.dot(v) / (u.norm() * v.norm());
+}
 
 template <typename K>
 Vector<K> cross_product(const Vector<K> &u, const Vector<K> &v)

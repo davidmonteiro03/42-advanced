@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:09:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/01/28 18:14:26 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:03:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,6 +284,8 @@ K Matrix<K>::determinant(void) const
 	const shape_t selfShape = self.shape();
 	if (self.isSquare() != true)
 		throw std::invalid_argument("The matrix must be square.");
+	if (selfShape.first == 0)
+		return static_cast<K>(1);
 	if (selfShape.first == 1)
 		return self[0][0];
 	if (selfShape.first == 2)
