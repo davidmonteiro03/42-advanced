@@ -10,7 +10,9 @@ information of a specific 42 campus."""
         campus_country = "Portugal"
         required_data = main_data[main_data.get("country") == campus_country]
         years = list(map(int, required_data.columns.drop("country")))
-        values = required_data.drop("country").values.flatten().tolist()
+        values = required_data.filter(
+            items=[str(y) for y in years]
+        ).values.flatten().tolist()
         plt.figure("Draw my country")
         plt.title(f"{campus_country} Life expectancy Projections")
         xticks = [y for y in years if y % 40 == 0]
