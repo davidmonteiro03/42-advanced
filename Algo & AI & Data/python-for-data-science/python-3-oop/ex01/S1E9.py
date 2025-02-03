@@ -10,6 +10,7 @@ class Character(ABC):
 
     @abstractmethod
     def die(self) -> None:
+        """This is a abstrat method that does nothing."""
         pass
 
 
