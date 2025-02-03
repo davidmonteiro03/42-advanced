@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class Character(ABC):
     """This is a class that represents a character."""
-    def __init__(self, first_name, is_alive = True):
+    def __init__(self, first_name, is_alive=True):
         """This is a method that initializes the character."""
         self.first_name = first_name
         self.is_alive = is_alive
