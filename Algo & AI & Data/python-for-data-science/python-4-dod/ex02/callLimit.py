@@ -13,10 +13,9 @@ before executing the wrapped function."""
 
             if count > 0:
                 count -= 1
-                return function(*args, **kwds)
+                function(*args, **kwds)
             else:
                 print(f"Error: {function} call too many times")
-                return None
 
         return limit_function
 
