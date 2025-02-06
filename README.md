@@ -4,7 +4,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
 ## Algo & AI & Data
 <table width="100%">
     <tr align="center">
-        <td width="200">Project</td>
+        <td width="250">Project</td>
         <td>Status</td>
         <td>Last submission date</td>
     </tr>
@@ -21,7 +21,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
 ## Cryptography & Maths
 <table width="100%">
     <tr align="center">
-        <td width="200">Project</td>
+        <td width="250">Project</td>
         <td>Status</td>
         <td>Last submission date</td>
     </tr>
@@ -39,7 +39,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
 ## Web & Mobile
 <table width="100%">
     <tr align="center">
-        <td width="200">Project</td>
+        <td width="250">Project</td>
         <td>Status</td>
         <td>Last submission date</td>
     </tr>
