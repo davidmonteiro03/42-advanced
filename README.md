@@ -1,7 +1,7 @@
 # 42 Advanced
 I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</a> after completing the <a href="https://github.com/davidmonteiro03/42-common-core">42 Common Core</a> on 23 January 2025.
 
-## Projects
+## Algo & AI & Data
 <div align="center">
     <table>
         <tr>
