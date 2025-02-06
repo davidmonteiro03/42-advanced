@@ -4,9 +4,9 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
 ## Algo & AI & Data
 <table>
     <tr>
-        <td>Project</td>
         <td>Status</td>
         <td>Last submission date</td>
+        <td>Project</td>
     </tr>
     <tr>
         <td>
@@ -21,17 +21,17 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
 ## Cryptography & Maths
 <table>
     <tr>
-        <td>Project</td>
         <td>Status</td>
         <td>Last submission date</td>
+        <td>Project</td>
     </tr>
     <tr>
-        <td>
-            <a href="https://github.com/davidmonteiro03/42-advanced-matrix">matrix</a>
-        </td>
         <td align="center">
             <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="50"/>
         </td>
         <td align="center">2025-02-01</td>
+        <td>
+            <a href="https://github.com/davidmonteiro03/42-advanced-matrix">matrix</a>
+        </td>
     </tr>
 </table>
