@@ -10,7 +10,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
             <td>Last submission date</td>
         </tr>
         <tr>
-            <td>
+            <td style="min-width: 200px">
                 <a href="https://github.com/davidmonteiro03/42-advanced-python-for-data-science">python-for-data-science</a>
             </td>
             <td>
@@ -30,7 +30,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
             <td>Last submission date</td>
         </tr>
         <tr>
-            <td>
+            <td style="min-width: 200px">
                 <a href="https://github.com/davidmonteiro03/42-advanced-matrix">matrix</a>
             </td>
             <td>
