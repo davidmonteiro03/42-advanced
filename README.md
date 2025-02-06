@@ -2,7 +2,7 @@
 I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</a> after completing the <a href="https://github.com/davidmonteiro03/42-common-core">42 Common Core</a> on 23 January 2025.
 
 ## Cryptography & Maths
-<div style="width: 100%" align="center">
+<div align="center">
     <table style="width: 100%">
         <tr>
             <td>Project</td>
