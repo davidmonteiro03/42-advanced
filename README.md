@@ -8,17 +8,15 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
             <td>Project</td>
             <td>Status</td>
             <td>Last submission date</td>
-            <td>Name of the project</td>
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-advanced-matrix">42-advanced-matrix</a>
+                <a href="https://github.com/davidmonteiro03/42-advanced-matrix">matrix</a>
             </td>
             <td>
                 <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
             </td>
             <td>2025-02-01</td>
-            <td>matrix</td>
         </tr>
     </table>
 </div>
