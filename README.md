@@ -4,16 +4,16 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
 ## Algo & AI & Data
 <table>
     <tr>
-        <td>Status</td>
         <td>Project</td>
+        <td>Status</td>
         <td>Last submission date</td>
     </tr>
     <tr>
         <td>
-            <img src="https://cdn-icons-png.flaticon.com/512/7884/7884198.png" width="50"/>
-        </td>
-        <td>
             <a href="https://github.com/davidmonteiro03/42-advanced-python-for-data-science">python-for-data-science</a>
+        </td>
+        <td colspan="2" align="center">
+            <img src="https://cdn-icons-png.flaticon.com/512/7884/7884198.png" width="50"/>
         </td>
     </tr>
 </table>
@@ -21,16 +21,16 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
 ## Cryptography & Maths
 <table>
     <tr>
-        <td>Status</td>
         <td>Project</td>
+        <td>Status</td>
         <td>Last submission date</td>
     </tr>
     <tr>
         <td>
-            <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="50"/>
-        </td>
-        <td>
             <a href="https://github.com/davidmonteiro03/42-advanced-matrix">matrix</a>
+        </td>
+        <td align="center">
+            <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="50"/>
         </td>
         <td align="center">2025-02-01</td>
     </tr>
