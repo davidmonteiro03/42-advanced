@@ -13,7 +13,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
             <a href="https://github.com/davidmonteiro03/42-advanced-python-for-data-science">Python for Data Science</a>
         </td>
         <td colspan="2">
-            <img src="https://cdn-icons-png.flaticon.com/512/7884/7884198.png" width="50"/>
+            <img src="https://cdn-icons-png.flaticon.com/512/4461/4461808.png" width="50"/>
         </td>
     </tr>
 </table>
@@ -48,7 +48,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
             <a href="https://github.com/davidmonteiro03/42-advanced-piscine-django">Piscine Django</a>
         </td>
         <td colspan="2">
-            <img src="https://cdn-icons-png.flaticon.com/512/7884/7884198.png" width="50"/>
+            <img src="https://cdn-icons-png.flaticon.com/512/4461/4461808.png" width="50"/>
         </td>
     </tr>
 </table>
