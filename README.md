@@ -14,7 +14,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
                 <a href="https://github.com/davidmonteiro03/42-advanced-matrix">matrix</a>
             </td>
             <td>
-                <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
+                <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="20"/>
             </td>
             <td>2025-02-01</td>
         </tr>
