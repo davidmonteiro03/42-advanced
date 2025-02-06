@@ -9,11 +9,11 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
         <td>Project</td>
     </tr>
     <tr>
-        <td>
-            <a href="https://github.com/davidmonteiro03/42-advanced-python-for-data-science">python-for-data-science</a>
-        </td>
         <td colspan="2" align="center">
             <img src="https://cdn-icons-png.flaticon.com/512/7884/7884198.png" width="50"/>
+        </td>
+        <td>
+            <a href="https://github.com/davidmonteiro03/42-advanced-python-for-data-science">python-for-data-science</a>
         </td>
     </tr>
 </table>
