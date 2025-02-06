@@ -3,7 +3,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
 
 ## Cryptography & Maths
 <div align="center">
-    <table>
+    <table style="width: 100%">
         <tr>
             <td>Project</td>
             <td>Status</td>
