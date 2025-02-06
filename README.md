@@ -23,4 +23,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
 
 ## Legend
 
-<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="25"/> means Project Finished
+<div class="d-flex flex-row align-items-center">
+    <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="25"/>
+    <span class="ms-2">means Project Finished<span>
+</div>
