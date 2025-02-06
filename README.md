@@ -21,8 +21,6 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
     </table>
 </div>
 
-## Images
+## Legend
 
-### Project Finished
-
-<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="25"/>
+<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="25"/> means Project Finished
