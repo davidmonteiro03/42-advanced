@@ -32,6 +32,6 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
         <td>
             <a href="https://github.com/davidmonteiro03/42-advanced-matrix">matrix</a>
         </td>
-        <td>2025-02-01</td>
+        <td align="center">2025-02-01</td>
     </tr>
 </table>
