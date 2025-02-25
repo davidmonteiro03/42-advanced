@@ -12,9 +12,10 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
         <td>
             <a href="https://github.com/davidmonteiro03/42-advanced-python-for-data-science">Python for Data Science</a>
         </td>
-        <td colspan="2">
-            <img src="https://cdn-icons-png.flaticon.com/512/3602/3602291.png" width="50"/>
+        <td>
+            <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="50"/>
         </td>
+        <td>2025-02-24</td>
     </tr>
 </table>
 
