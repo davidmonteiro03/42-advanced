@@ -35,14 +35,6 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
         </td>
         <td>2025-02-01</td>
     </tr>
-    <tr align="center">
-        <td>
-            <a href="https://github.com/davidmonteiro03/42-advanced-ready-set-boole">ready set boole</a>
-        </td>
-        <td colspan="2">
-            <img src="https://cdn-icons-png.flaticon.com/512/3602/3602291.png" width="50"/>
-        </td>
-    </tr>
 </table>
 
 ## Web & Mobile
