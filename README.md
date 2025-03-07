@@ -4,13 +4,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
 ## Algo & AI & Data
 | Project | Status | Last submission date |
 | :-----: | :----: | :------------------: |
-| Piscine Data Science | colspan ||
 <table width="100%">
-    <tr align="center">
-        <td width="250">Project</td>
-        <td>Status</td>
-        <td>Last submission date</td>
-    </tr>
     <tr align="center">
         <td>Piscine Data Science</td>
         <td colspan="2">
