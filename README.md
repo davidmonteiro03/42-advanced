@@ -2,9 +2,21 @@
 I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</a> after completing the <a href="https://github.com/davidmonteiro03/42-common-core">42 Common Core</a> on 23 January 2025.
 
 ## Algo & AI & Data
-| Cabeçalho 1 | Cabeçalho 2 | Cabeçalho 3 |
-|-------------|-------------|-------------|
-| Célula normal | colspan=2   ||
+|######################################## Caption Text ##########################################
+|_______________________________________________________________________________________________,
+|              | Header 1      || Header 2                     || Header 3                      |
+|              | Subheader 1   | Subheader 2.1 | Subheader 2.2 |  Subheader 3.1 | Subheader 3.2 |
+|==============|---------------|---------------|---------------|----------------|---------------|
+| Row Header 1 ||| 3row, 3col span                             || Colspan only                  |
+|______________|                                               |________________|_______________|
+| Row Header 2 |^                                              |  Rowspan only  | Cell          |
+|______________|                                               |                |_______________|
+| Row Header 3 |^                                              |^               | Cell          |
+|______________|_______________________________________________|________________|_______________|
+| Row Header 4 | Row           | Each cell     |:   Centered  :| Right-aligned :|: Left-aligned |
+|~             | with multiple | has room for  |   multi-line  |    multi-line  |  multi-line   |
+|~             | lines.        | more text.    |      text.    |         text.  |  text.        |
+|______________|_______________|_______________|_______________|________________|_______________/
 <table width="100%">
     <tr align="center">
         <td width="250">Project</td>
