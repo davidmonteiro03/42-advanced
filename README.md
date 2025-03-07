@@ -4,7 +4,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
 ## Algo & AI & Data
 | Project | Status | Last submission date |
 | :-----: | :----: | :------------------: |
-| Piscine Data Science | 
+| Piscine Data Science | colspan |
 <table width="100%">
     <tr align="center">
         <td width="250">Project</td>
