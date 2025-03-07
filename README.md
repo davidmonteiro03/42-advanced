@@ -2,9 +2,15 @@
 I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</a> after completing the <a href="https://github.com/davidmonteiro03/42-common-core">42 Common Core</a> on 23 January 2025.
 
 ## Algo & AI & Data
-| Project | Status | Last submission date |
-| :-----: | :----: | :------------------: |
+| Cabeçalho 1 | Cabeçalho 2 | Cabeçalho 3 |
+|-------------|-------------|-------------|
+| Célula normal | colspan=2   ||
 <table width="100%">
+    <tr align="center">
+        <td width="250">Project</td>
+        <td>Status</td>
+        <td>Last submission date</td>
+    </tr>
     <tr align="center">
         <td>Piscine Data Science</td>
         <td colspan="2">
