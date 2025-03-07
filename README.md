@@ -2,10 +2,6 @@
 I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</a> after completing the <a href="https://github.com/davidmonteiro03/42-common-core">42 Common Core</a> on 23 January 2025.
 
 ## Algo & AI & Data
-| col1 | col2 | col3 |
-| --- | --- | --- |
-| data1 | data2.1 | data2.2 | data3 |
-
 <table width="100%">
     <tr align="center">
         <td width="250">Project</td>
