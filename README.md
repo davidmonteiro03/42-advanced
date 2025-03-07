@@ -2,7 +2,7 @@
 I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</a> after completing the <a href="https://github.com/davidmonteiro03/42-common-core">42 Common Core</a> on 23 January 2025.
 
 ## Algo & AI & Data
-<table width="100%">
+<table>
     <tr align="center">
         <td width="250">Project</td>
         <td>Status</td>
@@ -26,7 +26,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
 </table>
 
 ## Cryptography & Maths
-<table width="100%">
+<table>
     <tr align="center">
         <td width="250">Project</td>
         <td>Status</td>
@@ -44,7 +44,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
 </table>
 
 ## Web & Mobile
-<table width="100%">
+<table>
     <tr align="center">
         <td width="250">Project</td>
         <td>Status</td>
