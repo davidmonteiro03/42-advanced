@@ -46,6 +46,24 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
     </tr>
 </table>
 
+## Functional Programming
+<table>
+    <tr align="center">
+        <td width="250">Project</td>
+        <td>Status</td>
+        <td>Last submission date</td>
+    </tr>
+    <tr align="center">
+        <td>
+            <a href="https://github.com/davidmonteiro03/42-advanced-piscine=ocaml">Piscine OCAML</a>
+        </td>
+        <td>
+            <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="50"/>
+        </td>
+        <td>2026-06-29</td>
+    </tr>
+</table>
+
 ## Web & Mobile
 <table>
     <tr align="center">
