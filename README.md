@@ -55,7 +55,7 @@ I started <a href="https://github.com/davidmonteiro03/42-advanced">42 Advanced</
     </tr>
     <tr align="center">
         <td>
-            <a href="https://github.com/davidmonteiro03/42-advanced-piscine=ocaml">Piscine OCAML</a>
+            <a href="https://github.com/davidmonteiro03/42-advanced-piscine-ocaml">Piscine OCAML</a>
         </td>
         <td>
             <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="50"/>
